@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_activity"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"/>
+
+    <com.astuetz.PagerSlidingTabStrip
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/appcolor"
+        android:textColor="@color/white"
+        android:elevation="4dp"
+        app:pstsIndicatorColor="@color/tab_strip"
+        app:pstsIndicatorHeight="@dimen/tab_indicator_height"
+        app:pstsShouldExpand="true"/>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="1"
+        android:background="@android:color/white" />
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:id="@+id/buttonlayer"
+        android:orientation="horizontal"
+        android:background="@color/appcolor"
+        android:layout_below="@+id/recording_status_text">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/alarmbtn">
+        <ImageView
+           android:layout_width="50dp"
+           android:layout_height="50dp"
+           android:src="@drawable/alarambtn"
+            android:layout_gravity="center_horizontal"/>
+
+        <Button
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:text="Alarm"
+            android:textColor="@android:color/white"
+            android:background="@color/appcolor"
+            android:id="@+id/Alarmmain"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/reminderbtn">
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/reminderbtn"
+                android:layout_gravity="center_horizontal"/>
+        <Button
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:text="Reminder"
+            android:textColor="@android:color/white"
+            android:id="@+id/remindermain"
+            android:background="@color/appcolor"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/todobtn">
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/tpdobtn"
+                android:layout_gravity="center_horizontal"/>
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Todo"
+            android:textColor="@android:color/white"
+            android:id="@+id/Todomain"
+            android:background="@color/appcolor"/>
+    </LinearLayout>
+</LinearLayout>
+
+</LinearLayout>

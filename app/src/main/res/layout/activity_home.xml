@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.krishna.mp3alarm.Home">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Message"
+        android:id="@+id/message"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Todo"
+        android:id="@+id/todo"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Alarm"
+        android:id="@+id/alarm"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Record"
+        android:id="@+id/record"/>
+</LinearLayout>
