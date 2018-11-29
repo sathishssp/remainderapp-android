@@ -83,7 +83,7 @@
                         android:paddingTop="8dp"
                         android:paddingBottom="8dp"
                         android:id="@+id/userToDoRemindMeTextView"
-                        android:text="@string/remind_me"
+                        android:text="Remind Me"
                         android:textSize="16sp"
                         android:textColor="@android:color/black"
                         android:layout_weight="2"
@@ -96,9 +96,9 @@
                         android:padding="8dp"
                         android:gravity="center"
                         android:layout_weight="1"
+                        android:background="@color/appcolor"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"/>
-
                 </LinearLayout>
 
                 <LinearLayout
@@ -113,7 +113,6 @@
                     android:layout_height="0dp">
 
                     <LinearLayout
-
                         android:layout_width="match_parent"
                         android:gravity="top"
                         android:layout_weight="1"

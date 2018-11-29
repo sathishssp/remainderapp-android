@@ -8,12 +8,6 @@
     android:orientation="vertical"
     tools:context="com.example.krishna.mp3alarm.Splash">
 
-    <pl.droidsonroids.gif.GifImageView
-        android:id="@+id/splash"
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:src="@drawable/alarmclock"/>
-
     <TextView
         android:id="@+id/textslogan"
         android:layout_width="wrap_content"
@@ -25,6 +19,23 @@
         android:layout_marginTop="15dp"
         android:textSize="25dp"
         />
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/splash"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:src="@drawable/alarmclock"/>
+
+    <TextView
+        android:id="@+id/textslo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Unleash your alter ego on yourself and be the boss of you!"
+        android:textColor="@android:color/black"
+        android:layout_gravity="center_horizontal"
+        android:textStyle="bold"
+        android:layout_marginTop="15dp"
+        android:textSize="14dp"
+        />
 
     <TextView
         android:id="@+id/textpowered"
@@ -34,7 +45,7 @@
         android:textColor="@android:color/black"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="50dp"
-        android:textSize="15dp"
+        android:textSize="10dp"
         />
 
 </LinearLayout>

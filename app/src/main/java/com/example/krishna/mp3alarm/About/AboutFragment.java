@@ -31,8 +31,8 @@ public class AboutFragment extends AppDefaultFragment {
 
         app = (AnalyticsApplication) getActivity().getApplication();
         app.send(this);
-        mVersionTextView = (TextView) view.findViewById(R.id.aboutVersionTextView);
-        mVersionTextView.setText(String.format(getResources().getString(R.string.app_version), appVersion));
+      //  mVersionTextView = (TextView) view.findViewById(R.id.aboutVersionTextView);
+     //   mVersionTextView.setText(String.format(getResources().getString(R.string.app_version), appVersion));
         toolbar = (Toolbar) view.findViewById(R.id.toolbar);
 
         contactMe = (TextView) view.findViewById(R.id.aboutContactMe);

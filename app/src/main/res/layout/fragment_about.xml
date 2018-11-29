@@ -3,56 +3,46 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:gravity="center|top"
+    android:background="@color/appcolor"
               android:layout_height="match_parent">
-
-    <ImageView
-        android:id="@+id/aboutImageView"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/ic_launcher"
-        android:layout_marginTop="50dp"
-        android:layout_width="100dp"
-        android:layout_height="100dp"/>
-
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:orientation="vertical"
+       android:gravity="center|top">
     <TextView
-        android:text="@string/app_name"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="About Us"
+    android:textSize="35dp"
+    android:textColor="@android:color/white"
+    android:textStyle="bold"/>
+    <TextView
+        android:text="#1 mobile app in productivity, Uremindme takes the reminder app to the next level allowing you the user to record a message and set a time for a call back. This is our flagship feature in addition to all of the features of the average reminder app including calender, to-do-list, alarm, and text back reminder.
+In a busy world, we need to remind ourselves of the many things on our to do list. Sometimes more than once.
+We also need to remind ourselves of our goals and to stay motivated. Uremindme has motivational messages that you can set for a call back when you need it most.
+Unleash your alter ego on yourself and be the boss of you!"
         android:gravity="center"
         android:textSize="24sp"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-
-    <TextView
-        android:id="@+id/aboutVersionTextView"
-        android:text="@string/app_version"
-        android:layout_marginTop="4dp"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
     <TextView
         android:textSize="20sp"
-        android:gravity="center"
-        android:layout_marginTop="16dp"
-        android:text="Trident Techno Minds"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <TextView
-        android:textSize="16sp"
-        android:gravity="center"
-        android:layout_marginTop="4dp"
-        android:text="@string/contact_me"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <TextView
-        android:textSize="16sp"
         android:gravity="center"
         android:id="@+id/aboutContactMe"
         android:layout_marginTop="4dp"
         android:autoLink="email"
         android:linksClickable="true"
-        android:text="contact@tridenttechnominds.com"
+        android:textColor="@android:color/white"
+        android:text="digitalx23@gmail.com"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
+</LinearLayout>
+</ScrollView>
 </LinearLayout>

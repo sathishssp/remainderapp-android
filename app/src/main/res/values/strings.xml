@@ -154,4 +154,8 @@
     <string name="speech_prompt">Say something&#8230;</string>
     <string name="speech_not_supported">Sorry! Your device doesn\'t support speech input</string>
     <string name="tap_on_mic">Tap on mic to speak</string>
+
+    <string name="turn_speaker_on">Speaker ON</string>
+    <string name="callee">client identity or phone number</string>
+    <string name="callHint">Dial a client name or phone number. Leaving the field empty results in an automated response.</string>
 </resources>

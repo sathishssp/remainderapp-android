@@ -282,25 +282,29 @@ public abstract class AlarmFragment extends Fragment {
 	public String getImagePath(Uri uri) {
 		Cursor cursor = getActivity().getContentResolver().query(uri, null,
 				null, null, null);
+		String path = null;
 		try {
-			cursor.moveToFirst();
-			String document_id = cursor.getString(0);
-			document_id = document_id
-					.substring(document_id.lastIndexOf(":") + 1);
-			cursor.close();
+			if (cursor.moveToFirst()) {
+				String document_id = cursor.getString(0);
+				document_id = document_id
+						.substring(document_id.lastIndexOf(":") + 1);
+				cursor.close();
 
-			cursor = getActivity()
-					.getContentResolver()
-					.query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
-							null, MediaStore.Images.Media._ID + " = ? ",
-							new String[] { document_id }, null);
-			cursor.moveToFirst();
-			String path = cursor.getString(cursor
-					.getColumnIndex(MediaStore.Images.Media.DATA));
-			return path;
+				cursor = getActivity()
+						.getContentResolver()
+						.query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
+								null, MediaStore.Images.Media._ID + " = ? ",
+								new String[]{document_id}, null);
+				if (cursor.moveToFirst()) {
+					path = cursor.getString(cursor
+							.getColumnIndex(MediaStore.Images.Media.DATA));
+					return path;
+				}
+			}
 		} finally {
 			cursor.close();
 		}
+		return path;
 	}
 
 	protected void refreshAndClose() {

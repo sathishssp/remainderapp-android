@@ -23,8 +23,11 @@ public class Reminderpage extends AppCompatActivity {
         call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getBaseContext(), "We are working on the call option.",
-                        Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(Reminderpage.this,VoiceActivity.class);
+                overridePendingTransition(R.anim.rotate, R.anim.rotate);
+                startActivity(intent);
+                finish();
             }
         });
 

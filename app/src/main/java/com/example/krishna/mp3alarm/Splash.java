@@ -31,7 +31,7 @@ public class Splash extends AppCompatActivity {
             @Override
             public void run() {
                 Intent i = new Intent(Splash.this, com.example.krishna.mp3alarm.active.MainActivity.class);
-                overridePendingTransition(R.anim.slidetop, R.anim.slidetop);
+                overridePendingTransition(R.anim.rotate, R.anim.rotate);
                 startActivity(i);
                 finish();
             }
