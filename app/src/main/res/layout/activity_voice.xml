@@ -18,7 +18,7 @@
         android:textSize="60sp"
         android:visibility="invisible" />
 
-    <android.support.design.widget.FloatingActionButton
+    <com.melnykov.fab.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/call_action_fab"
@@ -29,11 +29,6 @@
         android:layout_marginEnd="@dimen/activity_horizontal_margin"
         android:visibility="invisible" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="call"
-        android:id="@+id/button"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -42,7 +37,7 @@
         android:layout_gravity="bottom|end"
         android:orientation="vertical">
 
-        <android.support.design.widget.FloatingActionButton
+        <com.melnykov.fab.FloatingActionButton
             android:id="@+id/mute_action_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -53,7 +48,9 @@
             android:layout_marginEnd="@dimen/activity_horizontal_margin"
             android:visibility="invisible" />
 
-        <android.support.design.widget.FloatingActionButton
+
+
+        <com.melnykov.fab.FloatingActionButton
             android:id="@+id/hangup_action_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

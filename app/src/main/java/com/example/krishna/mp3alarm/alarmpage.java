@@ -60,4 +60,13 @@ public class alarmpage extends AppCompatActivity {
         });
 
     }
+
+    public void onBackPressed(){
+        super.onBackPressed();
+        Intent intent = new Intent(alarmpage.this, com.example.krishna.mp3alarm.active.MainActivity.class);
+        overridePendingTransition(R.anim.rotate, R.anim.rotate);
+        startActivity(intent);
+        finish();
+
+    }
 }

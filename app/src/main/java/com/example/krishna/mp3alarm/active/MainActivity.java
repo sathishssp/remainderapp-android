@@ -22,6 +22,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.astuetz.PagerSlidingTabStrip;
+import com.example.krishna.mp3alarm.About.AboutActivity;
 import com.example.krishna.mp3alarm.R;
 import com.example.krishna.mp3alarm.Reminderpage;
 import com.example.krishna.mp3alarm.alarmpage;
@@ -144,8 +145,8 @@ public class MainActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         // Handle presses on the action bar items
         switch (item.getItemId()) {
-            case R.id.action_settings:
-                Intent i = new Intent(this, SettingsActivity.class);
+            case R.id.aboutMeMenuItem:
+                Intent i = new Intent(this, AboutActivity.class);
                 startActivity(i);
                 return true;
             default:

@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.widget.ListAdapter;
 
 import com.example.krishna.mp3alarm.R;
+import com.example.krishna.mp3alarm.alarmpage;
 import com.example.krishna.mp3alarm.controllerone.AlarmsManager;
 import com.example.krishna.mp3alarm.viewone.AlarmsListArrayAdapter;
 import com.example.krishna.mp3alarm.viewone.fragment.AddAlarmFragment;
@@ -165,7 +166,14 @@ public class MainActivity extends Activity implements
 				.addToBackStack(null).commit();
 		getFragmentManager().executePendingTransactions();
 	}
+	public void onBackPressed(){
+		super.onBackPressed();
+		Intent intent = new Intent(com.example.krishna.mp3alarm.viewone.activity.MainActivity.this, alarmpage.class);
+		overridePendingTransition(R.anim.rotate, R.anim.rotate);
+		startActivity(intent);
+		finish();
 
+	}
 
 	@Override
 	public void onRequestPermissionsResult(final int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {

@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.widget.ListAdapter;
 
 import com.example.krishna.mp3alarm.R;
+import com.example.krishna.mp3alarm.alarmpage;
 import com.example.krishna.mp3alarm.controllertwelve.AlarmsManager;
 import com.example.krishna.mp3alarm.viewtwelve.AlarmsListArrayAdapter;
 import com.example.krishna.mp3alarm.viewtwelve.fragment.AddAlarmFragment;
@@ -126,6 +127,15 @@ public class MainActivity extends Activity implements
 	protected void onStop() {
 		super.onStop();
 		getAlarmsManager().close();
+	}
+
+	public void onBackPressed(){
+		super.onBackPressed();
+		Intent intent = new Intent(com.example.krishna.mp3alarm.viewtwelve.activity.MainActivity.this, alarmpage.class);
+		overridePendingTransition(R.anim.rotate, R.anim.rotate);
+		startActivity(intent);
+		finish();
+
 	}
 
 	public AlarmsManager getAlarmsManager() {

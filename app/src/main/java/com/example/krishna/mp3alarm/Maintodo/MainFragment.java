@@ -146,7 +146,7 @@ public class MainFragment extends AppDefaultFragment {
             @SuppressWarnings("deprecation")
             @Override
             public void onClick(View v) {
-                app.send(this, "Action", "FAB pressed");
+//                app.send(this, "Action", "FAB pressed");
                 Intent newTodo = new Intent(getContext(), AddToDoActivity.class);
                 ToDoItem item = new ToDoItem("", false, null);
                 int color = ColorGenerator.MATERIAL.getRandomColor();
@@ -242,7 +242,7 @@ public class MainFragment extends AppDefaultFragment {
     @Override
     public void onResume() {
         super.onResume();
-        app.send(this);
+//        app.send(this);
 
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences(SHARED_PREF_DATA_SET_CHANGED, MODE_PRIVATE);
         if (sharedPreferences.getBoolean(ReminderFragment.EXIT, false)) {
@@ -452,7 +452,7 @@ public class MainFragment extends AppDefaultFragment {
         @Override
         public void onItemRemoved(final int position) {
             //Remove this line if not using Google Analytics
-            app.send(this, "Action", "Swiped Todo Away");
+//            app.send(this, "Action", "Swiped Todo Away");
 
             mJustDeletedToDoItem = items.remove(position);
             mIndexOfDeletedToDoItem = position;
@@ -460,7 +460,7 @@ public class MainFragment extends AppDefaultFragment {
             deleteAlarm(i, mJustDeletedToDoItem.getIdentifier().hashCode());
             notifyItemRemoved(position);
 
-//            String toShow = (mJustDeletedToDoItem.getToDoText().length()>20)?mJustDeletedToDoItem.getToDoText().substring(0, 20)+"...":mJustDeletedToDoItem.getToDoText();
+//          String toShow = (mJustDeletedToDoItem.getToDoText().length()>20)?mJustDeletedToDoItem.getToDoText().substring(0, 20)+"...":mJustDeletedToDoItem.getToDoText();
             String toShow = "Todo";
             Snackbar.make(mCoordLayout, "Deleted " + toShow, Snackbar.LENGTH_LONG)
                     .setAction("UNDO", new View.OnClickListener() {

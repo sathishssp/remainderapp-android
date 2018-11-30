@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.widget.ListAdapter;
 
 import com.example.krishna.mp3alarm.R;
+import com.example.krishna.mp3alarm.alarmpage;
 import com.example.krishna.mp3alarm.controller.AlarmsManager;
 import com.example.krishna.mp3alarm.view.AlarmsListArrayAdapter;
 import com.example.krishna.mp3alarm.view.fragment.AddAlarmFragment;
@@ -182,7 +183,7 @@ public class MainActivity extends Activity implements
 
 	public void onBackPressed(){
 		super.onBackPressed();
-		Intent intent = new Intent(com.example.krishna.mp3alarm.view.activity.MainActivity.this, com.example.krishna.mp3alarm.active.MainActivity.class);
+		Intent intent = new Intent(com.example.krishna.mp3alarm.view.activity.MainActivity.this, alarmpage.class);
 		overridePendingTransition(R.anim.rotate, R.anim.rotate);
 		startActivity(intent);
 		finish();

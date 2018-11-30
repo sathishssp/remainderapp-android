@@ -200,9 +200,9 @@ public class AddToDoFragment extends AppDefaultFragment implements DatePickerDia
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    app.send(this, "Action", "Reminder Set");
+//                    app.send(this, "Action", "Reminder Set");
                 } else {
-                    app.send(this, "Action", "Reminder Removed");
+//                    app.send(this, "Action", "Reminder Removed");
 
                 }
 
@@ -226,7 +226,7 @@ public class AddToDoFragment extends AppDefaultFragment implements DatePickerDia
                     app.send(this, "Action", "Date in the Past");
                     makeResult(RESULT_CANCELED);
                 } else {
-                    app.send(this, "Action", "Make Todo");
+//                    app.send(this, "Action", "Make Todo");
                     makeResult(RESULT_OK);
                     getActivity().finish();
                 }
@@ -255,7 +255,6 @@ public class AddToDoFragment extends AppDefaultFragment implements DatePickerDia
                 int year = calendar.get(Calendar.YEAR);
                 int month = calendar.get(Calendar.MONTH);
                 int day = calendar.get(Calendar.DAY_OF_MONTH);
-
 
                 DatePickerDialog datePickerDialog = DatePickerDialog.newInstance(AddToDoFragment.this, year, month, day);
                 if (theme.equals(MainFragment.DARKTHEME)) {

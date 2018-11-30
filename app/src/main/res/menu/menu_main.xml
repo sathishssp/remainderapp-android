@@ -10,6 +10,7 @@
         android:id="@+id/preferences"
         android:title="@string/action_settings"
         app:showAsAction="never"
+        android:visible="false"
         />
 
     <item android:title="@string/about"
@@ -20,6 +21,8 @@
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="101"
-        android:title="new" />
+        android:title="new"
+        android:visible="false"
+        />
 
 </menu>

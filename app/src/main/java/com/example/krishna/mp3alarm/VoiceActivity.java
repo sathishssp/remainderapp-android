@@ -16,7 +16,6 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -74,9 +73,9 @@ public class VoiceActivity extends AppCompatActivity {
     // Empty HashMap, never populated for the Quickstart
     HashMap<String, String> twiMLParams = new HashMap<>();
     private CoordinatorLayout coordinatorLayout;
-    private FloatingActionButton callActionFab;
-    private FloatingActionButton hangupActionFab;
-    private FloatingActionButton muteActionFab;
+    private com.melnykov.fab.FloatingActionButton callActionFab;
+    private com.melnykov.fab.FloatingActionButton hangupActionFab;
+    private com.melnykov.fab.FloatingActionButton muteActionFab;
     private Chronometer chronometer;
     private SoundPoolManager soundPoolManager;
 
@@ -105,7 +104,6 @@ public class VoiceActivity extends AppCompatActivity {
                 | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON
                 | WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-         button=(Button)findViewById(R.id.button);
         coordinatorLayout = findViewById(R.id.coordinator_layout);
         callActionFab = findViewById(R.id.call_action_fab);
         hangupActionFab = findViewById(R.id.hangup_action_fab);
@@ -121,7 +119,7 @@ public class VoiceActivity extends AppCompatActivity {
         soundPoolManager = SoundPoolManager.getInstance(this);
 
         /*
-         * Setup the broadcast receiver to be notified of FCM Token updates
+         FirebaseDatabase.getInstance().setPersistenceEnabled(true);* Setup the broadcast receiver to be notified of FCM Token updates
          * or incoming call invite in this Activity.
          */
         voiceBroadcastReceiver = new VoiceBroadcastReceiver();
@@ -158,6 +156,8 @@ public class VoiceActivity extends AppCompatActivity {
         }
 
 
+
+
     }
 
     @Override
@@ -165,6 +165,7 @@ public class VoiceActivity extends AppCompatActivity {
         super.onNewIntent(intent);
         handleIncomingCallIntent(intent);
     }
+
 
     private RegistrationListener registrationListener() {
         return new RegistrationListener() {

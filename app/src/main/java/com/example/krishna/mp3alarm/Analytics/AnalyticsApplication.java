@@ -62,7 +62,7 @@ public class AnalyticsApplication extends Application {
     }
 
     public void send(Object screenName, String category, String action) {
-        send(screenName, new HitBuilders.EventBuilder().setCategory(category).setAction(action).build());
+//        send(screenName, new HitBuilders.EventBuilder().setCategory(category).setAction(action).build());
     }
 
     public void send(Object screenName, String category, String action, String label) {

@@ -21,9 +21,9 @@ public class AlarmsDbHelper extends SQLiteOpenHelper {
 
 	Context context;
 
-	public static final String DATABASE_NAME = "mp3alarm.db";
+	public static final String DATABASE_NAME = "mp3alarmtwelve.db";
 	public static final int DATABASE_VERSION = 2;
-	public static final String TABLE_NAME = "alarms";
+	public static final String TABLE_NAME = "alarmstwelve";
 
 	public static final String FIELD_TIME = "time";
 	public static final String FIELD_MO = "mo";
