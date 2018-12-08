@@ -10,7 +10,7 @@
     <color name = "bgLight">#fffefd</color>
     <color name = "bgDark">#fffefd</color>
     <color name = "amber">#fffefd</color>
-    <color name = "appcolor">#122284</color>
+    <color name = "appcolor">#ea0515</color>
 
 
 
@@ -19,7 +19,7 @@
     <color name="divider_color">#B6B6B6</color>
     <color name="light_primary_color">#FFCDD2</color>
 
-    <color name="primary">#3F51B5</color>
+    <color name="primary">#ea0515</color>
     <color name="primary_dark">#303F9F</color>
     <color name="primary_light">#C5CAE9</color>
     <color name="accent">#03A9F4</color>

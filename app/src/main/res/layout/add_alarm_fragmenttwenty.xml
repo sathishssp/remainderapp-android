@@ -37,14 +37,8 @@
                 android:layout_marginTop="-20dp"
                 android:orientation="horizontal" >
 
-                <RadioGroup
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/radioGroup"
-                    android:orientation="horizontal"
-                    >
 
-                    <RadioButton
+                    <CheckBox
                         android:id="@+id/monday"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -52,7 +46,7 @@
                         android:button="@drawable/selector_mo"
                         android:text="@string/monday" />
 
-                    <RadioButton
+                    <CheckBox
                         android:id="@+id/tuesday"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -60,7 +54,7 @@
                         android:button="@drawable/selector_tu"
                         android:text="@string/tuesday" />
 
-                    <RadioButton
+                    <CheckBox
                         android:id="@+id/wednesday"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -68,7 +62,7 @@
                         android:button="@drawable/selector_we"
                         android:text="@string/wednesday" />
 
-                    <RadioButton
+                    <CheckBox
                         android:id="@+id/thursday"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -76,7 +70,7 @@
                         android:button="@drawable/selector_th"
                         android:text="@string/thursday" />
 
-                    <RadioButton
+                    <CheckBox
                         android:id="@+id/friday"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -84,7 +78,7 @@
                         android:button="@drawable/selector_fr"
                         android:text="@string/friday" />
 
-                    <RadioButton
+                    <CheckBox
                         android:id="@+id/saturday"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -92,7 +86,7 @@
                         android:button="@drawable/selector_sa"
                         android:text="@string/saturday" />
 
-                    <RadioButton
+                    <CheckBox
                         android:id="@+id/sunday"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -100,7 +94,7 @@
                         android:button="@drawable/selector_su"
                         android:text="@string/sunday"
                         android:textAllCaps="true" />
-                </RadioGroup>
+
             </LinearLayout>
 
             <LinearLayout

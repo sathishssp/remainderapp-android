@@ -5,7 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
+
+
 
 public class Reminderpage extends AppCompatActivity {
 
@@ -19,6 +20,21 @@ public class Reminderpage extends AppCompatActivity {
         call = (TextView)findViewById(R.id.setcall);
         message = (TextView)findViewById(R.id.setmessage);
         notification = (TextView)findViewById(R.id.setnotification);
+
+     /*   Boolean isFirstRun = getSharedPreferences("PREFERENCE", MODE_PRIVATE)
+                .getBoolean("isFirstRun", true);
+
+        if (isFirstRun) {
+            //show sign up activity
+            new FancyShowCaseView.Builder(this)
+                    .title("This page is to alarm for 1 hr,12hr,24hr")
+                    .showOnce("id0")
+                    .build()
+                    .show();
+        }
+
+        getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit()
+                .putBoolean("isFirstRun", false).commit();*/
 
         call.setOnClickListener(new View.OnClickListener() {
             @Override

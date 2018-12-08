@@ -89,7 +89,7 @@
                 android:src="@drawable/tpdobtn"
                 android:layout_gravity="center_horizontal"/>
         <Button
-            android:layout_width="100dp"
+            android:layout_width="125dp"
             android:layout_height="wrap_content"
             android:text="Todo"
             android:textColor="@android:color/white"

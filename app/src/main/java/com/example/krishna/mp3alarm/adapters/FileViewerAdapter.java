@@ -99,6 +99,10 @@ public class FileViewerAdapter extends RecyclerView.Adapter<FileViewerAdapter.Re
                 entrys.add(mContext.getString(R.string.dialog_file_share));
                 entrys.add(mContext.getString(R.string.dialog_file_rename));
                 entrys.add(mContext.getString(R.string.dialog_file_delete));
+                entrys.add("Set for custom alarm");
+                entrys.add("Set for 1hr alarm");
+                entrys.add("Set for 12hr alarm");
+                entrys.add("Set for 24hr alarm");
 
                 final CharSequence[] items = entrys.toArray(new CharSequence[entrys.size()]);
 

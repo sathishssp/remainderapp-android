@@ -71,6 +71,7 @@
 
     <!-- Toasts -->
     <string name="toast_recording_start">Recording started</string>
+
     <string name="toast_recording_finish">Recording saved to</string>
     <string name="toast_file_delete">%1$s successfully deleted</string>
     <string name="toast_file_exists">The file %1$s already exists. Please choose a different file name.</string>
@@ -85,6 +86,7 @@
     <string name="dialog_title_share">Share File</string>
     <string name="dialog_title_rename">Rename File</string>
     <string name="dialog_title_options">Options</string>
+
 
     <string name="dialog_file_share">Share File</string>
     <string name="dialog_file_rename">Rename File</string>

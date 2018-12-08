@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.krishna.mp3alarm.contact">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/newicon"/>
+    <EditText
+         android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+         android:layout_height="50dp"
+         android:hint="Your Name"
+        android:gravity="center"
+        android:textColor="@android:color/black"
+        android:textColorHint="@color/appcolor"
+         android:id="@+id/edit"/>
+    <EditText
+        android:textColor="@android:color/black"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:hint="Your Message"
+        android:gravity="center"
+        android:textColorHint="@color/appcolor"
+        android:id="@+id/editone"/>
+    <Button
+        android:layout_width="100dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_height="50dp"
+        android:id="@+id/btn"
+        android:text="Send"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:background="@color/appcolor"/>
+</LinearLayout>

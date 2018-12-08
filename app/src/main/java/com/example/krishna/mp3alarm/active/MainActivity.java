@@ -26,8 +26,10 @@ import com.example.krishna.mp3alarm.About.AboutActivity;
 import com.example.krishna.mp3alarm.R;
 import com.example.krishna.mp3alarm.Reminderpage;
 import com.example.krishna.mp3alarm.alarmpage;
+import com.example.krishna.mp3alarm.contact;
 import com.example.krishna.mp3alarm.frag.FileViewerFragment;
 import com.example.krishna.mp3alarm.frag.RecordFragment;
+
 
 
 public class MainActivity extends AppCompatActivity {
@@ -62,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
             setSupportActionBar(toolbar);
         }
         getPermissionToRecordAudio();
+
+
 
         reminder.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -148,6 +152,12 @@ public class MainActivity extends AppCompatActivity {
             case R.id.aboutMeMenuItem:
                 Intent i = new Intent(this, AboutActivity.class);
                 startActivity(i);
+                finish();
+                return true;
+            case R.id.preferences:
+                Intent n = new Intent(this, contact.class);
+                startActivity(n);
+                finish();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

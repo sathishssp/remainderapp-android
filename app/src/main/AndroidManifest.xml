@@ -19,9 +19,9 @@
         android:name=".Analytics.AnalyticsApplication"
         android:allowBackup="true"
         android:fullBackupContent="@xml/backup_scheme"
-        android:icon="@mipmap/appicon"
+        android:icon="@mipmap/newicon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/appicon"
+        android:roundIcon="@mipmap/newicon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
@@ -171,7 +171,7 @@
         <activity android:name=".Reminderpage" />
         <activity
             android:name=".viewone.activity.MainActivity"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name" />
         <activity
             android:name=".viewone.activity.RingingAlarmActivity"
             android:parentActivityName=".viewone.activity.MainActivity">
@@ -200,93 +200,87 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".alarmpage"></activity>
-
+        <activity android:name=".alarmpage" />
         <activity
-            android:name="com.example.krishna.mp3alarm.viewtwelve.activity.MainActivity"
-            android:label="@string/app_name" >
-        </activity>
+            android:name=".viewtwelve.activity.MainActivity"
+            android:label="@string/app_name" />
         <activity
-            android:name="com.example.krishna.mp3alarm.viewtwelve.activity.RingingAlarmActivity"
-            android:parentActivityName="com.example.krishna.mp3alarm.viewtwelve.activity.MainActivity"
-            >
+            android:name=".viewtwelve.activity.RingingAlarmActivity"
+            android:parentActivityName=".viewtwelve.activity.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.krishna.mp3alarm.MainActivity" />
         </activity>
         <activity
-            android:name="com.example.krishna.mp3alarm.viewtwelve.activity.AboutActivity"
-            android:parentActivityName="com.example.krishna.mp3alarm.viewtwelve.activity.MainActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.krishna.mp3alarm.MainActivity" />
-        </activity>
-
-        <service
-            android:name="com.example.krishna.mp3alarm.viewtwelve.MediaPlayerService"
-            android:enabled="true"
-            android:permission="com.example.krishna.mp3alarm.MY_SERVICE_PERMISSION" />
-
-        <receiver
-            android:name="com.example.krishna.mp3alarm.viewtwelve.PlayAlarmReceiver"
-            android:enabled="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver>
-
-        <activity
-            android:name="com.example.krishna.mp3alarm.viewtwenty.activity.MainActivity"
-            android:label="@string/app_name" >
-        </activity>
-        <activity
-            android:name="com.example.krishna.mp3alarm.viewtwenty.activity.RingingAlarmActivity"
-            android:parentActivityName="com.example.krishna.mp3alarm.viewtwenty.activity.MainActivity"
-            >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.krishna.mp3alarm.MainActivity" />
-        </activity>
-        <activity
-            android:name="com.example.krishna.mp3alarm.viewtwenty.activity.AboutActivity"
-            android:parentActivityName="com.example.krishna.mp3alarm.viewtwenty.activity.MainActivity" >
+            android:name=".viewtwelve.activity.AboutActivity"
+            android:parentActivityName=".viewtwelve.activity.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.krishna.mp3alarm.MainActivity" />
         </activity>
 
         <service
-            android:name="com.example.krishna.mp3alarm.viewtwenty.MediaPlayerService"
+            android:name=".viewtwelve.MediaPlayerService"
             android:enabled="true"
             android:permission="com.example.krishna.mp3alarm.MY_SERVICE_PERMISSION" />
 
         <receiver
-            android:name="com.example.krishna.mp3alarm.viewtwenty.PlayAlarmReceiver"
-            android:enabled="true" >
+            android:name=".viewtwelve.PlayAlarmReceiver"
+            android:enabled="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
 
-        <activity android:name=".VoiceActivity">
-
+        <activity
+            android:name=".viewtwenty.activity.MainActivity"
+            android:label="@string/app_name" />
+        <activity
+            android:name=".viewtwenty.activity.RingingAlarmActivity"
+            android:parentActivityName=".viewtwenty.activity.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.krishna.mp3alarm.MainActivity" />
         </activity>
+        <activity
+            android:name=".viewtwenty.activity.AboutActivity"
+            android:parentActivityName=".viewtwenty.activity.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.krishna.mp3alarm.MainActivity" />
+        </activity>
+
+        <service
+            android:name=".viewtwenty.MediaPlayerService"
+            android:enabled="true"
+            android:permission="com.example.krishna.mp3alarm.MY_SERVICE_PERMISSION" />
+
+        <receiver
+            android:name=".viewtwenty.PlayAlarmReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <activity android:name=".VoiceActivity" />
 
         <!-- [START fcm_listener] -->
-        <service
-            android:name=".fcm.VoiceFirebaseMessagingService">
+        <service android:name=".fcm.VoiceFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
         <!-- [END fcm_listener] -->
         <!-- [START instanceId_listener] -->
-        <service
-            android:name=".fcm.VoiceFirebaseInstanceIDService" >
+        <service android:name=".fcm.VoiceFirebaseInstanceIDService">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
+
+        <activity android:name=".Contactus" />
+        <activity android:name=".contact"></activity>
     </application>
 
 </manifest>

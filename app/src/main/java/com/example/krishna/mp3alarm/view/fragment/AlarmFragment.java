@@ -16,8 +16,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
@@ -35,13 +35,13 @@ public abstract class AlarmFragment extends Fragment {
 	public static final int READ_REQUEST_CODE = 42;
 
 	protected TimePicker timePicker;
-	protected RadioButton mo;
-	protected RadioButton tu;
-	protected RadioButton we;
-	protected RadioButton th;
-	protected RadioButton fr;
-	protected RadioButton sa;
-	protected RadioButton su;
+	protected CheckBox mo;
+	protected CheckBox tu;
+	protected CheckBox we;
+	protected CheckBox th;
+	protected CheckBox fr;
+	protected CheckBox sa;
+	protected CheckBox su;
 	protected Button addMusicBtn;
 	protected Button recordBtn;
 	protected Button playBtn;
@@ -79,13 +79,13 @@ public abstract class AlarmFragment extends Fragment {
 		timePicker.setCurrentHour(Calendar.getInstance().get(
 				Calendar.HOUR_OF_DAY));
 
-		mo = (RadioButton) rootView.findViewById(R.id.monday);
-		tu = (RadioButton) rootView.findViewById(R.id.tuesday);
-		we = (RadioButton) rootView.findViewById(R.id.wednesday);
-		th = (RadioButton) rootView.findViewById(R.id.thursday);
-		fr = (RadioButton) rootView.findViewById(R.id.friday);
-		sa = (RadioButton) rootView.findViewById(R.id.saturday);
-		su = (RadioButton) rootView.findViewById(R.id.sunday);
+		mo = (CheckBox) rootView.findViewById(R.id.monday);
+		tu = (CheckBox) rootView.findViewById(R.id.tuesday);
+		we = (CheckBox) rootView.findViewById(R.id.wednesday);
+		th = (CheckBox) rootView.findViewById(R.id.thursday);
+		fr = (CheckBox) rootView.findViewById(R.id.friday);
+		sa = (CheckBox) rootView.findViewById(R.id.saturday);
+		su = (CheckBox) rootView.findViewById(R.id.sunday);
 
 		addMusicBtn = (Button) rootView.findViewById(R.id.btn_add_music);
 		addMusicBtn.setOnClickListener(new OnClickListener() {

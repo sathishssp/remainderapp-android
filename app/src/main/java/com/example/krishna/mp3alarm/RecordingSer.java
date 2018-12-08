@@ -143,6 +143,13 @@ public class RecordingSer extends Service {
         } catch (Exception e){
             Log.e(LOG_TAG, "exception", e);
         }
+        nextactivity();
+    }
+
+    private void nextactivity() {
+
+        Intent intent= new Intent (RecordingSer.this,alarmpage.class);
+        startActivity(intent);
     }
 
     private void startTimer() {
