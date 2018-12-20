@@ -31,7 +31,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
-    //  compile 'com.github.faruktoptas:FancyShowCaseView:1.1.0'
+    //compile 'com.github.faruktoptas:FancyShowCaseView:1.1.0'
     compile 'com.github.ganfra:material-spinner:1.1.0'
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
@@ -45,17 +45,17 @@ dependencies {
     compile 'com.android.support:support-v13:26.+'
     compile 'com.melnykov:floatingactionbutton:1.1.0'
     compile 'com.jpardogo.materialtabstrip:library:1.0.6'
-    compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
+    //compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
     compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.3'
-    compile 'com.twilio:voice-android:2.0.9'
     compile 'com.squareup.retrofit:retrofit:1.9.0'
-    compile 'com.koushikdutta.ion:ion:2.1.8'
-    compile 'com.twilio:client-android:1.2.21'
     compile 'com.google.firebase:firebase-messaging:9.4.0'
     compile 'com.google.android.gms:play-services:9.6.1'
     compile 'me.spark:submitbutton:1.0.1'
-    testCompile 'junit:junit:4.12'
+    compile 'com.koushikdutta.ion:ion:2.1.8'
+     testCompile 'junit:junit:4.12'
 }
+apply plugin: 'com.android.application'
+
 
 
 

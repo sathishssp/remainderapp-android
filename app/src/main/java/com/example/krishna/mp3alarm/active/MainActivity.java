@@ -23,8 +23,8 @@ import android.widget.Toast;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.example.krishna.mp3alarm.About.AboutActivity;
+import com.example.krishna.mp3alarm.Calender;
 import com.example.krishna.mp3alarm.R;
-import com.example.krishna.mp3alarm.Reminderpage;
 import com.example.krishna.mp3alarm.alarmpage;
 import com.example.krishna.mp3alarm.contact;
 import com.example.krishna.mp3alarm.frag.FileViewerFragment;
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         reminder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Reminderpage.class);
+                Intent intent = new Intent(MainActivity.this, Calender.class);
                 overridePendingTransition(R.anim.rotate, R.anim.rotate);
                 startActivity(intent);
                 finish();

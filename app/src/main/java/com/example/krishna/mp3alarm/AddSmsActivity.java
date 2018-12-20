@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.icu.util.Calendar;
 import android.os.Build;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
@@ -27,7 +28,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class AddSmsActivity extends Activity {
-
+    DatePicker datePicker;
     ImageView speaker;
     EditText formMessage;
 
@@ -115,6 +116,20 @@ public class AddSmsActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_sms);
+
+
+        datePicker = (DatePicker)findViewById(R.id.form_date);
+        Intent mIntent = getIntent();
+        int dayOfMonth = mIntent.getIntExtra("dayOfMonth",0);
+        int month = mIntent.getIntExtra("month", 0);
+        int year = mIntent.getIntExtra("year", 0);
+
+        Calendar cal = Calendar.getInstance();
+        cal.set(year,  month, dayOfMonth);
+        int xxday = cal.get(Calendar.DATE);
+        int xxmonth = cal.get(Calendar.MONTH);
+        int xxyear = cal.get(Calendar.YEAR);
+        datePicker.init(xxyear, xxmonth, xxday, null);
 
         speaker =(ImageView)findViewById(R.id.speaker);
         formMessage =(EditText) findViewById(R.id.form_input_message);
@@ -260,7 +275,7 @@ public class AddSmsActivity extends Activity {
                     }
                 }
                 if (this.permissionsGranted.size() == this.permissionsRequired.length) {
-                    buildForm();
+                   buildForm();
                 }
                 break;
             default:

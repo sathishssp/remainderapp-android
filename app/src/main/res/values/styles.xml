@@ -229,11 +229,9 @@
         <item name="android:button">@color/amber</item>
     </style>
 
-
     <style name="AppTheme.ToolBarPadding" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="toolbarStyle">@style/myToolBarStyle</item>
     </style>
-
 
     <style name="CustomDialog" parent="Base.Theme.AppCompat.Light.Dialog">
         <item name="colorAccent">@color/primary</item>
@@ -244,8 +242,6 @@
         <item name="colorSwitchThumbNormal">@color/amber</item>
         <!--Inactive track color-->
         <item name="android:colorForeground">@color/secondary_text</item>
-
-
     </style>
 
     <style name="myToolBarStyle" parent="@style/Widget.AppCompat.Toolbar">
@@ -256,6 +252,5 @@
         <item name="android:colorBackground">?android:attr/colorBackground</item>
         <item name="android:textColor">?android:attr/textColorPrimaryInverse</item>
     </style>
-
 
 </resources>

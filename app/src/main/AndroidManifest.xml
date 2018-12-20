@@ -263,8 +263,6 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".VoiceActivity" />
-
         <!-- [START fcm_listener] -->
         <service android:name=".fcm.VoiceFirebaseMessagingService">
             <intent-filter>
@@ -279,8 +277,10 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".Contactus" />
-        <activity android:name=".contact"></activity>
+        <activity android:name=".contact">
+
+        </activity>
+        <activity android:name=".Calender" />
     </application>
 
 </manifest>

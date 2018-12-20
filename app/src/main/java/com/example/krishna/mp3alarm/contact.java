@@ -17,8 +17,8 @@ public class contact extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact);
-        editname=(EditText)findViewById(R.id.editname);
-        editmessage=(EditText)findViewById(R.id.editmessage);
+        editname=(EditText)findViewById(R.id.edit);
+        editmessage=(EditText)findViewById(R.id.editone);
         btn=(Button)findViewById(R.id.btn);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override

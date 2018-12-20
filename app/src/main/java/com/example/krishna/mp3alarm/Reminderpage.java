@@ -1,9 +1,11 @@
 package com.example.krishna.mp3alarm;
 
 import android.content.Intent;
+import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.TextView;
 
 
@@ -11,6 +13,7 @@ import android.widget.TextView;
 public class Reminderpage extends AppCompatActivity {
 
     TextView call,message,notification;
+    DatePicker datePicker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +24,17 @@ public class Reminderpage extends AppCompatActivity {
         message = (TextView)findViewById(R.id.setmessage);
         notification = (TextView)findViewById(R.id.setnotification);
 
+        datePicker = (DatePicker)findViewById(R.id.datepicker);
+        Intent mIntent = getIntent();
+        int dayOfMonth = mIntent.getIntExtra("dayOfMonth",0);
+        int month = mIntent.getIntExtra("month", 0);
+        int year = mIntent.getIntExtra("year", 0);
+        Calendar cal = Calendar.getInstance();
+        cal.set(year,  month, dayOfMonth);
+        int xxday = cal.get(Calendar.DATE);
+        int xxmonth = cal.get(Calendar.MONTH);
+        int xxyear = cal.get(Calendar.YEAR);
+        datePicker.init(xxyear, xxmonth, xxday, null);
      /*   Boolean isFirstRun = getSharedPreferences("PREFERENCE", MODE_PRIVATE)
                 .getBoolean("isFirstRun", true);
 
@@ -40,10 +54,10 @@ public class Reminderpage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(Reminderpage.this,VoiceActivity.class);
+             /* Intent intent = new Intent(Reminderpage.this,VoiceActivity.class);
                 overridePendingTransition(R.anim.rotate, R.anim.rotate);
                 startActivity(intent);
-                finish();
+                finish();*/
             }
         });
 
