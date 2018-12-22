@@ -9,6 +9,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.krishna.mp3alarm.Utility.BackgroundService;
+
 public class Splash extends AppCompatActivity {
     TextView textslogan,textpowered;
     ImageView splash;
@@ -26,6 +28,8 @@ public class Splash extends AppCompatActivity {
         splash.startAnimation(anim);
         textslogan.startAnimation(anim);
         textpowered.startAnimation(anim);
+
+        startService(new Intent(this, BackgroundService.class));
 
         new Handler().postDelayed(new Runnable() {
             @Override

@@ -1,7 +1,9 @@
 package com.example.krishna.mp3alarm.controller;
 
+import android.content.Context;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
+import android.net.Uri;
 import android.os.Environment;
 
 import java.io.IOException;
@@ -25,7 +27,18 @@ public class MusicManager {
 			e.printStackTrace();
 		}
 	}
+	public void playStartWithRaw(Context context, Uri uri) {
 
+		mPlayer = new MediaPlayer();
+		try {
+			mPlayer.setDataSource(context,uri);
+			mPlayer.prepare();
+			mPlayer.start();
+			mPlayer.setLooping(true);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	public void playStop() {
 		if (mPlayer != null) {
 			mPlayer.stop();

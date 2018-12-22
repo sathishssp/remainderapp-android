@@ -23,6 +23,7 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TimePicker;
 
+import com.example.krishna.mp3alarm.BuildConfig;
 import com.example.krishna.mp3alarm.R;
 import com.example.krishna.mp3alarm.model.Alarm;
 import com.example.krishna.mp3alarm.view.activity.MainActivity;
@@ -185,6 +186,22 @@ public abstract class AlarmFragment extends Fragment {
 										0, R.drawable.ic_action_play, 0, 0);
 					}
 
+				} else {
+					Uri uri = Uri.parse("android.resource://"+ BuildConfig.APPLICATION_ID+"/" + R.raw.tone);
+					if (!getMainActivity().getAlarmsManager().getMusicManager()
+							.isPlaying()) {
+						getMainActivity().getAlarmsManager().getMusicManager()
+								.playStartWithRaw(getContext(),uri);
+						playbackChosenMusic
+								.setCompoundDrawablesRelativeWithIntrinsicBounds(
+										0, R.drawable.ic_action_pause, 0, 0);
+					} else {
+						getMainActivity().getAlarmsManager().getMusicManager()
+								.playStop();
+						playbackChosenMusic
+								.setCompoundDrawablesRelativeWithIntrinsicBounds(
+										0, R.drawable.ic_action_play, 0, 0);
+					}
 				}
 			}
 		});

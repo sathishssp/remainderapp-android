@@ -281,6 +281,23 @@
 
         </activity>
         <activity android:name=".Calender" />
+        <service
+            android:name="com.example.krishna.mp3alarm.Utility.BackgroundService"
+            android:enabled="true"
+            android:exported="true"/>
+
+        <receiver
+            android:name="com.example.krishna.mp3alarm.Utility.ReceiverCall"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.example.krishna.mp3alarm" />
+                <action android:name="com.example.krishna.mp3alarm.START" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

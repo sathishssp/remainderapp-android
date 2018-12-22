@@ -6,9 +6,12 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Environment;
 import android.widget.Toast;
 
+import com.example.krishna.mp3alarm.BuildConfig;
+import com.example.krishna.mp3alarm.R;
 import com.example.krishna.mp3alarm.model.Alarm;
 import com.example.krishna.mp3alarm.view.MediaPlayerService;
 import com.example.krishna.mp3alarm.view.PlayAlarmReceiver;
@@ -112,9 +115,9 @@ public class AlarmsManager {
 	}
 
 	public void setAlarm(int wishDay, Calendar calendar, long alarmId) {
-		int daysDiff = getDaysDiff(calendar, wishDay);
+//		int daysDiff = getDaysDiff(calendar, wishDay);
 
-		calendar.add(Calendar.DAY_OF_YEAR, daysDiff);
+//		calendar.add(Calendar.DAY_OF_YEAR, daysDiff);
 
 		setAlarm(calendar, alarmId);
 	}
@@ -328,7 +331,12 @@ public class AlarmsManager {
 
 	public void playMusic(long alarmId) {
 		final Alarm alarm = getAlarmById(alarmId);
-		player.playStart(alarm.getMusicFileName());
+		if(alarm.getMusicFileName()==null){
+			Uri uri = Uri.parse("android.resource://"+ BuildConfig.APPLICATION_ID+"/" + R.raw.tone);
+			player.playStartWithRaw(context,uri);
+		} else {
+			player.playStart(alarm.getMusicFileName());
+		}
 	}
 
 	public void stopMusic() {
