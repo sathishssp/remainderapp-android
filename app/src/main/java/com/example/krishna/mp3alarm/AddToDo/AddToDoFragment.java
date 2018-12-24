@@ -1,6 +1,7 @@
 package com.example.krishna.mp3alarm.AddToDo;
 
 import android.animation.Animator;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -75,7 +76,10 @@ public class AddToDoFragment extends AppDefaultFragment implements DatePickerDia
     private LinearLayout mContainerLayout;
     private String theme;
     AnalyticsApplication app;
-
+    Calendar calendar = Calendar.getInstance();
+    int year = calendar.get(Calendar.YEAR);
+    int month = calendar.get(Calendar.MONTH);
+    int day = calendar.get(Calendar.DAY_OF_MONTH);
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -247,20 +251,22 @@ public class AddToDoFragment extends AppDefaultFragment implements DatePickerDia
                 if (mUserToDoItem.getToDoDate() != null) {
 //                    date = mUserToDoItem.getToDoDate();
                     date = mUserReminderDate;
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.setTime(date);
+                    year = calendar.get(Calendar.YEAR);
+                    month = calendar.get(Calendar.MONTH);
+                    day = calendar.get(Calendar.DAY_OF_MONTH);
                 } else {
                     date = new Date();
                 }
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTime(date);
-                int year = calendar.get(Calendar.YEAR);
-                int month = calendar.get(Calendar.MONTH);
-                int day = calendar.get(Calendar.DAY_OF_MONTH);
+
 
                 DatePickerDialog datePickerDialog = DatePickerDialog.newInstance(AddToDoFragment.this, year, month, day);
                 if (theme.equals(MainFragment.DARKTHEME)) {
                     datePickerDialog.setThemeDark(true);
                 }
                 datePickerDialog.show(getActivity().getFragmentManager(), "DateFragment");
+
 
             }
         });
@@ -430,7 +436,9 @@ public class AddToDoFragment extends AppDefaultFragment implements DatePickerDia
 
         Calendar reminderCalendar = Calendar.getInstance();
         reminderCalendar.set(year, month, day);
-
+        this.year = year;
+        this.month = month;
+        this.day = day;
         if (reminderCalendar.before(calendar)) {
             //    Toast.makeText(this, "My time-machine is a bit rusty", Toast.LENGTH_SHORT).show();
             return;
