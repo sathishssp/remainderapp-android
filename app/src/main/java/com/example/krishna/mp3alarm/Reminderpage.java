@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.TextView;
 
+import com.example.krishna.mp3alarm.Utility.Utils;
 
 
 public class Reminderpage extends AppCompatActivity {
@@ -29,6 +30,14 @@ public class Reminderpage extends AppCompatActivity {
         int dayOfMonth = mIntent.getIntExtra("dayOfMonth",0);
         int month = mIntent.getIntExtra("month", 0);
         int year = mIntent.getIntExtra("year", 0);
+
+        String[] selectedDate= Utils.lastSelectedDate.split("/");
+        if(selectedDate!=null && selectedDate.length>0){
+            dayOfMonth=Integer.parseInt(selectedDate[0]);
+            month=Integer.parseInt(selectedDate[1]);
+            year=Integer.parseInt(selectedDate[2]);
+        }
+
         Calendar cal = Calendar.getInstance();
         cal.set(year,  month, dayOfMonth);
         int xxday = cal.get(Calendar.DATE);

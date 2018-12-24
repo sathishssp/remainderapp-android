@@ -21,6 +21,8 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.krishna.mp3alarm.Utility.Utils;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.GregorianCalendar;
@@ -69,11 +71,16 @@ public class AddSmsActivity extends Activity {
     protected void onResume() {
         super.onResume();
         if (permissionsGranted()) {
-            buildForm();
+//            buildForm();
         }
     }
 
+    private void findDatePicker(){
+        datePicker = (DatePicker)findViewById(R.id.form_date);
+    }
+
     private void buildForm() {
+        findDatePicker();
         EditText formMessage = findViewById(R.id.form_input_message);
         AutoCompleteTextView formContact = findViewById(R.id.form_input_contact);
         TextWatcher watcherEmptiness = new EmptinessTextWatcher(this, formContact, formMessage);
@@ -87,7 +94,7 @@ public class AddSmsActivity extends Activity {
         new BuilderRecurringMode()
             .setRecurringDayView((Spinner) findViewById(R.id.form_recurring_day))
             .setRecurringMonthView((Spinner) findViewById(R.id.form_recurring_month))
-            .setDateView((DatePicker) findViewById(R.id.form_date))
+            .setDateView(datePicker)
             .setActivity(this)
             .setView(findViewById(R.id.form_recurring_mode))
             .setSms(sms)
@@ -117,20 +124,32 @@ public class AddSmsActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_sms);
 
+        findDatePicker();
 
-        datePicker = (DatePicker)findViewById(R.id.form_date);
         Intent mIntent = getIntent();
         int dayOfMonth = mIntent.getIntExtra("dayOfMonth",0);
         int month = mIntent.getIntExtra("month", 0);
         int year = mIntent.getIntExtra("year", 0);
+        String[] selectedDate= Utils.lastSelectedDate.split("/");
+        if(selectedDate!=null && selectedDate.length>0){
+            dayOfMonth=Integer.parseInt(selectedDate[0]);
+            month=Integer.parseInt(selectedDate[1]);
+            year=Integer.parseInt(selectedDate[2]);
+        }
 
         Calendar cal = Calendar.getInstance();
         cal.set(year,  month, dayOfMonth);
         int xxday = cal.get(Calendar.DATE);
         int xxmonth = cal.get(Calendar.MONTH);
         int xxyear = cal.get(Calendar.YEAR);
-        datePicker.init(xxyear, xxmonth, xxday, null);
 
+        datePicker.init(xxyear, xxmonth, xxday, new DatePicker.OnDateChangedListener() {
+            @Override
+            public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+
+            }
+        });
+        datePicker.updateDate(xxyear,xxmonth,xxday);
         speaker =(ImageView)findViewById(R.id.speaker);
         formMessage =(EditText) findViewById(R.id.form_input_message);
 
@@ -152,6 +171,7 @@ public class AddSmsActivity extends Activity {
         if (null == sms) {
             sms = new SmsModel();
         }
+        buildForm();
     }
 
     private void promptSpeechInput() {

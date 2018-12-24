@@ -1,9 +1,13 @@
 package com.example.krishna.mp3alarm;
 
+import android.icu.util.Calendar;
+import android.os.Handler;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.DatePicker;
 import android.widget.Spinner;
+
+import com.example.krishna.mp3alarm.Utility.Utils;
 
 public class BuilderRecurringMode extends BuilderSpinner {
 
@@ -29,8 +33,36 @@ public class BuilderRecurringMode extends BuilderSpinner {
         return this;
     }
 
-    public BuilderRecurringMode setDateView(DatePicker dateView) {
+    public BuilderRecurringMode setDateView(final DatePicker dateView) {
         this.dateView = dateView;
+        int dayOfMonth = 0;
+        int month = 0;
+        int year =0;
+        String[] selectedDate= Utils.lastSelectedDate.split("/");
+        if(selectedDate!=null && selectedDate.length>0){
+            dayOfMonth=Integer.parseInt(selectedDate[0]);
+            month=Integer.parseInt(selectedDate[1]);
+            year=Integer.parseInt(selectedDate[2]);
+        }
+        Calendar cal = Calendar.getInstance();
+        cal.set(year,  month, dayOfMonth);
+        final int xxday = cal.get(Calendar.DATE);
+        final int xxmonth = cal.get(Calendar.MONTH);
+        final int xxyear = cal.get(Calendar.YEAR);
+
+        dateView.init(xxyear, xxmonth, xxday, new DatePicker.OnDateChangedListener() {
+            @Override
+            public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+
+            }
+        });
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                dateView.updateDate(xxyear,xxmonth,xxday);
+            }
+        },350);
+
         return this;
     }
 
@@ -76,6 +108,7 @@ public class BuilderRecurringMode extends BuilderSpinner {
     private void refreshDependants() {
         new BuilderRecurringDay().setActivity(activity).setSms(sms).setView(recurringDayView).build();
         new BuilderRecurringMonth().setActivity(activity).setSms(sms).setView(recurringMonthView).build();
+        if(dateView!=null)
         dateView.setVisibility(CalendarResolver.RECURRING_NO.equals(sms.getRecurringMode()) ? View.VISIBLE : View.GONE);
     }
 }

@@ -160,6 +160,51 @@ public class DbHelper extends SQLiteOpenHelper {
         dbHelper.getReadableDatabase().delete(TABLE_SMS, selection, selectionArgs);
     }
 
+    public ArrayList<SmsModel> getAllEvents(){
+        ArrayList<SmsModel> result = new ArrayList<>();
+
+        String query="select * from "+TABLE_SMS;
+        Cursor cursor=dbHelper.getReadableDatabase().rawQuery(query,null);
+        cursor.moveToFirst();
+        if(cursor.getCount()>0){
+
+            result=getEventsObjects(cursor);
+
+
+        }
+
+
+        return result;
+    }
+
+    private ArrayList<SmsModel> getEventsObjects(Cursor cursor) {
+        ArrayList<SmsModel> result = new ArrayList<>();
+        int indexTimestampCreated = cursor.getColumnIndex(COLUMN_TIMESTAMP_CREATED);
+        int indexTimestampScheduled = cursor.getColumnIndex(COLUMN_TIMESTAMP_SCHEDULED);
+        int indexRecipientNumber = cursor.getColumnIndex(COLUMN_RECIPIENT_NUMBER);
+        int indexRecipientName = cursor.getColumnIndex(COLUMN_RECIPIENT_NAME);
+        int indexMessage = cursor.getColumnIndex(COLUMN_MESSAGE);
+        int indexStatus = cursor.getColumnIndex(COLUMN_STATUS);
+        int indexResult = cursor.getColumnIndex(COLUMN_RESULT);
+        int indexSubscriptionId = cursor.getColumnIndex(COLUMN_SUBSCRIPTION_ID);
+        int indexRecurringMode = cursor.getColumnIndex(COLUMN_RECURRING_MODE);
+        SmsModel object;
+        do{
+            object = new SmsModel();
+            object.setTimestampCreated(cursor.getLong(indexTimestampCreated));
+            object.setTimestampScheduled(cursor.getLong(indexTimestampScheduled));
+            object.setRecipientNumber(cursor.getString(indexRecipientNumber));
+            object.setRecipientName(cursor.getString(indexRecipientName));
+            object.setMessage(cursor.getString(indexMessage));
+            object.setStatus(cursor.getString(indexStatus));
+            object.setResult(cursor.getString(indexResult));
+            object.setSubscriptionId(cursor.getInt(indexSubscriptionId));
+            object.setRecurringMode(cursor.getString(indexRecurringMode));
+            result.add(object);
+        } while (cursor.moveToNext());
+
+        return result;
+    }
     private ArrayList<SmsModel> getObjects(Cursor cursor) {
         ArrayList<SmsModel> result = new ArrayList<>();
         int indexTimestampCreated = cursor.getColumnIndex(COLUMN_TIMESTAMP_CREATED);
@@ -172,6 +217,7 @@ public class DbHelper extends SQLiteOpenHelper {
         int indexSubscriptionId = cursor.getColumnIndex(COLUMN_SUBSCRIPTION_ID);
         int indexRecurringMode = cursor.getColumnIndex(COLUMN_RECURRING_MODE);
         SmsModel object;
+
         while (cursor.moveToNext()) {
             object = new SmsModel();
             object.setTimestampCreated(cursor.getLong(indexTimestampCreated));

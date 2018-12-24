@@ -2,12 +2,12 @@ apply plugin: 'com.android.application'
 
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion "28.0.3"
+    compileSdkVersion 27
+    buildToolsVersion "27.0.3"
     defaultConfig {
         applicationId "com.example.krishna.mp3alarm"
         minSdkVersion 18
-        targetSdkVersion 28
+        targetSdkVersion 27
         multiDexEnabled true
         versionCode 1
         versionName "1.0"
@@ -53,6 +53,7 @@ dependencies {
     compile 'me.spark:submitbutton:1.0.1'
     compile 'com.koushikdutta.ion:ion:2.1.8'
      testCompile 'junit:junit:4.12'
+    compile 'com.riontech:calendar:1.0'
 }
 apply plugin: 'com.android.application'
 
