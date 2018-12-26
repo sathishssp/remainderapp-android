@@ -71,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, Calender.class);
+                intent.putExtra("FROM","R");
                 overridePendingTransition(R.anim.rotate, R.anim.rotate);
                 startActivity(intent);
                 finish();
@@ -80,7 +81,8 @@ public class MainActivity extends AppCompatActivity {
         todo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, com.example.krishna.mp3alarm.Maintodo.MainActivity.class);
+                Intent intent = new Intent(MainActivity.this, Calender.class);
+                intent.putExtra("FROM","TODO");
                 overridePendingTransition(R.anim.rotate, R.anim.rotate);
                 startActivity(intent);
                 finish();

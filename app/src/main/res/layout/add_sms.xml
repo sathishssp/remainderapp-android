@@ -1,52 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        >
+        android:orientation="vertical">
 
         <TimePicker
+            android:id="@+id/form_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/form_time"
             android:layout_gravity="center_horizontal"
             android:timePickerMode="spinner" />
 
         <Spinner
             android:id="@+id/form_recurring_mode"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
-        <DatePicker
-            android:layout_width="wrap_content"
+        <!--<DatePicker-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/form_date"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:datePickerMode="spinner"-->
+        <!--android:calendarViewShown="false" />-->
+
+        <TextView
+            android:id="@+id/txtDate"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/form_date"
-            android:layout_gravity="center_horizontal"
-            android:datePickerMode="spinner"
-            android:calendarViewShown="false" />
+            android:layout_margin="3dp"
+            android:padding="5dp"
+            android:text="Selected Date"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <Spinner
             android:id="@+id/form_recurring_day"
-            android:visibility="gone"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
 
         <Spinner
             android:id="@+id/form_recurring_month"
-            android:visibility="gone"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
 
         <RadioGroup
             android:id="@+id/form_sim_card"
-            android:visibility="gone"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:visibility="gone">
 
             <RadioButton
                 android:id="@+id/radio_sim1"
@@ -57,61 +65,64 @@
             <RadioButton
                 android:id="@+id/radio_sim2"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
 
         </RadioGroup>
 
         <AutoCompleteTextView
+            android:id="@+id/form_input_contact"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
             android:hint="Type Contact Person Name"
-            android:textColorHint="@android:color/black"
-            android:id="@+id/form_input_contact" />
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
-        <EditText
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:inputType="textCapSentences|textMultiLine"
-            android:hint="@string/form_hint_message"
-            android:textColorHint="@android:color/black"
-            android:id="@+id/form_input_message"
-            />
-    <ImageView
-        android:layout_width="70dp"
-        android:layout_height="50dp"
-        android:src="@drawable/speaker"
-        android:id="@+id/speaker"/>
-</LinearLayout>
+            android:inputType="textPersonName"
+            android:textColorHint="@android:color/black" />
+
         <LinearLayout
-            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/form_input_message"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/form_hint_message"
+                android:inputType="textCapSentences|textMultiLine"
+                android:textColorHint="@android:color/black" />
+
+            <ImageView
+                android:id="@+id/speaker"
+                android:layout_width="70dp"
+                android:layout_height="50dp"
+                android:src="@drawable/speaker" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
             <Button
+                android:id="@+id/button_cancel"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@color/appcolor"
+                android:onClick="unscheduleSms"
                 android:text="@string/form_button_cancel"
                 android:textColor="@android:color/white"
-                android:background="@color/appcolor"
-                android:id="@+id/button_cancel"
-                android:onClick="unscheduleSms"
                 android:visibility="gone" />
 
             <Button
+                android:id="@+id/button_add"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:enabled="false"
-                android:text="@string/form_button_add"
-                android:textColor="@android:color/white"
                 android:background="@color/appcolor"
-                android:id="@+id/button_add"
-                android:onClick="scheduleSms" />
+                android:enabled="false"
+                android:onClick="scheduleSms"
+                android:text="@string/form_button_add"
+                android:textColor="@android:color/white" />
 
         </LinearLayout>
 

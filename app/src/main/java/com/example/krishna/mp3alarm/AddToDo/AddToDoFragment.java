@@ -32,6 +32,7 @@ import com.example.krishna.mp3alarm.AppDefault.AppDefaultFragment;
 import com.example.krishna.mp3alarm.Maintodo.MainFragment;
 import com.example.krishna.mp3alarm.R;
 import com.example.krishna.mp3alarm.Utility.ToDoItem;
+import com.example.krishna.mp3alarm.Utility.Utils;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.time.RadialPickerLayout;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
@@ -80,6 +81,7 @@ public class AddToDoFragment extends AppDefaultFragment implements DatePickerDia
     int year = calendar.get(Calendar.YEAR);
     int month = calendar.get(Calendar.MONTH);
     int day = calendar.get(Calendar.DAY_OF_MONTH);
+    Calendar cal = Calendar.getInstance();
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -237,35 +239,40 @@ public class AddToDoFragment extends AppDefaultFragment implements DatePickerDia
                 hideKeyboard(mToDoTextBodyEditText);
             }
         });
-
-
+        String[] selectedDate= Utils.lastSelectedDate.split("/");
+        if(selectedDate!=null && selectedDate.length>0){
+            day=Integer.parseInt(selectedDate[0]);
+            month=Integer.parseInt(selectedDate[1]);
+            year=Integer.parseInt(selectedDate[2]);
+        }
+        cal.set(year,  month-1, day);
         mDateEditText = (EditText) view.findViewById(R.id.newTodoDateEditText);
         mTimeEditText = (EditText) view.findViewById(R.id.newTodoTimeEditText);
-
+        mDateEditText.setText(day+"-"+month+"-"+year);
         mDateEditText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Date date;
-                hideKeyboard(mToDoTextBodyEditText);
-                if (mUserToDoItem.getToDoDate() != null) {
-//                    date = mUserToDoItem.getToDoDate();
-                    date = mUserReminderDate;
-                    Calendar calendar = Calendar.getInstance();
-                    calendar.setTime(date);
-                    year = calendar.get(Calendar.YEAR);
-                    month = calendar.get(Calendar.MONTH);
-                    day = calendar.get(Calendar.DAY_OF_MONTH);
-                } else {
-                    date = new Date();
-                }
-
-
-                DatePickerDialog datePickerDialog = DatePickerDialog.newInstance(AddToDoFragment.this, year, month, day);
-                if (theme.equals(MainFragment.DARKTHEME)) {
-                    datePickerDialog.setThemeDark(true);
-                }
-                datePickerDialog.show(getActivity().getFragmentManager(), "DateFragment");
+//
+//                Date date;
+//                hideKeyboard(mToDoTextBodyEditText);
+//                if (mUserToDoItem.getToDoDate() != null) {
+////                    date = mUserToDoItem.getToDoDate();
+//                    date = mUserReminderDate;
+//                    Calendar calendar = Calendar.getInstance();
+//                    calendar.setTime(date);
+//                    year = calendar.get(Calendar.YEAR);
+//                    month = calendar.get(Calendar.MONTH);
+//                    day = calendar.get(Calendar.DAY_OF_MONTH);
+//                } else {
+//                    date = new Date();
+//                }
+//
+//
+//                DatePickerDialog datePickerDialog = DatePickerDialog.newInstance(AddToDoFragment.this, year, month, day);
+//                if (theme.equals(MainFragment.DARKTHEME)) {
+//                    datePickerDialog.setThemeDark(true);
+//                }
+//                datePickerDialog.show(getActivity().getFragmentManager(), "DateFragment");
 
 
             }
@@ -374,10 +381,10 @@ public class AddToDoFragment extends AppDefaultFragment implements DatePickerDia
             mDateEditText.setText(userDate);
 
         } else {
-            mDateEditText.setText(getString(R.string.date_reminder_default));
+
 //            mUserReminderDate = new Date();
             boolean time24 = DateFormat.is24HourFormat(getContext());
-            Calendar cal = Calendar.getInstance();
+
             if (time24) {
                 cal.set(Calendar.HOUR_OF_DAY, cal.get(Calendar.HOUR_OF_DAY) + 1);
             } else {
@@ -385,6 +392,7 @@ public class AddToDoFragment extends AppDefaultFragment implements DatePickerDia
             }
             cal.set(Calendar.MINUTE, 0);
             mUserReminderDate = cal.getTime();
+            mDateEditText.setText(formatDate("dd-MM-yyyy",mUserReminderDate));
             Log.d("OskarSchindler", "Imagined Date: " + mUserReminderDate);
             String timeString;
             if (time24) {

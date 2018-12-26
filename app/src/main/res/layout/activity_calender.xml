@@ -6,11 +6,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.example.krishna.mp3alarm.Calender">
-<CalendarView
-    android:id="@+id/calendar"
-    android:visibility="visible"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"/>
+
+    <CalendarView
+        android:id="@+id/calendar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
     <com.riontech.calendar.CustomCalendar
         android:id="@+id/customCalendar"
         android:layout_width="match_parent"
@@ -20,4 +22,28 @@
         app:endYear="2016"
         app:startMonth="01"
         app:startYear="2016" />
+
+    <TextView
+        android:id="@+id/txt_month_year"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:gravity="center"
+        android:textAllCaps="false"
+        android:textColor="@color/primary_text"
+        android:textSize="18sp" />
+
+    <com.github.sundeepk.compactcalendarview.CompactCalendarView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/compactcalendar_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        app:compactCalendarBackgroundColor="@android:color/white"
+        app:compactCalendarCurrentDayBackgroundColor="@color/accent"
+        app:compactCalendarCurrentSelectedDayBackgroundColor="#E57373"
+        app:compactCalendarMultiEventIndicatorColor="@color/primary"
+        app:compactCalendarTargetHeight="350dp"
+        app:compactCalendarTextColor="@color/primary_text"
+        app:compactCalendarTextSize="14sp" />
 </LinearLayout>

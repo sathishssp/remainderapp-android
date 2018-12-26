@@ -19,6 +19,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.krishna.mp3alarm.Utility.Utils;
@@ -30,9 +31,10 @@ import java.util.List;
 import java.util.Locale;
 
 public class AddSmsActivity extends Activity {
-    DatePicker datePicker;
+//    DatePicker datePicker;
     ImageView speaker;
     EditText formMessage;
+    TextView txtDate;
 
 
     final public static int RESULT_SCHEDULED = 1;
@@ -71,12 +73,12 @@ public class AddSmsActivity extends Activity {
     protected void onResume() {
         super.onResume();
         if (permissionsGranted()) {
-//            buildForm();
+            buildForm();
         }
     }
 
     private void findDatePicker(){
-        datePicker = (DatePicker)findViewById(R.id.form_date);
+//        datePicker = (DatePicker)findViewById(R.id.form_date);
     }
 
     private void buildForm() {
@@ -94,7 +96,7 @@ public class AddSmsActivity extends Activity {
         new BuilderRecurringMode()
             .setRecurringDayView((Spinner) findViewById(R.id.form_recurring_day))
             .setRecurringMonthView((Spinner) findViewById(R.id.form_recurring_month))
-            .setDateView(datePicker)
+//            .setDateView(datePicker)
             .setActivity(this)
             .setView(findViewById(R.id.form_recurring_mode))
             .setSms(sms)
@@ -102,7 +104,7 @@ public class AddSmsActivity extends Activity {
         ;
 
         new BuilderTime().setActivity(this).setView(findViewById(R.id.form_time)).setSms(sms).build();
-        new BuilderDate().setActivity(this).setView(findViewById(R.id.form_date)).setSms(sms).build();
+//        new BuilderDate().setActivity(this).setView(findViewById(R.id.form_date)).setSms(sms).build();
 
         new BuilderCancel().setView(findViewById(R.id.button_cancel)).setSms(sms).build();
     }
@@ -118,7 +120,7 @@ public class AddSmsActivity extends Activity {
         super.onDestroy();
         DbHelper.closeDbHelper();
     }
-
+    Calendar cal = Calendar.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -137,19 +139,22 @@ public class AddSmsActivity extends Activity {
             year=Integer.parseInt(selectedDate[2]);
         }
 
-        Calendar cal = Calendar.getInstance();
-        cal.set(year,  month, dayOfMonth);
+
+
+        cal.set(year,  month-1, dayOfMonth);
         int xxday = cal.get(Calendar.DATE);
         int xxmonth = cal.get(Calendar.MONTH);
         int xxyear = cal.get(Calendar.YEAR);
 
-        datePicker.init(xxyear, xxmonth, xxday, new DatePicker.OnDateChangedListener() {
-            @Override
-            public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-
-            }
-        });
-        datePicker.updateDate(xxyear,xxmonth,xxday);
+//        datePicker.init(xxyear, xxmonth, xxday, new DatePicker.OnDateChangedListener() {
+//            @Override
+//            public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+//
+//            }
+//        });
+//        datePicker.updateDate(xxyear,xxmonth,xxday);
+        txtDate=findViewById(R.id.txtDate);
+        txtDate.setText(dayOfMonth+"-"+month+"-"+year);
         speaker =(ImageView)findViewById(R.id.speaker);
         formMessage =(EditText) findViewById(R.id.form_input_message);
 
@@ -171,7 +176,7 @@ public class AddSmsActivity extends Activity {
         if (null == sms) {
             sms = new SmsModel();
         }
-        buildForm();
+//        buildForm();
     }
 
     private void promptSpeechInput() {
@@ -247,6 +252,7 @@ public class AddSmsActivity extends Activity {
 
     private boolean validateForm() {
         boolean result = true;
+        sms.setTimestampScheduled(cal.getTimeInMillis());
         if (sms.getTimestampScheduled() < GregorianCalendar.getInstance().getTimeInMillis()) {
             Toast.makeText(getApplicationContext(), getString(R.string.form_validation_datetime), Toast.LENGTH_SHORT).show();
             result = false;

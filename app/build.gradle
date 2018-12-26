@@ -54,6 +54,7 @@ dependencies {
     compile 'com.koushikdutta.ion:ion:2.1.8'
      testCompile 'junit:junit:4.12'
     compile 'com.riontech:calendar:1.0'
+    compile 'com.github.sundeepk:compact-calendar-view:3.0.0'
 }
 apply plugin: 'com.android.application'
 
