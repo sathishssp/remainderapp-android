@@ -2,12 +2,12 @@ apply plugin: 'com.android.application'
 
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion "27.0.3"
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId "com.example.krishna.mp3alarm"
         minSdkVersion 18
-        targetSdkVersion 27
+        targetSdkVersion 28
         multiDexEnabled true
         versionCode 1
         versionName "1.0"
@@ -30,24 +30,30 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-
+    configurations.all {
+        exclude group: 'com.android.support', module: 'support-v13'
+    }
     //compile 'com.github.faruktoptas:FancyShowCaseView:1.1.0'
     compile 'com.github.ganfra:material-spinner:1.1.0'
-    compile 'com.android.support:appcompat-v7:26.+'
+    //noinspection GradleCompatible
+    compile 'com.android.support:appcompat-v7:27.1.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.google.android.gms:play-services-analytics:7.8.0'
     compile 'uk.co.chrisjenx:calligraphy:2.1.0'
-    compile 'com.android.support:design:26.+'
+    compile 'com.android.support:design:27.1.1'
     compile 'com.wdullaer:materialdatetimepicker:1.5.1'
     compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
-    compile 'com.android.support:recyclerview-v7:26.+'
+    compile 'com.android.support:recyclerview-v7:27.1.1'
+    //noinspection GradleCompatible
     compile 'com.android.support:cardview-v7:26.+'
+    //noinspection GradleCompatible
     compile 'com.android.support:support-v13:26.+'
     compile 'com.melnykov:floatingactionbutton:1.1.0'
     compile 'com.jpardogo.materialtabstrip:library:1.0.6'
     //compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
     compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.3'
     compile 'com.squareup.retrofit:retrofit:1.9.0'
+    //noinspection GradleCompatible,GradleCompatible
     compile 'com.google.firebase:firebase-messaging:9.4.0'
     compile 'com.google.android.gms:play-services:9.6.1'
     compile 'me.spark:submitbutton:1.0.1'

@@ -105,13 +105,13 @@ public class RingingAlarmActivity extends Activity {
 
 				alarmsManger.cancelAlarm(alarm.getId() + 1000);
 
-				if (alarm.getMo() || alarm.getTu() || alarm.getWe()
+				/*if (alarm.getMo() || alarm.getTu() || alarm.getWe()
 						|| alarm.getTh() || alarm.getFr() || alarm.getSa()
 						|| alarm.getSu()) {
 					alarmsManger.setAlarm(alarm, true, false);
 				} else {
 					alarmsManger.setAlarm(alarm, false, false);
-				}
+				}*/
 
 				NotificationManager notiMng = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 				notiMng.cancel(SNOOZING_NOTIFICATION_ID);
