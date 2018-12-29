@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v4.content.CursorLoader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -25,10 +26,13 @@ import android.widget.TimePicker;
 
 import com.example.krishna.mp3alarm.BuildConfig;
 import com.example.krishna.mp3alarm.R;
+import com.example.krishna.mp3alarm.Utility.PathUtil;
+import com.example.krishna.mp3alarm.Utility.Utils;
 import com.example.krishna.mp3alarm.model.Alarm;
 import com.example.krishna.mp3alarm.view.activity.MainActivity;
 
 import java.io.File;
+import java.net.URISyntaxException;
 import java.util.Calendar;
 
 public abstract class AlarmFragment extends Fragment {
@@ -79,7 +83,7 @@ public abstract class AlarmFragment extends Fragment {
 		timePicker.setIs24HourView(true);
 		timePicker.setCurrentHour(Calendar.getInstance().get(
 				Calendar.HOUR_OF_DAY));
-
+		tempMusicFilePath=Utils.lastRecordedAudioFilePath;
 		mo = (CheckBox) rootView.findViewById(R.id.monday);
 		tu = (CheckBox) rootView.findViewById(R.id.tuesday);
 		we = (CheckBox) rootView.findViewById(R.id.wednesday);
@@ -283,7 +287,11 @@ public abstract class AlarmFragment extends Fragment {
 			if (data != null) {
 				uri = data.getData();
 
-				tempMusicFilePath = getImagePath(uri);
+				try {
+					tempMusicFilePath = PathUtil.getPath(getActivity(),uri);//getImagePath(uri);
+				} catch (URISyntaxException e) {
+					e.printStackTrace();
+				}
 				tempRecording = false;
 
 				File tempRecordingFile = new File(Environment
@@ -300,6 +308,12 @@ public abstract class AlarmFragment extends Fragment {
 		Cursor cursor = getActivity().getContentResolver().query(uri, null,
 				null, null, null);
 		String path = null;
+		if(cursor==null){
+			if(uri.toString().contains("file")){
+				path=uri.toString();
+				return path;
+			}
+		}
 		try {
 			if (cursor.moveToFirst()) {
 				String document_id = cursor.getString(0);

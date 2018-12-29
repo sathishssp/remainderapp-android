@@ -22,6 +22,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.krishna.mp3alarm.Utility.DateFormatConversion;
 import com.example.krishna.mp3alarm.Utility.Utils;
 
 import java.util.ArrayList;
@@ -252,7 +253,11 @@ public class AddSmsActivity extends Activity {
 
     private boolean validateForm() {
         boolean result = true;
-        sms.setTimestampScheduled(cal.getTimeInMillis());
+//        cal.setTimeInMillis();
+        String datetime=txtDate.getText().toString()+" "+sms.getCalendar().get(GregorianCalendar.HOUR_OF_DAY)+":"+sms.getCalendar().get(GregorianCalendar.MINUTE)+":00";
+        long milliseconds=DateFormatConversion.getTimeInMilliSeconds(datetime,"dd-MM-yyyy HH:mm:ss");
+
+        sms.setTimestampScheduled(milliseconds);
         if (sms.getTimestampScheduled() < GregorianCalendar.getInstance().getTimeInMillis()) {
             Toast.makeText(getApplicationContext(), getString(R.string.form_validation_datetime), Toast.LENGTH_SHORT).show();
             result = false;

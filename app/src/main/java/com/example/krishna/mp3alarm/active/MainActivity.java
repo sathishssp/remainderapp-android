@@ -25,6 +25,7 @@ import com.astuetz.PagerSlidingTabStrip;
 import com.example.krishna.mp3alarm.About.AboutActivity;
 import com.example.krishna.mp3alarm.Calender;
 import com.example.krishna.mp3alarm.R;
+import com.example.krishna.mp3alarm.Utility.Utils;
 import com.example.krishna.mp3alarm.alarmpage;
 import com.example.krishna.mp3alarm.contact;
 import com.example.krishna.mp3alarm.frag.FileViewerFragment;
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainrecord);
-
+        Utils.lastRecordedAudioFilePath=null;
         alarm =(LinearLayout)findViewById(R.id.alarmbtn);
         reminder =(LinearLayout)findViewById(R.id.reminderbtn);
         todo =(LinearLayout)findViewById(R.id.todobtn);

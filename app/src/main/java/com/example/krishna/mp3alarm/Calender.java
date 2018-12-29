@@ -103,13 +103,13 @@ public class Calender extends AppCompatActivity {
                 Utils.lastSelectedDate=datenow;
                 if(fromScreen.equalsIgnoreCase("R")) {
                     Intent intent = new Intent(Calender.this, Reminderpage.class);
-//                intent.putExtra("dayOfMonth", dayOfMonth);
-//                intent.putExtra("month", month);
-//                intent.putExtra("year", year);
                     startActivity(intent);
                 } else if(fromScreen.equalsIgnoreCase("TODO")){
                     Intent intent = new Intent(Calender.this, com.example.krishna.mp3alarm.Maintodo.MainActivity.class);
 
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(Calender.this, Reminderpage.class);
                     startActivity(intent);
                 }
             }

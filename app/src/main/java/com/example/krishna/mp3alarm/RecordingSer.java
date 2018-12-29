@@ -13,6 +13,8 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.krishna.mp3alarm.Utility.Utils;
+
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -82,7 +84,7 @@ public class RecordingSer extends Service {
 
     public void startRecording() {
         setFileNameAndPath();
-
+        Utils.lastRecordedAudioFilePath=mFilePath;
         mRecorder = new MediaRecorder();
         mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
         mRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
@@ -124,26 +126,30 @@ public class RecordingSer extends Service {
     }
 
     public void stopRecording() {
-        mRecorder.stop();
-        mElapsedMillis = (System.currentTimeMillis() - mStartingTimeMillis);
-        mRecorder.release();
-        Toast.makeText(this, getString(R.string.toast_recording_finish) + " " + mFilePath, Toast.LENGTH_LONG).show();
-
-        //remove notification
-        if (mIncrementTimerTask != null) {
-            mIncrementTimerTask.cancel();
-            mIncrementTimerTask = null;
-        }
-
-        mRecorder = null;
-
         try {
-            mDatabase.addRecording(mFileName, mFilePath, mElapsedMillis);
+            mRecorder.stop();
+            mElapsedMillis = (System.currentTimeMillis() - mStartingTimeMillis);
+            mRecorder.release();
+            Toast.makeText(this, getString(R.string.toast_recording_finish) + " " + mFilePath, Toast.LENGTH_LONG).show();
 
-        } catch (Exception e){
-            Log.e(LOG_TAG, "exception", e);
+            //remove notification
+            if (mIncrementTimerTask != null) {
+                mIncrementTimerTask.cancel();
+                mIncrementTimerTask = null;
+            }
+
+            mRecorder = null;
+
+            try {
+                mDatabase.addRecording(mFileName, mFilePath, mElapsedMillis);
+
+            } catch (Exception e) {
+                Log.e(LOG_TAG, "exception", e);
+            }
+            nextactivity();
+        }catch (Exception e){
+            e.printStackTrace();
         }
-        nextactivity();
     }
 
     private void nextactivity() {

@@ -119,7 +119,7 @@
     <string name="form_button_add">Schedule</string>
     <string name="form_button_cancel">Cancel</string>
     <string name="form_button_delete">Delete</string>
-    <string name="form_validation_datetime">Please choose future date</string>
+    <string name="form_validation_datetime">Please choose future date and time</string>
     <string name="form_validation_contact">You must choose a contact</string>
     <string name="form_validation_message">Message can not be empty</string>
     <string name="form_recurring_mode_no">Send this message once</string>

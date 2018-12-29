@@ -16,7 +16,8 @@ public class BuilderTime extends Builder {
     public TimePicker build() {
         getView().setIs24HourView(android.text.format.DateFormat.is24HourFormat(activity));
         getView().setCurrentHour(sms.getCalendar().get(Calendar.HOUR_OF_DAY));
-        getView().setCurrentMinute(sms.getCalendar().get(Calendar.MINUTE));
+        getView().setCurrentMinute(sms.getCalendar().get(Calendar.MINUTE)+5);
+        sms.getCalendar().set(GregorianCalendar.MINUTE,sms.getCalendar().get(Calendar.MINUTE)+5);
         getView().setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
             @Override
             public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
