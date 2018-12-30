@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.example.krishna.mp3alarm.DBHelp;
 import com.example.krishna.mp3alarm.R;
 import com.example.krishna.mp3alarm.RecordingIt;
+import com.example.krishna.mp3alarm.Utility.Utils;
 import com.example.krishna.mp3alarm.frag.PlaybackFragment;
 import com.example.krishna.mp3alarm.listen.OnDatabaseChangedListener;
 
@@ -39,7 +40,7 @@ public class FileViewerAdapter extends RecyclerView.Adapter<FileViewerAdapter.Re
 
     private DBHelp mDatabase;
 
-    RecordingIt item;
+    RecordingIt item,listItem;
     Context mContext;
     LinearLayoutManager llm;
 
@@ -55,6 +56,7 @@ public class FileViewerAdapter extends RecyclerView.Adapter<FileViewerAdapter.Re
     public void onBindViewHolder(final RecordingsViewHolder holder, int position) {
 
         item = getItem(position);
+        listItem=item;
         long itemDuration = item.getLength();
 
         long minutes = TimeUnit.MILLISECONDS.toMinutes(itemDuration);
@@ -112,6 +114,7 @@ public class FileViewerAdapter extends RecyclerView.Adapter<FileViewerAdapter.Re
                 builder.setTitle(mContext.getString(R.string.dialog_title_options));
                 builder.setItems(items, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int item) {
+                        Utils.lastRecordedAudioFilePath=listItem.getFilePath();
                         if (item == 0) {
                             shareFileDialog(holder.getPosition());
                         } if (item == 1) {

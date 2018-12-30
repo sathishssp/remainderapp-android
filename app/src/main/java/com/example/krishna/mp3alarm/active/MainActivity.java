@@ -30,7 +30,7 @@ import com.example.krishna.mp3alarm.alarmpage;
 import com.example.krishna.mp3alarm.contact;
 import com.example.krishna.mp3alarm.frag.FileViewerFragment;
 import com.example.krishna.mp3alarm.frag.RecordFragment;
-
+import com.koushikdutta.async.Util;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -71,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
         reminder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Utils.lastRecordedAudioFilePath=null;
                 Intent intent = new Intent(MainActivity.this, Calender.class);
                 intent.putExtra("FROM","R");
                 overridePendingTransition(R.anim.rotate, R.anim.rotate);

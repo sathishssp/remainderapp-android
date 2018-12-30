@@ -27,6 +27,7 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TimePicker;
 
 import com.example.krishna.mp3alarm.R;
+import com.example.krishna.mp3alarm.Utility.Utils;
 import com.example.krishna.mp3alarm.modeltwenty.Alarm;
 import com.example.krishna.mp3alarm.viewtwenty.PlayAlarmReceiver;
 import com.example.krishna.mp3alarm.viewtwenty.activity.MainActivity;
@@ -85,7 +86,7 @@ public abstract class AlarmFragment extends Fragment {
 		timePicker.setIs24HourView(true);
 		timePicker.setCurrentHour(Calendar.getInstance().get(
 				Calendar.HOUR_OF_DAY));
-
+		tempMusicFilePath= Utils.lastRecordedAudioFilePath;
 		mo = (CheckBox) rootView.findViewById(R.id.monday);
 		tu = (CheckBox) rootView.findViewById(R.id.tuesday);
 		we = (CheckBox) rootView.findViewById(R.id.wednesday);
