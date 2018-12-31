@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 
+apply plugin: 'com.android.application'
+
 android {
     compileSdkVersion 28
     buildToolsVersion '28.0.3'
@@ -55,9 +57,10 @@ dependencies {
     //noinspection GradleCompatible,GradleCompatible
     compile 'com.google.firebase:firebase-messaging:9.4.0'
     compile 'com.google.android.gms:play-services:9.6.1'
+    implementation 'com.github.bumptech.glide:glide:4.7.1'
     compile 'me.spark:submitbutton:1.0.1'
     compile 'com.koushikdutta.ion:ion:2.1.8'
-     testCompile 'junit:junit:4.12'
+    testCompile 'junit:junit:4.12'
     compile 'com.riontech:calendar:1.0'
     compile 'com.github.sundeepk:compact-calendar-view:3.0.0'
 }

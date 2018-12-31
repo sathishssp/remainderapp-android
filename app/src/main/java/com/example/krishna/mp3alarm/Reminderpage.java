@@ -63,10 +63,10 @@ public class Reminderpage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-             /* Intent intent = new Intent(Reminderpage.this,VoiceActivity.class);
+                Intent intent = new Intent(Reminderpage.this,Homemms.class);
                 overridePendingTransition(R.anim.rotate, R.anim.rotate);
                 startActivity(intent);
-                finish();*/
+                finish();
             }
         });
 

@@ -25,6 +25,7 @@ import com.astuetz.PagerSlidingTabStrip;
 import com.example.krishna.mp3alarm.About.AboutActivity;
 import com.example.krishna.mp3alarm.Calender;
 import com.example.krishna.mp3alarm.R;
+import com.example.krishna.mp3alarm.Splash;
 import com.example.krishna.mp3alarm.Utility.Utils;
 import com.example.krishna.mp3alarm.alarmpage;
 import com.example.krishna.mp3alarm.contact;
@@ -66,6 +67,20 @@ public class MainActivity extends AppCompatActivity {
         }
         getPermissionToRecordAudio();
 
+        Boolean isFirstRun = getSharedPreferences("PREFERENCE", MODE_PRIVATE)
+                .getBoolean("isFirstRun", true);
+
+        if (isFirstRun) {
+            //show start activity
+
+            startActivity(new Intent(MainActivity.this, Splash.class));
+           // Toast.makeText(MainActivity.this, "First Run", Toast.LENGTH_LONG)
+              //      .show();
+        }
+
+
+        getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit()
+                .putBoolean("isFirstRun", false).commit();
 
 
         reminder.setOnClickListener(new View.OnClickListener() {

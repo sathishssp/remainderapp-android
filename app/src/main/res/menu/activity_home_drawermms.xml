@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_add_schedule"
+            android:icon="@drawable/add_button_icon"
+            android:title="Add Schedule" />
+        <item
+            android:id="@+id/nav_allowed_numbers"
+            android:icon="@drawable/contact_icon"
+            android:title="Allowed Numbers" />
+        <item
+            android:id="@+id/nav_history"
+            android:icon="@drawable/calender_icon"
+            android:title="History" />
+        <item
+            android:id="@+id/nav_my_schedule"
+            android:icon="@drawable/calender_icon"
+            android:title="My Schedules" />
+    </group>
+
+</menu>

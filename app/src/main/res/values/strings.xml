@@ -160,4 +160,39 @@
     <string name="turn_speaker_on">Speaker ON</string>
     <string name="callee">client identity or phone number</string>
     <string name="callHint">Dial a client name or phone number. Leaving the field empty results in an automated response.</string>
+
+
+    <string name="instructions">With this app you can set a scheduled alarm with image and sound
+        to any android smart phones.\n\n
+        Of course the receiver must have this app installed and your phone number must be at
+        his allowed phone number list.\n\n
+        If you want to set for yourself, Kindly add your number too in the allowed numbers list
+    </string>
+    <string-array name="sounds">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
+    <string-array name="phone_status">
+        <item>Default</item>
+        <item>Silent</item>
+        <item>Vibrate</item>
+        <item>Ringing</item>
+    </string-array>
+
+    <string name="title_activity_home">Home</string>
+    <string name="title_activity_add_schedule">Add Schedule</string>
+    <string name="title_activity_select_image">Select Image</string>
+    <string name="title_activity_history">History</string>
+    <string name="title_activity_my_schedules">My Schedules</string>
+    <string name="title_activity_allowed_numbers">Allowed Numbers</string>
+    <string name="title_activity_content_show">Scheduled Message!</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+
 </resources>
