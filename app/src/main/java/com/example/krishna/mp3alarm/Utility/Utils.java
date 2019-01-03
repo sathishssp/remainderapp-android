@@ -12,6 +12,7 @@ import java.util.Calendar;
 public class Utils {
 
     public static String lastSelectedDate="",lastRecordedAudioFilePath=null;
+    public static String btnLabel="Add Alarm";
 
 
     public static int getToolbarHeight(Context context) {
