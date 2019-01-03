@@ -53,7 +53,7 @@ public class FileViewerAdapter extends RecyclerView.Adapter<FileViewerAdapter.Re
     }
 
     @Override
-    public void onBindViewHolder(final RecordingsViewHolder holder, int position) {
+    public void onBindViewHolder(final RecordingsViewHolder holder, final int position) {
 
         item = getItem(position);
         listItem=item;
@@ -114,7 +114,7 @@ public class FileViewerAdapter extends RecyclerView.Adapter<FileViewerAdapter.Re
                 builder.setTitle(mContext.getString(R.string.dialog_title_options));
                 builder.setItems(items, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int item) {
-                        Utils.lastRecordedAudioFilePath=listItem.getFilePath();
+                        Utils.lastRecordedAudioFilePath=getItem(position).getFilePath();
                         if (item == 0) {
                             shareFileDialog(holder.getPosition());
                         } if (item == 1) {
