@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.example.krishna.mp3alarm.resourceManagermms.ResourceManager;
 import com.example.krishna.mp3alarm.smsManagermms.SMSManager;
+import com.example.krishna.mp3alarm.DBHelp;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -194,21 +195,36 @@ public class AddSchedulemms extends AppCompatActivity {
     }
 
     private void setSoundSpinnerTexts() {
-        List<String> spinnerArray = new ArrayList<>();
+   /*     List<String> spinnerArray = new ArrayList<>();
         spinnerArray.addAll(Arrays.asList(ResourceManager.soundNames));
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 this, android.R.layout.simple_spinner_item, spinnerArray);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        soundListSpinner.setAdapter(adapter);
+        soundListSpinner.setAdapter(adapter);*/
+
+        DBHelp db = new DBHelp(getApplicationContext());
+
+        // Spinner Drop down elements
+        List<String> lables = db.getAllLabels();
+
+        // Creating adapter for spinner
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, lables);
+
+        // Drop down layout style - list view with radio button
+        dataAdapter
+                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // attaching data adapter to spinner
+        soundListSpinner.setAdapter(dataAdapter);
     }
 
     private void setCurrentDateText() {
         mYear = mCurrentDate.get(Calendar.YEAR);
         mMonth = mCurrentDate.get(Calendar.MONTH);
         mDay = mCurrentDate.get(Calendar.DAY_OF_MONTH);
-
         // Since month is 0 index based, adding 1 with selected month
         String tempDate = "" + mDay + "/" + (mMonth + 1) + "/" + mYear;
         dateTextView.setText(tempDate);

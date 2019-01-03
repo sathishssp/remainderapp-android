@@ -104,13 +104,15 @@ public class Calender extends AppCompatActivity {
                 if(fromScreen.equalsIgnoreCase("R")) {
                     Intent intent = new Intent(Calender.this, Reminderpage.class);
                     startActivity(intent);
+                    finish();
                 } else if(fromScreen.equalsIgnoreCase("TODO")){
                     Intent intent = new Intent(Calender.this, com.example.krishna.mp3alarm.Maintodo.MainActivity.class);
-
                     startActivity(intent);
+                    finish();
                 } else {
                     Intent intent = new Intent(Calender.this, Reminderpage.class);
                     startActivity(intent);
+                    finish();
                 }
             }
 
