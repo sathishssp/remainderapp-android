@@ -12,6 +12,7 @@ import com.example.krishna.mp3alarm.About.AboutActivity;
 import com.example.krishna.mp3alarm.AppDefault.AppDefaultActivity;
 import com.example.krishna.mp3alarm.R;
 import com.example.krishna.mp3alarm.Settings.SettingsActivity;
+import com.example.krishna.mp3alarm.contact;
 
 public class MainActivity extends AppDefaultActivity {
 
@@ -66,7 +67,7 @@ public class MainActivity extends AppDefaultActivity {
 //                this.recreate();
 //                return true;
             case R.id.preferences:
-                Intent intent = new Intent(this, SettingsActivity.class);
+                Intent intent = new Intent(this, contact.class);
                 startActivity(intent);
                 return true;
 

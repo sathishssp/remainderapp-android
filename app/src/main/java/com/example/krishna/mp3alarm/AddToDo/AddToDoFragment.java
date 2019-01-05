@@ -26,6 +26,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.krishna.mp3alarm.Analytics.AnalyticsApplication;
 import com.example.krishna.mp3alarm.AppDefault.AppDefaultFragment;
@@ -48,7 +49,7 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class AddToDoFragment extends AppDefaultFragment implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
     private Date mLastEdited;
-    private EditText mToDoTextBodyEditText;
+    private EditText mToDoTextBodyEditText1,mToDoTextBodyEditText2,mToDoTextBodyEditText3,mToDoTextBodyEditText4,mToDoTextBodyEditText5;
     private SwitchCompat mToDoDateSwitch;
     //    private TextView mLastSeenTextView;
     private LinearLayout mUserDateSpinnerContainingLinearLayout;
@@ -127,6 +128,7 @@ public class AddToDoFragment extends AppDefaultFragment implements DatePickerDia
         mUserColor = mUserToDoItem.getTodoColor();
 
 
+
 //        if(mUserToDoItem.getLastEdited()==null) {
 //            mLastEdited = new Date();
 //        }
@@ -145,7 +147,11 @@ public class AddToDoFragment extends AppDefaultFragment implements DatePickerDia
 
         mContainerLayout = (LinearLayout) view.findViewById(R.id.todoReminderAndDateContainerLayout);
         mUserDateSpinnerContainingLinearLayout = (LinearLayout) view.findViewById(R.id.toDoEnterDateLinearLayout);
-        mToDoTextBodyEditText = (EditText) view.findViewById(R.id.userToDoEditText);
+        mToDoTextBodyEditText1 = (EditText) view.findViewById(R.id.userToDoEditText_1);
+        mToDoTextBodyEditText2 = (EditText) view.findViewById(R.id.userToDoEditText_2);
+        mToDoTextBodyEditText3 = (EditText) view.findViewById(R.id.userToDoEditText_3);
+        mToDoTextBodyEditText4 = (EditText) view.findViewById(R.id.userToDoEditText_4);
+        mToDoTextBodyEditText5 = (EditText) view.findViewById(R.id.userToDoEditText_5);
         mToDoDateSwitch = (SwitchCompat) view.findViewById(R.id.toDoHasDateSwitchCompat);
 //        mLastSeenTextView = (TextView)findViewById(R.id.toDoLastEditedTextView);
         mToDoSendFloatingActionButton = (FloatingActionButton) view.findViewById(R.id.makeToDoFloatingActionButton);
@@ -155,7 +161,7 @@ public class AddToDoFragment extends AppDefaultFragment implements DatePickerDia
         mContainerLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                hideKeyboard(mToDoTextBodyEditText);
+//                hideKeyboard(mToDoTextBodyEditText);
             }
         });
 
@@ -170,17 +176,34 @@ public class AddToDoFragment extends AppDefaultFragment implements DatePickerDia
             mReminderTextView.setVisibility(View.INVISIBLE);
         }
 
+        if(mUserEnteredText!=null){
+            String[] splitValues=mUserEnteredText.split("\\^");
+            for(int i=0;i<splitValues.length;i++){
+                if(i==0){
+                    mToDoTextBodyEditText1.setText(splitValues[i]);
+                } else if(i==1){
+                    mToDoTextBodyEditText2.setText(splitValues[i]);
+                }else if(i==2){
+                    mToDoTextBodyEditText3.setText(splitValues[i]);
+                }else if(i==3){
+                    mToDoTextBodyEditText4.setText(splitValues[i]);
+                }else if(i==4){
+                    mToDoTextBodyEditText5.setText(splitValues[i]);
+                }
+            }
+
+        }
+
 //        TextInputLayout til = (TextInputLayout)findViewById(R.id.toDoCustomTextInput);
 //        til.requestFocus();
-        mToDoTextBodyEditText.requestFocus();
-        mToDoTextBodyEditText.setText(mUserEnteredText);
-        InputMethodManager imm = (InputMethodManager) this.getActivity().getSystemService(INPUT_METHOD_SERVICE);
-//        imm.showSoftInput(mToDoTextBodyEditText, InputMethodManager.SHOW_IMPLICIT);
-        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
-        mToDoTextBodyEditText.setSelection(mToDoTextBodyEditText.length());
+//        mToDoTextBodyEditText.requestFocus();
+//        mToDoTextBodyEditText.setText(mUserEnteredText);
+//        InputMethodManager imm = (InputMethodManager) this.getActivity().getSystemService(INPUT_METHOD_SERVICE);
+//        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+//        mToDoTextBodyEditText.setSelection(mToDoTextBodyEditText.length());
 
 
-        mToDoTextBodyEditText.addTextChangedListener(new TextWatcher() {
+      /*  mToDoTextBodyEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
@@ -194,7 +217,7 @@ public class AddToDoFragment extends AppDefaultFragment implements DatePickerDia
             public void afterTextChanged(Editable s) {
             }
         });
-
+*/
 
 //        String lastSeen = formatDate(DATE_FORMAT, mLastEdited);
 //        mLastSeenTextView.setText(String.format(getResources().getString(R.string.last_edited), lastSeen));
@@ -218,7 +241,7 @@ public class AddToDoFragment extends AppDefaultFragment implements DatePickerDia
                 mUserHasReminder = isChecked;
                 setDateAndTimeEditText();
                 setEnterDateLayoutVisibleWithAnimations(isChecked);
-                hideKeyboard(mToDoTextBodyEditText);
+//                hideKeyboard(mToDoTextBodyEditText);
             }
         });
 
@@ -226,9 +249,11 @@ public class AddToDoFragment extends AppDefaultFragment implements DatePickerDia
         mToDoSendFloatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mToDoTextBodyEditText.length() <= 0) {
-                    mToDoTextBodyEditText.setError(getString(R.string.todo_error));
+                if (!validateFileds()) {
+//                    mToDoTextBodyEditText.setError(getString(R.string.todo_error));
+                    return;
                 } else if (mUserReminderDate != null && mUserReminderDate.before(new Date())) {
+                    Toast.makeText(getActivity(),"Check Reminder Date",Toast.LENGTH_SHORT).show();
                     app.send(this, "Action", "Date in the Past");
                     makeResult(RESULT_CANCELED);
                 } else {
@@ -236,7 +261,7 @@ public class AddToDoFragment extends AppDefaultFragment implements DatePickerDia
                     makeResult(RESULT_OK);
                     getActivity().finish();
                 }
-                hideKeyboard(mToDoTextBodyEditText);
+//                hideKeyboard(mToDoTextBodyEditText);
             }
         });
         String[] selectedDate= Utils.lastSelectedDate.split("/");
@@ -284,7 +309,7 @@ public class AddToDoFragment extends AppDefaultFragment implements DatePickerDia
             public void onClick(View v) {
 
                 Date date;
-                hideKeyboard(mToDoTextBodyEditText);
+//                hideKeyboard(mToDoTextBodyEditText);
                 if (mUserToDoItem.getToDoDate() != null) {
 //                    date = mUserToDoItem.getToDoDate();
                     date = mUserReminderDate;
@@ -363,6 +388,23 @@ public class AddToDoFragment extends AppDefaultFragment implements DatePickerDia
 //            }
 //        });
 
+    }
+
+    private boolean validateFileds(){
+        String finalString="";
+        if(mToDoTextBodyEditText1.getText().toString().isEmpty()){
+            mToDoTextBodyEditText1.requestFocus();
+            Toast.makeText(getActivity(),"First Line Required",Toast.LENGTH_SHORT).show();
+            return false;
+        } else {
+            finalString=mToDoTextBodyEditText1.getText().toString();
+            finalString=finalString+"^"+mToDoTextBodyEditText2.getText().toString();
+            finalString=finalString+"^"+mToDoTextBodyEditText3.getText().toString();
+            finalString=finalString+"^"+mToDoTextBodyEditText4.getText().toString();
+            finalString=finalString+"^"+mToDoTextBodyEditText5.getText().toString();
+        }
+        mUserEnteredText=finalString;
+        return true;
     }
 
     private void setDateAndTimeEditText() {
@@ -571,7 +613,7 @@ public class AddToDoFragment extends AppDefaultFragment implements DatePickerDia
                     makeResult(RESULT_CANCELED);
                     NavUtils.navigateUpFromSameTask(getActivity());
                 }
-                hideKeyboard(mToDoTextBodyEditText);
+//                hideKeyboard(mToDoTextBodyEditText);
                 return true;
 
             default:

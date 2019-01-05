@@ -108,22 +108,23 @@ public class AddSchedulemms extends AppCompatActivity {
                             @Override
                             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 
-                              //  mCurrentDate.set(Calendar.HOUR, hourOfDay);
-                              //  mCurrentDate.set(Calendar.MINUTE, minute);
+                                mCurrentDate.set(Calendar.HOUR, hourOfDay);
+                                mCurrentDate.set(Calendar.MINUTE, minute);
 
-//                                setCurrentTimeText();
-                                Date date;
+                                setCurrentTimeText();
+//                                view.getH
+                              /*  Date date;
                 date = new Date();
                 Calendar calendar = Calendar.getInstance();
                 calendar.setTime(date);
                  hour[0] = calendar.get(Calendar.HOUR_OF_DAY);
-                 minute = calendar.get(Calendar.MINUTE);
+                 minute = calendar.get(Calendar.MINUTE);*/
                             }
-                        }, hour[0], minute, false);
+                        }, mCurrentDate.get(Calendar.HOUR),  mCurrentDate.get(Calendar.MINUTE), true);
 
-                mTimePicker.setTitle("Select Time");
+               mTimePicker.setTitle("Select Time");
                 mTimePicker.show();
-                SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm a",
+                SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm",
                         Locale.ENGLISH);
                 Calendar calendar = Calendar.getInstance();
              //String tempTime = dateFormat.format(calendar.getTime());
@@ -221,7 +222,7 @@ public class AddSchedulemms extends AppCompatActivity {
         soundListSpinner = findViewById(com.example.krishna.mp3alarm.R.id.sound_list_spinner);
         phoneStatusSpinner = findViewById(com.example.krishna.mp3alarm.R.id.phone_status_spinner);
         messageEditText = findViewById(com.example.krishna.mp3alarm.R.id.message_edit_text);
-    //    mCurrentDate = Calendar.getInstance();
+        mCurrentDate = Calendar.getInstance();
 
         // Default values
         imageResourceID = ResourceManager.getMappedImageResourceID(0);
@@ -289,7 +290,7 @@ public class AddSchedulemms extends AppCompatActivity {
         mMinute = mCurrentDate.get(Calendar.MINUTE);
         mAmPm = mCurrentDate.get(Calendar.AM_PM);
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm a",
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm",
                 Locale.ENGLISH);
         String tempTime = dateFormat.format(mCurrentDate.getTime());
         timeTextView.setText(tempTime);

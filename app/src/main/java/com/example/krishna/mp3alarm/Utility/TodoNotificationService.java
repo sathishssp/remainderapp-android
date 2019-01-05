@@ -35,6 +35,10 @@ public class TodoNotificationService extends IntentService {
         i.putExtra(TodoNotificationService.TODOUUID, mTodoUUID);
         Intent deleteIntent = new Intent(this, DeleteNotificationService.class);
         deleteIntent.putExtra(TODOUUID, mTodoUUID);
+
+        String[] splitValues=mTodoText.split("\\^");
+
+        mTodoText=splitValues[0];
         Notification notification = new Notification.Builder(this)
                 .setContentTitle(mTodoText)
                 .setSmallIcon(R.drawable.ic_done_white_24dp)

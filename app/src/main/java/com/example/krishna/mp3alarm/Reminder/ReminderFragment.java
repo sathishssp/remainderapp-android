@@ -52,15 +52,16 @@ public class ReminderFragment extends AppDefaultFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+     //   app.setTheme(R.style.Theme_AppCompat_Light_NoActionBar);
         app = (AnalyticsApplication) getActivity().getApplication();
         app.send(this);
 
-        theme = getActivity().getSharedPreferences(MainFragment.THEME_PREFERENCES, MODE_PRIVATE).getString(MainFragment.THEME_SAVED, MainFragment.LIGHTTHEME);
+      /*  theme = getActivity().getSharedPreferences(MainFragment.THEME_PREFERENCES, MODE_PRIVATE).getString(MainFragment.THEME_SAVED, MainFragment.LIGHTTHEME);
         if (theme.equals(MainFragment.LIGHTTHEME)) {
-            getActivity().setTheme(R.style.CustomStyle_LightTheme);
+            getActivity().setTheme(R.style.Theme_AppCompat_Light_NoActionBar);
         } else {
-            getActivity().setTheme(R.style.CustomStyle_DarkTheme);
-        }
+            getActivity().setTheme(R.style.Theme_AppCompat_Light_NoActionBar);
+        }*/
         storeRetrieveData = new StoreRetrieveData(getContext(), MainFragment.FILENAME);
         mToDoItems = MainFragment.getLocallyStoredData(storeRetrieveData);
 
@@ -84,17 +85,20 @@ public class ReminderFragment extends AppDefaultFragment {
         mSnoozeTextView = (TextView) view.findViewById(R.id.reminderViewSnoozeTextView);
         mSnoozeSpinner = (MaterialSpinner) view.findViewById(R.id.todoReminderSnoozeSpinner);
 
-//        mtoDoTextTextView.setBackgroundColor(item.getTodoColor());
-        mtoDoTextTextView.setText(mItem.getToDoText());
+//        String[] splitValues=mItem.getToDoText().split("\\^");
 
-        if (theme.equals(MainFragment.LIGHTTHEME)) {
+//        holder.mToDoTextview.setText(splitValues[0]);
+//        mtoDoTextTextView.setBackgroundColor(item.getTodoColor());
+        mtoDoTextTextView.setText(mItem.getToDoText().replaceAll("\\^","\n"));
+
+      /*  if (theme.equals(MainFragment.LIGHTTHEME)) {
             mSnoozeTextView.setTextColor(getResources().getColor(R.color.secondary_text));
         } else {
             mSnoozeTextView.setTextColor(Color.WHITE);
             mSnoozeTextView.setCompoundDrawablesWithIntrinsicBounds(
                     R.drawable.ic_snooze_white_24dp, 0, 0, 0
             );
-        }
+        }*/
 
         mRemoveToDoButton.setOnClickListener(new View.OnClickListener() {
             @Override

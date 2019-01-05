@@ -3,9 +3,9 @@
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+    android:background="@color/white"
                 android:orientation="vertical">
 
-    <include layout="@layout/base_toolbar"/>
 
     <!--Put all strings to string.xml-->
 
@@ -25,7 +25,9 @@
     <Button
         android:id="@+id/toDoReminderRemoveButton"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
+        android:gravity="center"
+        android:padding="3dp"
         android:layout_alignParentBottom="true"
         android:background="@drawable/button_pressed_background"
         android:text="@string/remove"
@@ -38,6 +40,7 @@
         android:layout_above="@id/toDoReminderRemoveButton"
         android:layout_below="@id/toDoReminderTextViewBody"
         android:gravity="start"
+        android:background="@color/white"
         android:orientation="horizontal"
         android:paddingTop="24dp">
 
@@ -52,6 +55,7 @@
             android:drawablePadding="8dp"
             android:gravity="start"
             android:padding="8dp"
+            android:textColor="@color/black"
             android:text="@string/snooze"
             android:textSize="16sp"/>
 
@@ -62,6 +66,7 @@
             android:layout_marginLeft="2dp"
             android:layout_marginRight="16dp"
             android:layout_weight="1.5"
+            android:backgroundTint="@color/appcolor"
             app:ms_highlightColor="?attr/colorAccent"
             />
 

@@ -348,7 +348,7 @@ public class MainFragment extends AppDefaultFragment {
 //                this.recreate();
 //                return true;
             case R.id.preferences:
-                Intent intent = new Intent(getContext(), SettingsActivity.class);
+                Intent intent = new Intent(getContext(), AboutActivity.class);
                 startActivity(intent);
                 return true;
 
@@ -515,7 +515,9 @@ public class MainFragment extends AppDefaultFragment {
                 holder.mTimeTextView.setVisibility(View.GONE);
                 holder.mToDoTextview.setMaxLines(2);
             }
-            holder.mToDoTextview.setText(item.getToDoText());
+            String[] splitValues=item.getToDoText().split("\\^");
+
+            holder.mToDoTextview.setText(splitValues[0]);
             holder.mToDoTextview.setTextColor(todoTextColor);
 //            holder.mColorTextView.setBackgroundColor(Color.parseColor(item.getTodoColor()));
 
