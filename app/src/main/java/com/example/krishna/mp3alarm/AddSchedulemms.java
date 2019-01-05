@@ -37,6 +37,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import retrofit.http.HEAD;
+
 import static android.app.PendingIntent.getActivity;
 import static com.example.krishna.mp3alarm.AddToDo.AddToDoFragment.formatDate;
 
@@ -240,7 +242,11 @@ public class AddSchedulemms extends AppCompatActivity {
     }
 
     private void setSoundSpinnerTexts() {
+
       /*  List<String> spinnerArray = new ArrayList<>();
+=======
+   /*     List<String> spinnerArray = new ArrayList<>();
+>>>>>>> 9c976566878a46ed2dce9ad545725492a0e32c12
         spinnerArray.addAll(Arrays.asList(ResourceManager.soundNames));
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
@@ -250,6 +256,9 @@ public class AddSchedulemms extends AppCompatActivity {
         soundListSpinner.setAdapter(adapter);*/
 
         DBHelpers db = new DBHelpers(getApplicationContext());
+
+      //  DBHelp db = new DBHelp(getApplicationContext());
+
 
         // Spinner Drop down elements
         List<String> lables = db.getAllLabels();

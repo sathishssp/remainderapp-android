@@ -53,9 +53,6 @@ public class AllowedNumbersmms extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if( TextUtils.isEmpty(phoneNumberEditText.getText())){
-                    /**
-                     *   You can Toast a message here that the Username is Empty
-                     **/
 
                     phoneNumberEditText.setError( "phone number is required!" );
 
