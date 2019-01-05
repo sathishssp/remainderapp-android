@@ -24,6 +24,7 @@
             android:layout_weight="3"
             android:hint="Enter Number"
             android:textColor="@android:color/black"
+            android:backgroundTint="@color/appcolor"
             android:inputType="phone" />
 
         <android.support.design.widget.FloatingActionButton
@@ -32,7 +33,7 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             android:focusable="true"
-            android:background="@color/appcolor"
+            app:backgroundTint="@color/appcolor"
             android:src="@drawable/contact_icon"
             app:fabSize="mini" />
 

@@ -102,7 +102,7 @@
                         android:padding="8dp"
                         android:gravity="center"
                         android:layout_weight="1"
-                        android:background="@color/appcolor"
+                        android:theme="@style/SwitchCompatTheme"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
@@ -185,6 +185,8 @@
 
             android:src="@drawable/ic_send_white_18dp"
             android:layout_height="wrap_content"
+            app:backgroundTint="@android:color/white"
+            android:tint="@color/appcolor"
             app:layout_anchor="@id/editTextParentLinearLayout"
             app:layout_anchorGravity="bottom|right"
             android:layout_width="wrap_content"

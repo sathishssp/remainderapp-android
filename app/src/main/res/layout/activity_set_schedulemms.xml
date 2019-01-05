@@ -22,6 +22,7 @@
             android:layout_marginEnd="8dp"
             android:layout_weight="7"
             android:hint="Enter phone Number"
+            android:backgroundTint="@color/appcolor"
             android:textColor="@android:color/black"
             android:inputType="phone" />
 
@@ -31,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:clickable="true"
-            android:background="@color/appcolor"
+            app:backgroundTint="@color/appcolor"
             android:src="@drawable/contact_icon"
             app:fabSize="mini" />
     </LinearLayout>

@@ -9,7 +9,12 @@ import android.provider.BaseColumns;
 
 import com.example.krishna.mp3alarm.listeners.OnDatabaseChangedListener;
 
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
+
+import static com.example.krishna.mp3alarm.DBHelpers.DBHelperItem.COLUMN_NAME_RECORDING_NAME;
+import static com.example.krishna.mp3alarm.DBHelpers.DBHelperItem.TABLE_NAME;
 
 /**
  * Created by Daniel on 12/29/2014.
@@ -36,15 +41,15 @@ public class DBHelpers extends SQLiteOpenHelper {
     private static final String TEXT_TYPE = " TEXT";
     private static final String COMMA_SEP = ",";
     private static final String SQL_CREATE_ENTRIES =
-            "CREATE TABLE " + DBHelperItem.TABLE_NAME + " (" +
+            "CREATE TABLE " + TABLE_NAME + " (" +
                     DBHelperItem._ID + " INTEGER PRIMARY KEY" + COMMA_SEP +
-                    DBHelperItem.COLUMN_NAME_RECORDING_NAME + TEXT_TYPE + COMMA_SEP +
+                    COLUMN_NAME_RECORDING_NAME + TEXT_TYPE + COMMA_SEP +
                     DBHelperItem.COLUMN_NAME_RECORDING_FILE_PATH + TEXT_TYPE + COMMA_SEP +
                     DBHelperItem.COLUMN_NAME_RECORDING_LENGTH + " INTEGER " + COMMA_SEP +
                     DBHelperItem.COLUMN_NAME_TIME_ADDED + " INTEGER " + ")";
 
     @SuppressWarnings("unused")
-    private static final String SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS " + DBHelperItem.TABLE_NAME;
+    private static final String SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS " + TABLE_NAME;
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -69,16 +74,16 @@ public class DBHelpers extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
         String[] projection = {
                 DBHelperItem._ID,
-                DBHelperItem.COLUMN_NAME_RECORDING_NAME,
+                COLUMN_NAME_RECORDING_NAME,
                 DBHelperItem.COLUMN_NAME_RECORDING_FILE_PATH,
                 DBHelperItem.COLUMN_NAME_RECORDING_LENGTH,
                 DBHelperItem.COLUMN_NAME_TIME_ADDED
         };
-        Cursor c = db.query(DBHelperItem.TABLE_NAME, projection, null, null, null, null, null);
+        Cursor c = db.query(TABLE_NAME, projection, null, null, null, null, null);
         if (c.moveToPosition(position)) {
             RecordingItem item = new RecordingItem();
             item.setId(c.getInt(c.getColumnIndex(DBHelperItem._ID)));
-            item.setName(c.getString(c.getColumnIndex(DBHelperItem.COLUMN_NAME_RECORDING_NAME)));
+            item.setName(c.getString(c.getColumnIndex(COLUMN_NAME_RECORDING_NAME)));
             item.setFilePath(c.getString(c.getColumnIndex(DBHelperItem.COLUMN_NAME_RECORDING_FILE_PATH)));
             item.setLength(c.getInt(c.getColumnIndex(DBHelperItem.COLUMN_NAME_RECORDING_LENGTH)));
             item.setTime(c.getLong(c.getColumnIndex(DBHelperItem.COLUMN_NAME_TIME_ADDED)));
@@ -91,13 +96,13 @@ public class DBHelpers extends SQLiteOpenHelper {
     public void removeItemWithId(int id) {
         SQLiteDatabase db = getWritableDatabase();
         String[] whereArgs = { String.valueOf(id) };
-        db.delete(DBHelperItem.TABLE_NAME, "_ID=?", whereArgs);
+        db.delete(TABLE_NAME, "_ID=?", whereArgs);
     }
 
     public int getCount() {
         SQLiteDatabase db = getReadableDatabase();
         String[] projection = { DBHelperItem._ID };
-        Cursor c = db.query(DBHelperItem.TABLE_NAME, projection, null, null, null, null, null);
+        Cursor c = db.query(TABLE_NAME, projection, null, null, null, null, null);
         int count = c.getCount();
         c.close();
         return count;
@@ -119,11 +124,11 @@ public class DBHelpers extends SQLiteOpenHelper {
 
         SQLiteDatabase db = getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put(DBHelperItem.COLUMN_NAME_RECORDING_NAME, recordingName);
+        cv.put(COLUMN_NAME_RECORDING_NAME, recordingName);
         cv.put(DBHelperItem.COLUMN_NAME_RECORDING_FILE_PATH, filePath);
         cv.put(DBHelperItem.COLUMN_NAME_RECORDING_LENGTH, length);
         cv.put(DBHelperItem.COLUMN_NAME_TIME_ADDED, System.currentTimeMillis());
-        long rowId = db.insert(DBHelperItem.TABLE_NAME, null, cv);
+        long rowId = db.insert(TABLE_NAME, null, cv);
 
         if (mOnDatabaseChangedListener != null) {
             mOnDatabaseChangedListener.onNewDatabaseEntryAdded();
@@ -135,9 +140,9 @@ public class DBHelpers extends SQLiteOpenHelper {
     public void renameItem(RecordingItem item, String recordingName, String filePath) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put(DBHelperItem.COLUMN_NAME_RECORDING_NAME, recordingName);
+        cv.put(COLUMN_NAME_RECORDING_NAME, recordingName);
         cv.put(DBHelperItem.COLUMN_NAME_RECORDING_FILE_PATH, filePath);
-        db.update(DBHelperItem.TABLE_NAME, cv,
+        db.update(TABLE_NAME, cv,
                 DBHelperItem._ID + "=" + item.getId(), null);
 
         if (mOnDatabaseChangedListener != null) {
@@ -148,15 +153,39 @@ public class DBHelpers extends SQLiteOpenHelper {
     public long restoreRecording(RecordingItem item) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put(DBHelperItem.COLUMN_NAME_RECORDING_NAME, item.getName());
+        cv.put(COLUMN_NAME_RECORDING_NAME, item.getName());
         cv.put(DBHelperItem.COLUMN_NAME_RECORDING_FILE_PATH, item.getFilePath());
         cv.put(DBHelperItem.COLUMN_NAME_RECORDING_LENGTH, item.getLength());
         cv.put(DBHelperItem.COLUMN_NAME_TIME_ADDED, item.getTime());
         cv.put(DBHelperItem._ID, item.getId());
-        long rowId = db.insert(DBHelperItem.TABLE_NAME, null, cv);
+        long rowId = db.insert(TABLE_NAME, null, cv);
         if (mOnDatabaseChangedListener != null) {
             //mOnDatabaseChangedListener.onNewDatabaseEntryAdded();
         }
         return rowId;
+    }
+
+     public List<String> getAllLabels(){
+        List<String> labels = new ArrayList<String>();
+
+        // Select All Query
+        String selectQuery = "SELECT recording_name FROM saved_recordings";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                labels.add(cursor.getString(0));
+            } while (cursor.moveToNext());
+        }
+
+        // closing connection
+        cursor.close();
+        db.close();
+
+        // returning lables
+        return labels;
     }
 }

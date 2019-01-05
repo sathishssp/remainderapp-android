@@ -35,7 +35,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name="com.example.krishna.mp3alarm.Splash">
+        <activity android:name="com.example.krishna.mp3alarm.Splash"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         </activity>
         <activity
             android:name=".view.activity.MainActivity"
@@ -181,7 +182,7 @@
 
 
         <activity android:name=".Reminderpage"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
             android:name=".viewone.activity.MainActivity"
             android:label="@string/app_name" />
@@ -214,7 +215,7 @@
         </receiver>
 
         <activity android:name=".alarmpage"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
             android:name=".viewtwelve.activity.MainActivity"
             android:label="@string/app_name" />
@@ -276,25 +277,12 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-
-        <!-- [START fcm_listener] -->
-        <service android:name=".fcm.VoiceFirebaseMessagingService">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
-        <!-- [END fcm_listener] -->
-        <!-- [START instanceId_listener] -->
-        <service android:name=".fcm.VoiceFirebaseInstanceIDService">
-            <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
-            </intent-filter>
-        </service>
-
-        <activity android:name=".contact">
+        <activity android:name=".contact"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
         </activity>
-        <activity android:name=".Calender" />
+        <activity android:name=".Calender"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
 
         <service
             android:name="com.example.krishna.mp3alarm.Utility.BackgroundService"
@@ -315,14 +303,14 @@
 
         <activity
             android:name=".Homemms"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
         </activity>
 
         <activity
             android:name=".ContentShowmms"
             android:label="@string/title_activity_content_show"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.krishna.mp3alarm.Homemms" />
@@ -331,7 +319,7 @@
         <activity
             android:name=".AddSchedulemms"
             android:label="@string/title_activity_add_schedule"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.krishna.mp3alarm.Homemms" />
@@ -340,7 +328,7 @@
         <activity
             android:name=".SelectImagemms"
             android:label="@string/title_activity_select_image"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.krishna.mp3alarm.AddSchedulemms" />
@@ -348,7 +336,7 @@
         <activity
             android:name=".SetSchedulemms"
             android:label="@string/title_activity_add_schedule"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.krishna.mp3alarm.AddSchedulemms" />
@@ -356,7 +344,7 @@
         <activity
             android:name=".AllowedNumbersmms"
             android:label="@string/title_activity_allowed_numbers"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.krishna.mp3alarm.Homemms" />
@@ -365,7 +353,7 @@
         <activity
             android:name=".AlarmHistorymms"
             android:label="@string/app_name"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.krishna.mp3alarm.Homemms" />
@@ -374,7 +362,7 @@
         <activity
             android:name=".MySchedulesmms"
             android:label="@string/app_name"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.krishna.mp3alarm.Homemms" />

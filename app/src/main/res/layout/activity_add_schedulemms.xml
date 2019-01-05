@@ -39,9 +39,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:background="@color/appcolor"
+            app:backgroundTint="@color/appcolor"
             android:clickable="true"
             android:focusable="true"
+            android:visibility="gone"
             android:src="@drawable/calender_icon"
             app:fabSize="mini" />
 
@@ -77,8 +78,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
+            app:backgroundTint="@color/appcolor"
             android:clickable="true"
-            android:background="@color/appcolor"
             android:focusable="true"
             android:src="@drawable/change_time_icon"
             app:fabSize="mini" />
@@ -107,7 +108,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="2"
-            android:background="@android:color/black"
             android:entries="@array/sounds" />
 
         <android.support.design.widget.FloatingActionButton
@@ -116,8 +116,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:clickable="true"
-            android:background="@color/appcolor"
             android:focusable="true"
+            app:backgroundTint="@color/appcolor"
             android:src="@drawable/play_sound_icon"
             app:fabSize="mini" />
     </LinearLayout>
@@ -145,7 +145,7 @@
             android:layout_gravity="center|right"
             android:clickable="true"
             android:focusable="true"
-            android:background="@color/appcolor"
+            app:backgroundTint="@color/appcolor"
             android:src="@drawable/change_image_icon"
             app:fabSize="mini" />
 
@@ -172,7 +172,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:background="@android:color/black"
             android:entries="@array/phone_status" />
     </LinearLayout>
 
@@ -182,6 +181,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:hint="Message"
+        android:backgroundTint="@color/appcolor"
         android:textColor="@android:color/black"
         android:padding="8dp" />
 
@@ -191,9 +191,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:clickable="true"
-        android:background="@color/appcolor"
         android:focusable="true"
         android:src="@drawable/next_icon"
+        app:backgroundTint="@color/appcolor"
         app:fabSize="normal" />
 
 </LinearLayout>

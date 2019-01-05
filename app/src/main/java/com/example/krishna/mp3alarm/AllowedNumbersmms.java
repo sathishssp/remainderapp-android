@@ -52,14 +52,24 @@ public class AllowedNumbersmms extends AppCompatActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String number = phoneNumberEditText.getText().toString();
-                SharedPrefManager manager = SharedPrefManager.getInstance(AllowedNumbersmms.this);
-                manager.saveAllowedNumber(number);
-                Toast.makeText(getApplicationContext(), "Number Saved!",
-                        Toast.LENGTH_SHORT).show();
+                if( TextUtils.isEmpty(phoneNumberEditText.getText())){
+                    /**
+                     *   You can Toast a message here that the Username is Empty
+                     **/
 
-                showAllAllowedNumbers();
-                phoneNumberEditText.setText("");
+                    phoneNumberEditText.setError( "phone number is required!" );
+
+                }else{
+                    String number = phoneNumberEditText.getText().toString();
+                    SharedPrefManager manager = SharedPrefManager.getInstance(AllowedNumbersmms.this);
+                    manager.saveAllowedNumber(number);
+                    Toast.makeText(getApplicationContext(), "Number Saved!",
+                            Toast.LENGTH_SHORT).show();
+
+                    showAllAllowedNumbers();
+                    phoneNumberEditText.setText("");
+                }
+
             }
         });
 

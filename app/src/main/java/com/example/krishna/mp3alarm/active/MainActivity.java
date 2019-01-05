@@ -109,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
         alarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Utils.btnLabel="Add Alarm";
                 Intent intent = new Intent(MainActivity.this, alarmpage.class);
                 overridePendingTransition(R.anim.rotate, R.anim.rotate);
                 startActivity(intent);

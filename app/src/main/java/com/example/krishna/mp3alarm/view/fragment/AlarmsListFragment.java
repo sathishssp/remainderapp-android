@@ -1,6 +1,7 @@
 package com.example.krishna.mp3alarm.view.fragment;
 
 import com.example.krishna.mp3alarm.R;
+import com.example.krishna.mp3alarm.Utility.Utils;
 import com.example.krishna.mp3alarm.view.activity.MainActivity;
 import android.app.Activity;
 import android.app.ListFragment;
@@ -49,6 +50,7 @@ public class AlarmsListFragment extends ListFragment {
 
 		Button addNewAlarmBtn = (Button) rootView
 				.findViewById(R.id.btn_add_alarm);
+		addNewAlarmBtn.setText(Utils.btnLabel);
 		addNewAlarmBtn.setOnClickListener(new OnClickListener() {
 
 			@Override
