@@ -77,7 +77,7 @@ public class MainActivity extends AppDefaultActivity {
     }
 
     public void onBackPressed(){
-        super.onBackPressed();
+//        super.onBackPressed();
         Intent intent = new Intent(com.example.krishna.mp3alarm.Maintodo.MainActivity.this, com.example.krishna.mp3alarm.active.MainActivity.class);
         overridePendingTransition(R.anim.rotate, R.anim.rotate);
         startActivity(intent);

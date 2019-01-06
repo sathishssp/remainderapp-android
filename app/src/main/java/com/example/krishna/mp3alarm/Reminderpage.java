@@ -91,7 +91,7 @@ public class Reminderpage extends AppCompatActivity {
                         Intent intent = new Intent(Reminderpage.this,com.example.krishna.mp3alarm.view.activity.MainActivity.class);
                         overridePendingTransition(R.anim.rotate, R.anim.rotate);
                         startActivity(intent);
-               finish();
+//               finish();
             }
         });
     }

@@ -25,6 +25,8 @@ public class Alarm implements BaseColumns {
 	private String name;
 	private String musicPath;
 	private boolean active;
+	private int type=1;
+	private String create_date;
 
 	public Alarm() {
 
@@ -32,7 +34,7 @@ public class Alarm implements BaseColumns {
 
 	public Alarm(long id, String time, boolean mo, boolean tu, boolean we,
 			boolean th, boolean fr, boolean sa, boolean su, String name,
-			String musicPath, boolean active) {
+			String musicPath, boolean active,int type) {
 		super();
 		this.id = id;
 		this.time = time;
@@ -46,6 +48,23 @@ public class Alarm implements BaseColumns {
 		this.name = name;
 		this.musicPath = musicPath;
 		this.active = active;
+		this.type=type;
+	}
+
+	public void setCreate_date(String create_date){
+		this.create_date=create_date;
+	}
+
+	public String getCreate_date(){
+		return this.create_date;
+	}
+
+	public int getType(){
+		return type;
+	}
+
+	public void setType(int type){
+		this.type=type;
 	}
 
 	public long getId() {

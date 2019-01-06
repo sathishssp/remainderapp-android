@@ -17,12 +17,16 @@ import android.view.MenuItem;
 import android.widget.ListAdapter;
 
 import com.example.krishna.mp3alarm.R;
+import com.example.krishna.mp3alarm.Utility.Utils;
 import com.example.krishna.mp3alarm.alarmpage;
 import com.example.krishna.mp3alarm.controller.AlarmsManager;
+import com.example.krishna.mp3alarm.model.Alarm;
 import com.example.krishna.mp3alarm.view.AlarmsListArrayAdapter;
 import com.example.krishna.mp3alarm.view.fragment.AddAlarmFragment;
 import com.example.krishna.mp3alarm.view.fragment.AlarmsListFragment;
 import com.example.krishna.mp3alarm.view.fragment.EditAlarmFragment;
+
+import java.util.ArrayList;
 
 public class MainActivity extends Activity implements
 		AlarmsListFragment.OnAlarmSelectedListener {
@@ -182,22 +186,43 @@ public class MainActivity extends Activity implements
 
 
 	public void onBackPressed(){
-		super.onBackPressed();
-		Intent intent = new Intent(com.example.krishna.mp3alarm.view.activity.MainActivity.this, alarmpage.class);
-		overridePendingTransition(R.anim.rotate, R.anim.rotate);
-		startActivity(intent);
-		finish();
+//		super.onBackPressed();
+		if(Utils.btnLabel.contains("Reminder")){
+			finish();
+		} else {
+			Intent intent = new Intent(com.example.krishna.mp3alarm.view.activity.MainActivity.this, alarmpage.class);
+			overridePendingTransition(R.anim.rotate, R.anim.rotate);
+			startActivity(intent);
+			finish();
+		}
 
 	}
 
 	public void refreshListAdapter() {
+		ArrayList<Alarm> alarmList=new ArrayList<>();
+		ArrayList<Alarm> finalAlarmList=new ArrayList<>();
+
 		if (alarmAdapter == null) {
 			alarmAdapter = new AlarmsListArrayAdapter(this,
-					R.layout.alarm_listview_row, alarmsManager.getAllAlarms(),
+					R.layout.alarm_listview_row,alarmList ,
 					this);
 		}
+		if(Utils.btnLabel.contains("Reminder")){
+			for(Alarm alarm:alarmsManager.getAllAlarms()){
+				if(alarm.getCreate_date().equalsIgnoreCase(Utils.lastSelectedDate) && alarm.getType()==2){
+					alarmList.add(alarm);
+				}
+			}
+		} else {
+			for(Alarm alarm:alarmsManager.getAllAlarms()){
+				if(alarm.getType()==1){
+					alarmList.add(alarm);
+				}
+			}
+		}
+
 		alarmAdapter.clear();
-		alarmAdapter.addAll(getAlarmsManager().getAllAlarms());
+		alarmAdapter.addAll(alarmList);
 		alarmAdapter.notifyDataSetChanged();
 
 	}
