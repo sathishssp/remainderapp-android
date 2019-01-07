@@ -2,12 +2,22 @@ package com.example.krishna.mp3alarm;
 
 import android.app.Activity;
 import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.telephony.SmsManager;
 import android.util.Log;
 
+import com.example.krishna.mp3alarm.Reminder.ReminderActivity;
+import com.example.krishna.mp3alarm.Utility.DeleteNotificationService;
+import com.example.krishna.mp3alarm.Utility.TodoNotificationService;
 import com.example.krishna.mp3alarm.notification.NotificationManagerWrapper;
+
+import static android.content.ContentResolver.*;
 
 public class SmsSentService extends SmsIntentService {
 
@@ -61,9 +71,12 @@ public class SmsSentService extends SmsIntentService {
             message = getString(R.string.notification_message_failure, sms.getRecipientName(), errorString);
         }
         DbHelper.getDbHelper(this).save(sms);
-        notify(this, title, message, sms.getId());
+     //  notify(this, title, message, sms.getId());
+        note();
         WakefulBroadcastReceiver.completeWakefulIntent(intent);
     }
+
+
 
     private void notify(Context context, String title, String message, int id) {
         Notification notification = NotificationManagerWrapper.getBuilder(context)
@@ -73,5 +86,21 @@ public class SmsSentService extends SmsIntentService {
             .build()
         ;
         new NotificationManagerWrapper(context).show(id, notification);
+    }
+
+    public void note(){
+        NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        Intent i = new Intent(this, SmsListActivity.class);
+        Intent deleteIntent = new Intent(this, SmsListActivity.class);
+        startActivity(deleteIntent);
+        Notification notification = new Notification.Builder(this)
+                .setContentTitle("uremindme has delivered your SMS")
+                .setSmallIcon(R.drawable.newicon)
+                .setAutoCancel(true)
+                .setSound(Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + getPackageName() + "/raw/notifytone"))
+                // .setDefaults(Notification.DEFAULT_SOUND)
+                .build();
+
+        manager.notify(100, notification);
     }
 }

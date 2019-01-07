@@ -83,10 +83,15 @@ public class Reminderpage extends AppCompatActivity {
         notification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Reminderpage.this,com.example.krishna.mp3alarm.Maintodo.MainActivity.class);
+                /*Intent intent = new Intent(Reminderpage.this,com.example.krishna.mp3alarm.Maintodo.MainActivity.class);
                 overridePendingTransition(R.anim.rotate, R.anim.rotate);
                 startActivity(intent);
-                finish();
+                finish();*/
+                Utils.btnLabel="Add Reminder";
+                        Intent intent = new Intent(Reminderpage.this,com.example.krishna.mp3alarm.view.activity.MainActivity.class);
+                        overridePendingTransition(R.anim.rotate, R.anim.rotate);
+                        startActivity(intent);
+//               finish();
             }
         });
     }

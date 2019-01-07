@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import com.example.krishna.mp3alarm.BuildConfig;
 import com.example.krishna.mp3alarm.R;
+import com.example.krishna.mp3alarm.Utility.DateFormatConversion;
+import com.example.krishna.mp3alarm.Utility.Utils;
 import com.example.krishna.mp3alarm.model.Alarm;
 import com.example.krishna.mp3alarm.view.MediaPlayerService;
 import com.example.krishna.mp3alarm.view.PlayAlarmReceiver;
@@ -27,6 +29,7 @@ public class AlarmsManager {
 	Context context;
 	AlarmManager alarmManager;
 	private MusicManager player;
+	private int alarmType=1;
 
 	public AlarmsManager(Context context) {
 		this.context = context;
@@ -34,6 +37,9 @@ public class AlarmsManager {
 		alarmManager = (AlarmManager) context
 				.getSystemService(Activity.ALARM_SERVICE);
 		player = new MusicManager();
+		if(Utils.btnLabel.contains("Reminder")){
+			alarmType=2;
+		}
 	}
 
 	public Alarm createAlarm(String time, boolean mo, boolean tu, boolean we,
@@ -41,7 +47,7 @@ public class AlarmsManager {
 			String musicPath) {
 
 		Alarm alarm = alarmsDbHelper.createAlarm(time, mo, tu, we, th, fr, sa,
-				su, name, musicPath);
+				su, name, musicPath,alarmType,Utils.lastSelectedDate);
 
 		setAlarm(alarm, true);
 
@@ -187,10 +193,20 @@ public class AlarmsManager {
 			int minute = Integer.parseInt((alarm.getTime()).substring(3, 5));
 
 			final Calendar calendar = Calendar.getInstance();
-			calendar.setTimeInMillis(System.currentTimeMillis());
+			if(Utils.btnLabel.contains("Reminder")){
+				calendar.setTimeInMillis(DateFormatConversion.getTimeInMilliSeconds(Utils.lastSelectedDate,"dd/MM/yyyy"));
+			} else {
+				calendar.setTimeInMillis(System.currentTimeMillis());
+			}
 			calendar.set(Calendar.HOUR_OF_DAY, hour);
 			calendar.set(Calendar.MINUTE, minute);
 			calendar.set(Calendar.SECOND, 0);
+
+			if(Utils.btnLabel.contains("Reminder")){
+				setAlarm(calendar, alarm.getId());
+				showAlarmToast(calendar);
+				return;
+			}
 
 			boolean toastShown = false;
 			if (alarm.getMo()) {
@@ -258,6 +274,7 @@ public class AlarmsManager {
 				if (showToast)
 					showAlarmToast(calendar);
 			}
+
 		}
 	}
 
@@ -319,7 +336,7 @@ public class AlarmsManager {
 
 	public boolean checkForDuplicateAlarm(String timeString, long alarmId) {
 		for (Alarm alarm : getAllAlarms()) {
-			if (alarm.getTime().equals(timeString) && alarm.getId() != alarmId) {
+			if (alarm.getTime().equals(timeString) && alarm.getId() != alarmId && alarm.getType()==1) {
 				Toast.makeText(context,
 						"Alarm for " + timeString + " already exists",
 						Toast.LENGTH_LONG).show();

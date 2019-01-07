@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
@@ -55,7 +56,7 @@ public abstract class AlarmFragment extends Fragment {
 	protected Button saveAlarmBtn;
 	private SeekBar alarmVolumeSeekbar = null;
 	private AudioManager audioManager = null;
-
+	private LinearLayout lnrDayContainer;
 	/**
 	 * Used to store the chosen mp3 file which the user has selected but not yet
 	 * stored in the database. Used only by the player.
@@ -84,6 +85,7 @@ public abstract class AlarmFragment extends Fragment {
 		timePicker.setCurrentHour(Calendar.getInstance().get(
 				Calendar.HOUR_OF_DAY));
 		tempMusicFilePath=Utils.lastRecordedAudioFilePath;
+		lnrDayContainer=rootView.findViewById(R.id.checkbox_container);
 		mo = (CheckBox) rootView.findViewById(R.id.monday);
 		tu = (CheckBox) rootView.findViewById(R.id.tuesday);
 		we = (CheckBox) rootView.findViewById(R.id.wednesday);
@@ -91,6 +93,7 @@ public abstract class AlarmFragment extends Fragment {
 		fr = (CheckBox) rootView.findViewById(R.id.friday);
 		sa = (CheckBox) rootView.findViewById(R.id.saturday);
 		su = (CheckBox) rootView.findViewById(R.id.sunday);
+
 
 		addMusicBtn = (Button) rootView.findViewById(R.id.btn_add_music);
 		addMusicBtn.setOnClickListener(new OnClickListener() {
@@ -195,7 +198,7 @@ public abstract class AlarmFragment extends Fragment {
 					if (!getMainActivity().getAlarmsManager().getMusicManager()
 							.isPlaying()) {
 						getMainActivity().getAlarmsManager().getMusicManager()
-								.playStartWithRaw(getContext(),uri);
+								.playStartWithRaw(getActivity(),uri);
 						playbackChosenMusic
 								.setCompoundDrawablesRelativeWithIntrinsicBounds(
 										0, R.drawable.ic_action_pause, 0, 0);
@@ -241,6 +244,11 @@ public abstract class AlarmFragment extends Fragment {
 
 		saveAlarmBtn = (Button) rootView.findViewById(R.id.save_alarm_btn);
 		saveAlarmBtn.setOnClickListener(getCreateAlarmButtonClickListener());
+
+		//For Reminder
+		if(Utils.btnLabel.equalsIgnoreCase("Add Reminder")){
+			lnrDayContainer.setVisibility(View.GONE);
+		}
 
 		return rootView;
 

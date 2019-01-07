@@ -69,10 +69,10 @@ public class BuilderRecurringMode extends BuilderSpinner {
     @Override
     public Builder setActivity(AddSmsActivity activity) {
         values.add(activity.getString(R.string.form_recurring_mode_no));
-        values.add(activity.getString(R.string.form_recurring_mode_daily));
-        values.add(activity.getString(R.string.form_recurring_mode_weekly));
-        values.add(activity.getString(R.string.form_recurring_mode_monthly));
-        values.add(activity.getString(R.string.form_recurring_mode_yearly));
+     //   values.add(activity.getString(R.string.form_recurring_mode_daily));
+     //   values.add(activity.getString(R.string.form_recurring_mode_weekly));
+     //   values.add(activity.getString(R.string.form_recurring_mode_monthly));
+     //   values.add(activity.getString(R.string.form_recurring_mode_yearly));
         return super.setActivity(activity);
     }
 

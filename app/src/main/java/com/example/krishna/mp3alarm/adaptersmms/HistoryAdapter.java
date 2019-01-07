@@ -51,8 +51,8 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ItemView
         holder.historySetterNameTextView.setText(historyList.get(position).getSetterName());
         Glide.with(context).load(historyList.get(position).getImageResourceID())
                 .into(holder.historyImageView);
-        holder.historyDateTextView.setText(historyList.get(position).getFormattedDate());
-        holder.historyTimeTextView.setText(historyList.get(position).getFormattedTime());
+//        holder.historyDateTextView.setText(historyList.get(position).getFormattedDate());
+//        holder.historyTimeTextView.setText(historyList.get(position).getFormattedTime());
 
         if (isDefinedAsMySchedule) {
             holder.receiverTextView.setText("To: ");

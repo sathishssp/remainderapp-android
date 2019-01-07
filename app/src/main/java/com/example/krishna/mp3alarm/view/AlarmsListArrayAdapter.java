@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -40,6 +41,13 @@ public class AlarmsListArrayAdapter extends ArrayAdapter<Alarm> {
 				R.layout.alarm_listview_row, template, true);
 
 		final Alarm alarm = getItem(position);
+
+		LinearLayout lnrDayContainer=template.findViewById(R.id.checkbox_container_row);
+		if(alarm.getType()==2){
+			lnrDayContainer.setVisibility(View.GONE);
+		} else {
+			lnrDayContainer.setVisibility(View.VISIBLE);
+		}
 
 		TextView alarmTime = (TextView) template.findViewById(R.id.alarm_time);
 		alarmTime.setText(alarm.getTime());

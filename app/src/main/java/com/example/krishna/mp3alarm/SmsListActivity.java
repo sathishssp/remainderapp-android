@@ -3,6 +3,7 @@ package com.example.krishna.mp3alarm;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.format.DateUtils;
 import android.view.Menu;
@@ -12,6 +13,11 @@ import android.widget.AdapterView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.example.krishna.mp3alarm.DBHelp.DBHelperItem.TABLE_NAME;
 
 public class SmsListActivity extends ListActivity {
 
@@ -77,7 +83,7 @@ public class SmsListActivity extends ListActivity {
 
         View headerView = getLayoutInflater().inflate(R.layout.item_add, getListView(), false);
         headerView.setClickable(true);
-        getListView().addHeaderView(headerView);
+        getListView().addFooterView(headerView);
         getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -86,6 +92,7 @@ public class SmsListActivity extends ListActivity {
                 startActivityForResult(intent, REQUEST_CODE);
             }
         });
+
     }
 
     public void gotoNextActivity(View view) {

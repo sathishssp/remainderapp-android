@@ -37,11 +37,13 @@ import com.example.krishna.mp3alarm.AppDefault.AppDefaultFragment;
 import com.example.krishna.mp3alarm.R;
 import com.example.krishna.mp3alarm.Reminder.ReminderFragment;
 import com.example.krishna.mp3alarm.Settings.SettingsActivity;
+import com.example.krishna.mp3alarm.Utility.DateFormatConversion;
 import com.example.krishna.mp3alarm.Utility.ItemTouchHelperClass;
 import com.example.krishna.mp3alarm.Utility.RecyclerViewEmptySupport;
 import com.example.krishna.mp3alarm.Utility.StoreRetrieveData;
 import com.example.krishna.mp3alarm.Utility.ToDoItem;
 import com.example.krishna.mp3alarm.Utility.TodoNotificationService;
+import com.example.krishna.mp3alarm.Utility.Utils;
 
 import org.json.JSONException;
 
@@ -244,6 +246,7 @@ public class MainFragment extends AppDefaultFragment {
         super.onResume();
 //        app.send(this);
 
+
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences(SHARED_PREF_DATA_SET_CHANGED, MODE_PRIVATE);
         if (sharedPreferences.getBoolean(ReminderFragment.EXIT, false)) {
             SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -267,6 +270,9 @@ public class MainFragment extends AppDefaultFragment {
             editor.putBoolean(RECREATE_ACTIVITY, false);
             editor.apply();
             getActivity().recreate();
+        }
+        if(adapter!=null){
+            adapter.updateList(getLocallyStoredData(storeRetrieveData));
         }
 
 
@@ -348,7 +354,7 @@ public class MainFragment extends AppDefaultFragment {
 //                this.recreate();
 //                return true;
             case R.id.preferences:
-                Intent intent = new Intent(getContext(), SettingsActivity.class);
+                Intent intent = new Intent(getContext(), AboutActivity.class);
                 startActivity(intent);
                 return true;
 
@@ -515,7 +521,9 @@ public class MainFragment extends AppDefaultFragment {
                 holder.mTimeTextView.setVisibility(View.GONE);
                 holder.mToDoTextview.setMaxLines(2);
             }
-            holder.mToDoTextview.setText(item.getToDoText());
+            String[] splitValues=item.getToDoText().split("\\^");
+
+            holder.mToDoTextview.setText(splitValues[0]);
             holder.mToDoTextview.setTextColor(todoTextColor);
 //            holder.mColorTextView.setBackgroundColor(Color.parseColor(item.getTodoColor()));
 
@@ -555,8 +563,26 @@ public class MainFragment extends AppDefaultFragment {
         }
 
         BasicListAdapter(ArrayList<ToDoItem> items) {
+            ArrayList<ToDoItem> finalList=new ArrayList<>();
+            for(ToDoItem toDoItem:items){
+               String myDate= DateFormatConversion.getDate(toDoItem.getToDoDate(),"dd/MM/yyyy");
+               if(myDate.equalsIgnoreCase(Utils.lastSelectedDate)){
+                   finalList.add(toDoItem);
+               }
+            }
+            this.items = finalList;
+        }
 
-            this.items = items;
+        public void updateList(ArrayList<ToDoItem> items){
+            ArrayList<ToDoItem> finalList=new ArrayList<>();
+            for(ToDoItem toDoItem:items){
+                String myDate= DateFormatConversion.getDate(toDoItem.getToDoDate(),"dd/MM/yyyy");
+                if(myDate.equalsIgnoreCase(Utils.lastSelectedDate)){
+                    finalList.add(toDoItem);
+                }
+            }
+            this.items = finalList;
+            notifyDataSetChanged();
         }
 
 

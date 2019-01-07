@@ -54,7 +54,6 @@ public class Calender extends AppCompatActivity {
             dataAboutDate.setTitle(smsModel.getRecipientName());
             dataAboutDate.setSubject(smsModel.getMessage());
             dataAboutDates.add(dataAboutDate);
-
             dateData.setData(dataAboutDates);
             eventDataList.add(dateData);
         }

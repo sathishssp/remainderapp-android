@@ -13,7 +13,10 @@
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         >
-
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -24,11 +27,12 @@
                 android:background="@color/appcolor"
                 android:id="@+id/editTextParentLinearLayout"
                 android:gravity="center"
-                android:layout_weight=".5"
                 android:layout_width="match_parent"
-                android:layout_height="0dp">
+                android:padding="10dp"
+                android:minHeight="250dp"
+                android:layout_height="wrap_content">
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
@@ -39,8 +43,108 @@
                         />
 
                      <EditText
-                        android:id="@+id/userToDoEditText"
-                        android:hint="Text to be reminded"
+                        android:id="@+id/userToDoEditText_1"
+                        android:hint="Line 1"
+                        android:textColorHint="@color/white"
+                        android:lines="2"
+                        android:inputType="textAutoCorrect|textCapSentences"
+                        android:maxLines="3"
+                        android:textColor="@color/white"
+                        android:gravity="start|bottom"
+                        android:layout_marginRight="32dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/circle"
+                        />
+
+                    <EditText
+                        android:id="@+id/userToDoEditText_2"
+                        android:hint="Line 2"
+                        android:textColorHint="@color/white"
+                        android:lines="2"
+                        android:inputType="textAutoCorrect|textCapSentences"
+                        android:maxLines="3"
+                        android:textColor="@color/white"
+                        android:gravity="start|bottom"
+                        android:layout_marginRight="32dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/circle"
+                        />
+
+                    <EditText
+                        android:id="@+id/userToDoEditText_3"
+                        android:hint="Line 3"
+                        android:textColorHint="@color/white"
+                        android:lines="2"
+                        android:inputType="textAutoCorrect|textCapSentences"
+                        android:maxLines="3"
+                        android:textColor="@color/white"
+                        android:gravity="start|bottom"
+                        android:layout_marginRight="32dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/circle"
+                        />
+
+                    <EditText
+                        android:id="@+id/userToDoEditText_4"
+                        android:hint="Line 4"
+                        android:textColorHint="@color/white"
+                        android:lines="2"
+                        android:inputType="textAutoCorrect|textCapSentences"
+                        android:maxLines="3"
+                        android:textColor="@color/white"
+                        android:gravity="start|bottom"
+                        android:layout_marginRight="32dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/circle"
+                        />
+
+                    <EditText
+                        android:id="@+id/userToDoEditText_5"
+                        android:hint="Line 5"
                         android:textColorHint="@color/white"
                         android:lines="2"
                         android:inputType="textAutoCorrect|textCapSentences"
@@ -57,10 +161,9 @@
 
             <LinearLayout
                 android:id="@+id/todoReminderAndDateContainerLayout"
-                android:layout_weight="1.5"
                 android:layout_width="match_parent"
                 android:orientation="vertical"
-                android:layout_height="0dp">
+                android:layout_height="wrap_content">
 
 
                 <LinearLayout
@@ -121,8 +224,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:gravity="top"
-                        android:layout_weight="1"
-                        android:layout_height="0dp">
+                        android:layout_height="40dp">
 
 
                         <EditText
@@ -135,7 +237,7 @@
                             android:layout_weight="1.5"
                             android:textColor="@android:color/black"
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="40dp"/>
 
                         <TextView
                             android:text="\@"
@@ -156,7 +258,7 @@
                             android:layout_weight="1"
                             android:textColor="@android:color/black"
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="40dp"/>
 
 
                     </LinearLayout>
@@ -177,7 +279,7 @@
             </LinearLayout>
 
         </LinearLayout>
-
+        </ScrollView>
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/makeToDoFloatingActionButton"
             android:layout_marginEnd="16dp"
@@ -191,8 +293,6 @@
             app:layout_anchorGravity="bottom|right"
             android:layout_width="wrap_content"
             />
-         //   app:fabSize="normal"
-            android:layout_width="wrap_content"
-            />
+
     </android.support.design.widget.CoordinatorLayout>
 </LinearLayout>

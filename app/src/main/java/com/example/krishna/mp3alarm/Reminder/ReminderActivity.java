@@ -11,6 +11,7 @@ public class ReminderActivity extends AppDefaultActivity {
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
+        setTheme(android.R.style.Theme_Black_NoTitleBar_Fullscreen);
         super.onCreate(savedInstanceState);
 
     }

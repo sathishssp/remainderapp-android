@@ -22,7 +22,7 @@ public class AlarmsDbHelper extends SQLiteOpenHelper {
 	Context context;
 
 	public static final String DATABASE_NAME = "mp3alarm.db";
-	public static final int DATABASE_VERSION = 2;
+	public static final int DATABASE_VERSION = 3;
 	public static final String TABLE_NAME = "alarms";
 
 	public static final String FIELD_TIME = "time";
@@ -33,6 +33,8 @@ public class AlarmsDbHelper extends SQLiteOpenHelper {
 	public static final String FIELD_FR = "fr";
 	public static final String FIELD_SA = "sa";
 	public static final String FIELD_SU = "su";
+	public static final String FIELD_TYPE = "_type";
+	public static final String FIELD_CREATE_DATE = "_create_date";
 	public static final String FIELD_NAME = "name";
 	public static final String FIELD_MUSIC_PATH = "music_path";
 	public static final String FIELD_ACTIVATION_STATE = "activation_state";
@@ -45,7 +47,7 @@ public class AlarmsDbHelper extends SQLiteOpenHelper {
 			+ TEXT_TYPE + ", " + FIELD_WE + TEXT_TYPE + ", " + FIELD_TH
 			+ TEXT_TYPE + ", " + FIELD_FR + TEXT_TYPE + ", " + FIELD_SA
 			+ TEXT_TYPE + ", " + FIELD_SU + TEXT_TYPE + ", " + FIELD_NAME
-			+ TEXT_TYPE + ", " + FIELD_MUSIC_PATH + TEXT_TYPE + ", "
+			+ TEXT_TYPE + ", " + FIELD_MUSIC_PATH + TEXT_TYPE + ", "+ FIELD_TYPE + " INTEGER" + ", "+ FIELD_CREATE_DATE + TEXT_TYPE+ ", "
 			+ FIELD_ACTIVATION_STATE + TEXT_TYPE + " )";
 
 	private static final String SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS "
@@ -55,7 +57,7 @@ public class AlarmsDbHelper extends SQLiteOpenHelper {
 
 	private String[] projection = { Alarm._ID, FIELD_TIME, FIELD_MO, FIELD_TU,
 			FIELD_WE, FIELD_TH, FIELD_FR, FIELD_SA, FIELD_SU, FIELD_NAME,
-			FIELD_MUSIC_PATH, FIELD_ACTIVATION_STATE };
+			FIELD_MUSIC_PATH, FIELD_ACTIVATION_STATE,FIELD_TYPE,FIELD_CREATE_DATE };
 
 	public AlarmsDbHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -80,7 +82,7 @@ public class AlarmsDbHelper extends SQLiteOpenHelper {
 
 	public Alarm createAlarm(String time, boolean mo, boolean tu, boolean we,
 			boolean th, boolean fr, boolean sa, boolean su, String name,
-			String musicPath) {
+			String musicPath,int type,String createDate) {
 
 		ContentValues values = new ContentValues();
 		values.put(FIELD_TIME, time);
@@ -93,6 +95,8 @@ public class AlarmsDbHelper extends SQLiteOpenHelper {
 		values.put(FIELD_SU, su);
 		values.put(FIELD_NAME, name);
 		values.put(FIELD_MUSIC_PATH, musicPath);
+		values.put(FIELD_TYPE,type);
+		values.put(FIELD_CREATE_DATE,createDate);
 		values.put(FIELD_ACTIVATION_STATE, true);
 
 		long insertRowId = database.insert(TABLE_NAME, null, values);
@@ -105,19 +109,19 @@ public class AlarmsDbHelper extends SQLiteOpenHelper {
 		}
 
 		return new Alarm(insertRowId, time, mo, tu, we, th, fr, sa, su, name,
-				musicPath, true);
+				musicPath, true,type);
 	}
 
 	public void updateAlarm(Alarm alarm) {
 		updateAlarm(alarm.getId(), alarm.getTime(), alarm.getMo(),
 				alarm.getTu(), alarm.getWe(), alarm.getTh(), alarm.getFr(),
 				alarm.getSa(), alarm.getSu(), alarm.getName(),
-				alarm.getMusicPath(), alarm.getActive());
+				alarm.getMusicPath(), alarm.getActive(),alarm.getType());
 	}
 
 	public void updateAlarm(long alarmId, String time, boolean mo, boolean tu,
 			boolean we, boolean th, boolean fr, boolean sa, boolean su,
-			String name, String musicPath, boolean active) {
+			String name, String musicPath, boolean active,int type) {
 
 		ContentValues values = new ContentValues();
 		values.put(FIELD_TIME, time);
@@ -130,6 +134,7 @@ public class AlarmsDbHelper extends SQLiteOpenHelper {
 		values.put(FIELD_SU, su);
 		values.put(FIELD_NAME, name);
 		values.put(FIELD_MUSIC_PATH, musicPath);
+		values.put(FIELD_TYPE,type);
 		values.put(FIELD_ACTIVATION_STATE, active);
 
 		database.update(TABLE_NAME, values, Alarm._ID + "=" + alarmId, null);
@@ -211,6 +216,8 @@ public class AlarmsDbHelper extends SQLiteOpenHelper {
 		alarm.setName(cursor.getString(9));
 		alarm.setMusicPath(cursor.getString(10));
 		alarm.setActive(cursor.getString(11).equals("1"));
+		alarm.setType(cursor.getInt(12));
+		alarm.setCreate_date(cursor.getString(13));
 		return alarm;
 	}
 

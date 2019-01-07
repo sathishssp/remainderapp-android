@@ -4,8 +4,10 @@ import android.app.IntentService;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 
 import com.example.krishna.mp3alarm.R;
@@ -35,11 +37,16 @@ public class TodoNotificationService extends IntentService {
         i.putExtra(TodoNotificationService.TODOUUID, mTodoUUID);
         Intent deleteIntent = new Intent(this, DeleteNotificationService.class);
         deleteIntent.putExtra(TODOUUID, mTodoUUID);
+
+        String[] splitValues=mTodoText.split("\\^");
+
+        mTodoText=splitValues[0];
         Notification notification = new Notification.Builder(this)
                 .setContentTitle(mTodoText)
                 .setSmallIcon(R.drawable.ic_done_white_24dp)
                 .setAutoCancel(true)
-                .setDefaults(Notification.DEFAULT_SOUND)
+                .setSound(Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + getPackageName() + "/raw/notifytone"))
+               // .setDefaults(Notification.DEFAULT_SOUND)
                 .setDeleteIntent(PendingIntent.getService(this, mTodoUUID.hashCode(), deleteIntent, PendingIntent.FLAG_UPDATE_CURRENT))
                 .setContentIntent(PendingIntent.getActivity(this, mTodoUUID.hashCode(), i, PendingIntent.FLAG_UPDATE_CURRENT))
                 .build();
