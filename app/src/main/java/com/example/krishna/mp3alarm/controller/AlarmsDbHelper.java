@@ -22,7 +22,7 @@ public class AlarmsDbHelper extends SQLiteOpenHelper {
 	Context context;
 
 	public static final String DATABASE_NAME = "mp3alarm.db";
-	public static final int DATABASE_VERSION = 3;
+	public static final int DATABASE_VERSION = 4;
 	public static final String TABLE_NAME = "alarms";
 
 	public static final String FIELD_TIME = "time";
@@ -47,7 +47,7 @@ public class AlarmsDbHelper extends SQLiteOpenHelper {
 			+ TEXT_TYPE + ", " + FIELD_WE + TEXT_TYPE + ", " + FIELD_TH
 			+ TEXT_TYPE + ", " + FIELD_FR + TEXT_TYPE + ", " + FIELD_SA
 			+ TEXT_TYPE + ", " + FIELD_SU + TEXT_TYPE + ", " + FIELD_NAME
-			+ TEXT_TYPE + ", " + FIELD_MUSIC_PATH + TEXT_TYPE + ", "+ FIELD_TYPE + " INTEGER" + ", "+ FIELD_CREATE_DATE + TEXT_TYPE+ ", "
+			+ TEXT_TYPE + ", " + FIELD_MUSIC_PATH + TEXT_TYPE + ", "+ FIELD_TYPE + " INTEGER" + ", "+ FIELD_CREATE_DATE + TEXT_TYPE+", "
 			+ FIELD_ACTIVATION_STATE + TEXT_TYPE + " )";
 
 	private static final String SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS "

@@ -79,9 +79,8 @@ public class Calender extends AppCompatActivity {
         compactCalendarView.setFirstDayOfWeek(Calendar.SUNDAY);
         compactCalendarView.setIsRtl(false);
         compactCalendarView.displayOtherMonthDays(false);
-        // Add event 1 on Sun, 07 Jun 2015
-        // 18:20:51 GMT
-        Event ev1 = new Event(Color.GREEN, 1545840918660L, "Some extra data that I want to store.");
+
+        Event ev1 = new Event(Color.GREEN, 1545840918660L);
         compactCalendarView.addEvent(ev1);
 
         // Added event 2 GMT: Sun, 07 Jun 2015 19:10:51 GMT
@@ -126,10 +125,8 @@ public class Calender extends AppCompatActivity {
         dbList=DbHelper.getDbHelper(this).getAllEvents();
         eventList=new ArrayList<>();
         for(SmsModel model:dbList){
-
-            customCalendar.addAnEvent(Utils.getDate(model.getTimestampScheduled(),"yyyy-MM-dd"),1,getEventDataList(1,model));
-
-
+            Event ev= new Event(Color.GREEN, model.getTimestampScheduled());
+            compactCalendarView.addEvent(ev);
         }
 
 

@@ -62,7 +62,7 @@
         android:layout_height="30dp"
         android:textColor="@android:color/black"
         android:id="@+id/setmessage"
-        android:text="Set As Message"
+        android:text="Set As Text Message"
         android:textSize="20dp"
         android:layout_marginTop="20dp"/>
     </LinearLayout>
@@ -81,7 +81,7 @@
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:id="@+id/setnotification"
-        android:text="Set As Reminder"
+        android:text="Set As Voice Reminder"
         android:textColor="@android:color/black"
         android:textSize="20dp"
         android:layout_marginTop="20dp"/>

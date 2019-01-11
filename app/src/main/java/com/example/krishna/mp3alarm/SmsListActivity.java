@@ -5,11 +5,14 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.format.DateUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,9 +22,11 @@ import java.util.List;
 
 import static com.example.krishna.mp3alarm.DBHelp.DBHelperItem.TABLE_NAME;
 
-public class SmsListActivity extends ListActivity {
+public class SmsListActivity extends AppCompatActivity {
 
     private final static int REQUEST_CODE = 1;
+    ListView smsListView;
+    Button btnAdd;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -60,31 +65,38 @@ public class SmsListActivity extends ListActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        setListAdapter(getSmsListAdapter());
+//        setListAdapter(getSmsListAdapter());
+        if(smsListView!=null)
+        smsListView.setAdapter(getSmsListAdapter());
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        ((SimpleCursorAdapter) getListAdapter()).getCursor().close();
+//        ((SimpleCursorAdapter) getListAdapter()).getCursor().close();
         DbHelper.closeDbHelper();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        ((SimpleCursorAdapter) getListAdapter()).getCursor().close();
+//        ((SimpleCursorAdapter) getListAdapter()).getCursor().close();
         DbHelper.closeDbHelper();
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.sms_list_activity);
+        smsListView=findViewById(R.id.smsList);
+        btnAdd=findViewById(R.id.btn_add_sms);
 
-        View headerView = getLayoutInflater().inflate(R.layout.item_add, getListView(), false);
-        headerView.setClickable(true);
-        getListView().addFooterView(headerView);
-        getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        smsListView.setAdapter(getSmsListAdapter());
+
+//        View headerView = getLayoutInflater().inflate(R.layout.item_add, getListView(), false);
+//        headerView.setClickable(true);
+//        getListView().addFooterView(headerView);
+        smsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getApplicationContext(), AddSmsActivity.class);
@@ -92,6 +104,14 @@ public class SmsListActivity extends ListActivity {
                 startActivityForResult(intent, REQUEST_CODE);
             }
         });
+
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gotoNextActivity(view);
+            }
+        });
+
 
     }
 
