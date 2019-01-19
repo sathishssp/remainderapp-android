@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.krishna.mp3alarm.Reminderpage">
+    tools:context="com.trident.krishna.mp3alarm.Reminderpage">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -93,4 +93,16 @@
             android:visibility="gone"
             android:datePickerMode="spinner"></DatePicker>
     </LinearLayout>
+
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-1557256197043076/6927805003">
+    </com.google.android.gms.ads.AdView>
 </LinearLayout>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.krishna.mp3alarm.Calender">
+    tools:context="com.trident.krishna.mp3alarm.Calender">
 
     <CalendarView
         android:id="@+id/calendar"
@@ -36,7 +36,7 @@
     <com.github.sundeepk.compactcalendarview.CompactCalendarView xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/compactcalendar_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         app:compactCalendarBackgroundColor="@android:color/white"
@@ -46,4 +46,16 @@
         app:compactCalendarTargetHeight="350dp"
         app:compactCalendarTextColor="@color/primary_text"
         app:compactCalendarTextSize="14sp" />
+
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-1557256197043076/6927805003">
+    </com.google.android.gms.ads.AdView>
+
 </LinearLayout>
