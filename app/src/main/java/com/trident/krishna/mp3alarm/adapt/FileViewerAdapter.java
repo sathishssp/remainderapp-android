@@ -122,15 +122,19 @@ public class FileViewerAdapter extends RecyclerView.Adapter<FileViewerAdapter.Re
                         } if (item == 2) {
                             deleteFileDialog(holder.getPosition());
                         }if (item == 3) {
+                            Utils.selectedAlarmType="";
                             Intent intent =new Intent(mContext, com.trident.krishna.mp3alarm.view.activity.MainActivity.class);
                             mContext.startActivity(intent);
                         }if (item == 4) {
+                            Utils.selectedAlarmType="1";
                             Intent intent =new Intent(mContext, com.trident.krishna.mp3alarm.viewone.activity.MainActivity.class);
                             mContext.startActivity(intent);
                         }if (item == 5) {
+                            Utils.selectedAlarmType="12";
                             Intent intent =new Intent(mContext, com.trident.krishna.mp3alarm.viewtwelve.activity.MainActivity.class);
                             mContext.startActivity(intent);
                         }if (item == 6) {
+                            Utils.selectedAlarmType="24";
                             Intent intent =new Intent(mContext, com.trident.krishna.mp3alarm.viewtwenty.activity.MainActivity.class);
                             mContext.startActivity(intent);
                         }
