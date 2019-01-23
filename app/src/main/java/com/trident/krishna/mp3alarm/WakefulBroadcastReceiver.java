@@ -39,7 +39,7 @@ import android.util.SparseArray;
  * <p>A {@link WakefulBroadcastReceiver} uses the method
  * {@link WakefulBroadcastReceiver#startWakefulService startWakefulService()}
  * to start the service that does the work. This method is comparable to
- * {@link android.content.Context#startService startService()}, except that
+ * {@link Context#startService startService()}, except that
  * the {@link WakefulBroadcastReceiver} is holding a wake lock when the service
  * starts. The intent that is passed with
  * {@link WakefulBroadcastReceiver#startWakefulService startWakefulService()}
@@ -64,17 +64,17 @@ public abstract class WakefulBroadcastReceiver extends BroadcastReceiver {
     private static int mNextId = 1;
 
     /**
-     * Do a {@link android.content.Context#startService(android.content.Intent)
+     * Do a {@link Context#startService(Intent)
      * Context.startService}, but holding a wake lock while the service starts.
      * This will modify the Intent to hold an extra identifying the wake lock;
      * when the service receives it in {@link android.app.Service#onStartCommand
      * Service.onStartCommand}, it should pass back the Intent it receives there to
-     * {@link #completeWakefulIntent(android.content.Intent)} in order to release
+     * {@link #completeWakefulIntent(Intent)} in order to release
      * the wake lock.
      *
      * @param context The Context in which it operate.
      * @param intent The Intent with which to start the service, as per
-     * {@link android.content.Context#startService(android.content.Intent)
+     * {@link Context#startService(Intent)
      * Context.startService}.
      */
     public static ComponentName startWakefulService(Context context, Intent intent) {

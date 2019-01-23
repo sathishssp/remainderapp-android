@@ -17,7 +17,9 @@ import com.trident.krishna.mp3alarm.viewtwelve.activity.RingingAlarmActivity;
 
 import java.io.File;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class AlarmsManager {
 
@@ -225,9 +227,16 @@ public class AlarmsManager {
 
 			final Calendar calendar = Calendar.getInstance();
 			calendar.setTimeInMillis(System.currentTimeMillis());
-			calendar.set(Calendar.HOUR_OF_DAY, hour);
-			calendar.set(Calendar.MINUTE, minute);
+//			calendar.set(Calendar.HOUR_OF_DAY, hour);
+//			calendar.set(Calendar.MINUTE, minute);
 			calendar.set(Calendar.SECOND, 0);
+
+//			Date oldDate = new Date(); // oldDate == current time
+//			Date newDate = new Date(oldDate.getTime() + TimeUnit.HOURS.toMillis(12)); // Adds 12 hours
+
+//			calendar.setTimeInMillis(newDate.getTime());
+//			calendar.set(Calendar.MINUTE, minute);
+//			calendar.set(Calendar.SECOND, 0);
 
 			boolean toastShown = false;
 			if (alarm.getMo()) {
@@ -286,9 +295,9 @@ public class AlarmsManager {
 					&& !alarm.getTh() && !alarm.getFr() && !alarm.getSa()
 					&& !alarm.getSu()) {
 
-				if (calendar.getTimeInMillis() < System.currentTimeMillis()) {
-					calendar.add(Calendar.DAY_OF_YEAR, 1);
-				}
+//				if (calendar.getTimeInMillis() < System.currentTimeMillis()) {
+//					calendar.add(Calendar.DAY_OF_YEAR, 1);
+//				}
 
 				setAlarm(calendar, alarm.getId());
 
@@ -299,7 +308,7 @@ public class AlarmsManager {
 	}
 
 	private void showAlarmToast(Calendar calendar) {
-		long toastTime = calendar.getTimeInMillis()
+		long toastTime = calendar.getTimeInMillis()+43200000
 				- System.currentTimeMillis();
 		int toastSec = (int) (toastTime / 1000l);
 		int toastDays = toastSec / 3600 / 24;

@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.IBinder;
 
 import com.trident.krishna.mp3alarm.R;
+import com.trident.krishna.mp3alarm.Utility.NotificationUtils;
 import com.trident.krishna.mp3alarm.controllertwelve.AlarmsManager;
 import com.trident.krishna.mp3alarm.modeltwelve.Alarm;
 import com.trident.krishna.mp3alarm.viewtwelve.activity.RingingAlarmActivity;
@@ -51,7 +52,7 @@ public class MediaPlayerService extends Service {
 				getApplicationContext(), (int) System.currentTimeMillis(),
 				restartRingingActivityIntent, 0);
 
-		Notification notiBuilder = new Notification.Builder(
+		/*Notification notiBuilder = new Notification.Builder(
 				getApplicationContext()).setTicker(tickerText)
 				.setSmallIcon(R.drawable.ic_action_onoff_pressed)
 				.setOngoing(true)
@@ -62,8 +63,12 @@ public class MediaPlayerService extends Service {
 		NotificationManager notiMng = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 		notiMng.cancel(RINGING_NOTIFICATION_ID);
 		notiMng.cancel(RingingAlarmActivity.SNOOZING_NOTIFICATION_ID);
+			startForeground(RINGING_NOTIFICATION_ID, notiBuilder);
+		*/
 
-		startForeground(RINGING_NOTIFICATION_ID, notiBuilder);
+
+		NotificationUtils.showNotification(this,restartRingingActivityPenInt,-1,contentTitle.toString(),
+				"Now Ringing",R.drawable.ic_action_onoff_pressed);
 	}
 
 	@Override

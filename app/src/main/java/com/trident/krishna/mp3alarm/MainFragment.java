@@ -58,7 +58,7 @@ public class MainFragment extends AppDefaultFragment {
     private ArrayList<ToDoItem> mToDoItemsArrayList;
     private CoordinatorLayout mCoordLayout;
     public static final String TODOITEM = "com.avjindersinghsekhon.com.avjindersinghsekhon.minimaltodo.MainActivity";
-    private MainFragment.BasicListAdapter adapter;
+    private BasicListAdapter adapter;
     private static final int REQUEST_ID_TODO_ITEM = 100;
     private ToDoItem mJustDeletedToDoItem;
     private int mIndexOfDeletedToDoItem;
@@ -112,7 +112,7 @@ public class MainFragment extends AppDefaultFragment {
 
         storeRetrieveData = new StoreRetrieveData(getContext(), FILENAME);
         mToDoItemsArrayList = getLocallyStoredData(storeRetrieveData);
-        adapter = new MainFragment.BasicListAdapter(mToDoItemsArrayList);
+        adapter = new BasicListAdapter(mToDoItemsArrayList);
         setAlarms();
 
 
@@ -278,7 +278,7 @@ public class MainFragment extends AppDefaultFragment {
         if (sharedPreferences.getBoolean(CHANGE_OCCURED, false)) {
 
             mToDoItemsArrayList = getLocallyStoredData(storeRetrieveData);
-            adapter = new MainFragment.BasicListAdapter(mToDoItemsArrayList);
+            adapter = new BasicListAdapter(mToDoItemsArrayList);
             mRecyclerView.setAdapter(adapter);
             setAlarms();
 
@@ -480,13 +480,13 @@ public class MainFragment extends AppDefaultFragment {
         }
 
         @Override
-        public BasicListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_circle_try, parent, false);
             return new ViewHolder(v);
         }
 
         @Override
-        public void onBindViewHolder(final BasicListAdapter.ViewHolder holder, final int position) {
+        public void onBindViewHolder(final ViewHolder holder, final int position) {
             ToDoItem item = items.get(position);
 //            if(item.getToDoDate()!=null && item.getToDoDate().before(new Date())){
 //                item.setToDoDate(null);

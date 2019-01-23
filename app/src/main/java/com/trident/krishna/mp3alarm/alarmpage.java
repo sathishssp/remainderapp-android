@@ -21,7 +21,7 @@ public class alarmpage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alarmpage);
-
+        Utils.selectedAlarmType="";
         general = (TextView)findViewById(R.id.generalalarm);
         alarmone = (TextView)findViewById(R.id.alaramone);
         alarmtwelve = (TextView)findViewById(R.id.alarmtwelve);

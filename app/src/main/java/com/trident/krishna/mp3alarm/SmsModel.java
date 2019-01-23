@@ -144,7 +144,7 @@ public class SmsModel implements Parcelable {
         dest.writeString(recurringMode);
     }
 
-    public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+    public static final Creator CREATOR = new Creator() {
         public SmsModel createFromParcel(Parcel in) {
             return new SmsModel(in);
         }

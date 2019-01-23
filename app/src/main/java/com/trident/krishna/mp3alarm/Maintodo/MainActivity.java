@@ -79,7 +79,7 @@ public class MainActivity extends AppDefaultActivity {
 
     public void onBackPressed(){
 //        super.onBackPressed();
-        Intent intent = new Intent(com.trident.krishna.mp3alarm.Maintodo.MainActivity.this, com.trident.krishna.mp3alarm.active.MainActivity.class);
+        Intent intent = new Intent(MainActivity.this, com.trident.krishna.mp3alarm.active.MainActivity.class);
         overridePendingTransition(R.anim.rotate, R.anim.rotate);
         startActivity(intent);
         finish();

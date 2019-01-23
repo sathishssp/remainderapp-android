@@ -49,7 +49,7 @@ public class MainActivity extends Activity implements
 		setContentView(R.layout.fragment_main);
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) //check if permission request is necessary
 		{
-			ActivityCompat.requestPermissions(this, new String[] {android.Manifest.permission.RECORD_AUDIO, android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, YOUR_REQUEST_CODE);
+			ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.RECORD_AUDIO, Manifest.permission.WRITE_EXTERNAL_STORAGE}, YOUR_REQUEST_CODE);
 		}
 		if (ContextCompat.checkSelfPermission(this,
 				Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -190,7 +190,7 @@ public class MainActivity extends Activity implements
 		if(Utils.btnLabel.contains("Reminder")){
 			finish();
 		} else {
-			Intent intent = new Intent(com.trident.krishna.mp3alarm.view.activity.MainActivity.this, alarmpage.class);
+			Intent intent = new Intent(MainActivity.this, alarmpage.class);
 			overridePendingTransition(R.anim.rotate, R.anim.rotate);
 			startActivity(intent);
 			finish();

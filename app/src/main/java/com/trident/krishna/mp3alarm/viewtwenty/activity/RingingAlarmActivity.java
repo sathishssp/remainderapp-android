@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.trident.krishna.mp3alarm.R;
+import com.trident.krishna.mp3alarm.Utility.NotificationUtils;
 import com.trident.krishna.mp3alarm.controllertwenty.AlarmsManager;
 import com.trident.krishna.mp3alarm.modeltwenty.Alarm;
 import com.trident.krishna.mp3alarm.viewtwenty.MediaPlayerService;
@@ -72,23 +73,23 @@ public class RingingAlarmActivity extends Activity {
 						.getActivity(getApplicationContext(),
 								(int) System.currentTimeMillis(),
 								restartRingingActivityIntent, 0);
-
-				Notification.Builder notiBuilder = new Notification.Builder(
-						RingingAlarmActivity.this)
-						.setTicker("Snoozing for 5 more minutes")
-						.setSmallIcon(R.drawable.ic_action_onoff_pressed)
-						.setContentIntent(restartRingingActivityPenInt)
-						.setContentTitle("mp3 alarm")
-						.setContentText("Snoozing for 5 more minutes")
-						.setOngoing(true);
-
-				NotificationManager notiMng = (NotificationManager) RingingAlarmActivity.this
-						.getSystemService(Context.NOTIFICATION_SERVICE);
-
-				notiMng.cancel(MediaPlayerService.RINGING_NOTIFICATION_ID);
-				notiMng.cancel(SNOOZING_NOTIFICATION_ID);
-
-				notiMng.notify(SNOOZING_NOTIFICATION_ID, notiBuilder.build());
+				showNotification(restartRingingActivityPenInt);
+//				Notification.Builder notiBuilder = new Notification.Builder(
+//						RingingAlarmActivity.this)
+//						.setTicker("Snoozing for 5 more minutes")
+//						.setSmallIcon(R.drawable.ic_action_onoff_pressed)
+//						.setContentIntent(restartRingingActivityPenInt)
+//						.setContentTitle("mp3 alarm")
+//						.setContentText("Snoozing for 5 more minutes")
+//						.setOngoing(true);
+//
+//				NotificationManager notiMng = (NotificationManager) RingingAlarmActivity.this
+//						.getSystemService(Context.NOTIFICATION_SERVICE);
+//
+//				notiMng.cancel(MediaPlayerService.RINGING_NOTIFICATION_ID);
+//				notiMng.cancel(SNOOZING_NOTIFICATION_ID);
+//
+//				notiMng.notify(SNOOZING_NOTIFICATION_ID, notiBuilder.build());
 
 			}
 		});
@@ -126,7 +127,10 @@ public class RingingAlarmActivity extends Activity {
 		intent.putExtra(Alarm.INTENT_ID, alarmId);
 		startService(intent);
 	}
-
+	private void showNotification(PendingIntent restartRingingActivityPenInt){
+		NotificationUtils.showNotification(this,restartRingingActivityPenInt,-1,"Mp3 Alarm",
+				"Snoozing for 5 more minutes",R.drawable.ic_action_onoff_pressed);
+	}
 	@Override
 	public void onBackPressed() {
 		super.onBackPressed();
