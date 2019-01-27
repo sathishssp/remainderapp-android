@@ -7,6 +7,22 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DateFormatConversion {
+
+    public static String get12Time(String time){
+        String currentTime="";
+        try {
+            String _24HourTime = time;
+            SimpleDateFormat _24HourSDF = new SimpleDateFormat("HH:mm");
+            SimpleDateFormat _12HourSDF = new SimpleDateFormat("hh:mm a");
+            Date _24HourDt = _24HourSDF.parse(_24HourTime);
+            System.out.println(_24HourDt);
+            currentTime=_12HourSDF.format(_24HourDt);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return currentTime;
+    }
+
     public static long getTimeInMilliSeconds(String datetime, String format) {
         String myDate = datetime;
         SimpleDateFormat sdf = new SimpleDateFormat(format);

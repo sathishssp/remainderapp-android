@@ -3,6 +3,7 @@ package com.trident.krishna.mp3alarm.view;
 import java.util.List;
 
 import com.trident.krishna.mp3alarm.R;
+import com.trident.krishna.mp3alarm.Utility.DateFormatConversion;
 import com.trident.krishna.mp3alarm.model.Alarm;
 import com.trident.krishna.mp3alarm.view.activity.MainActivity;
 import android.content.Context;
@@ -50,7 +51,7 @@ public class AlarmsListArrayAdapter extends ArrayAdapter<Alarm> {
 		}
 
 		TextView alarmTime = (TextView) template.findViewById(R.id.alarm_time);
-		alarmTime.setText(alarm.getTime());
+		alarmTime.setText(DateFormatConversion.get12Time(alarm.getTime()));
 
 		final CheckBox mo = (CheckBox) template.findViewById(R.id.monday);
 		mo.setChecked(alarm.getMo());
@@ -117,4 +118,6 @@ public class AlarmsListArrayAdapter extends ArrayAdapter<Alarm> {
 		return template;
 
 	}
+
+
 }

@@ -80,7 +80,7 @@ public abstract class AlarmFragment extends Fragment {
 				R.layout.add_alarm_fragment, container, false);
 
 		timePicker = (TimePicker) rootView.findViewById(R.id.time_picker);
-		timePicker.setIs24HourView(true);
+		timePicker.setIs24HourView(false);
 		timePicker.setCurrentHour(Calendar.getInstance().get(
 				Calendar.HOUR_OF_DAY));
 		tempMusicFilePath=Utils.lastRecordedAudioFilePath;
