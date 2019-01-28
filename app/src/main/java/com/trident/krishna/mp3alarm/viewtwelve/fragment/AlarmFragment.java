@@ -322,10 +322,10 @@ public abstract class AlarmFragment extends Fragment {
 	}
 
 	protected void refreshAndClose() {
-		getMainActivity().refreshListAdapter();
+		getMainActivity().openListFragment();
 
-		FragmentManager fm = getFragmentManager();
-		fm.popBackStackImmediate();
+//		FragmentManager fm = getFragmentManager();
+//		fm.popBackStackImmediate();
 	}
 
 	@Override

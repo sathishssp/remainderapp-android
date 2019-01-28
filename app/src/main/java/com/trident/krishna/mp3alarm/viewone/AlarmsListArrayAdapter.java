@@ -15,6 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.trident.krishna.mp3alarm.R;
+import com.trident.krishna.mp3alarm.Utility.DateFormatConversion;
 import com.trident.krishna.mp3alarm.modelone.Alarm;
 import com.trident.krishna.mp3alarm.viewone.activity.MainActivity;
 
@@ -43,7 +44,8 @@ public class AlarmsListArrayAdapter extends ArrayAdapter<Alarm> {
 		final Alarm alarm = getItem(position);
 
 		TextView alarmTime = (TextView) template.findViewById(R.id.alarm_time);
-		alarmTime.setText(alarm.getTime());
+		alarmTime.setText(DateFormatConversion.get12Time(alarm.getTime()));
+
 
 		final CheckBox mo = (CheckBox) template.findViewById(R.id.monday);
 		mo.setChecked(alarm.getMo());

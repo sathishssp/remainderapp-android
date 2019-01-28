@@ -29,6 +29,7 @@ import com.trident.krishna.mp3alarm.R;
 import com.trident.krishna.mp3alarm.Utility.PathUtil;
 import com.trident.krishna.mp3alarm.Utility.Utils;
 import com.trident.krishna.mp3alarm.model.Alarm;
+import com.trident.krishna.mp3alarm.view.activity.AlarmListActivity;
 import com.trident.krishna.mp3alarm.view.activity.MainActivity;
 
 import java.io.File;
@@ -346,10 +347,11 @@ public abstract class AlarmFragment extends Fragment {
 	}
 
 	protected void refreshAndClose() {
-		getMainActivity().refreshListAdapter();
+		getMainActivity().openListFragment();
 
-		FragmentManager fm = getFragmentManager();
-		fm.popBackStackImmediate();
+//		FragmentManager fm = getFragmentManager();
+//		fm.popBackStackImmediate();
+
 	}
 
 	@Override

@@ -12,7 +12,15 @@
         app:showAsAction="ifRoom"/> 
     -->
     <item
+        android:id="@+id/action_list"
+        android:icon="@android:drawable/ic_menu_agenda"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        android:title="Alarm List" />
+
+    <item
         android:id="@+id/menu_overflow"
+        android:orderInCategory="101"
         android:icon="@drawable/ic_action_overflow"
         android:showAsAction="always"
         android:title="@string/action_about">

@@ -59,21 +59,7 @@ public class MainActivity extends Activity implements
 		refreshListAdapter();
 
 		if (savedInstanceState == null) {
-			if (alarmsListFragment == null) {
-
-				alarmsListFragment = new AlarmsListFragment();
-
-				refreshListAdapter();
-
-				FragmentManager fm = getFragmentManager();
-				FragmentTransaction ft = fm.beginTransaction();
-				ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-				ft.add(R.id.fragment_container, alarmsListFragment,
-						"alarms_list");
-				ft.commit();
-				fm.executePendingTransactions();
-
-			}
+			openAddAlarmFragment();
 			//
 			// if (getIntent().getAction() != null
 			// && getIntent().getAction().equals("ringing alarm")) {
@@ -108,9 +94,14 @@ public class MainActivity extends Activity implements
 	public boolean onOptionsItemSelected(MenuItem item) {
 
 		switch (item.getItemId()) {
-		case R.id.action_about:
-			Intent intent = new Intent(this, AboutActivity.class);
-			startActivity(intent);
+			case R.id.action_about:
+				Intent intent = new Intent(this, AboutActivity.class);
+				startActivity(intent);
+				break;
+			case R.id.action_list:
+				openListFragment();
+				break;
+
 		}
 		return super.onOptionsItemSelected(item);
 	}
@@ -145,6 +136,20 @@ public class MainActivity extends Activity implements
 	private void initializeAlarmsManager() {
 		if (alarmsManager == null)
 			alarmsManager = new AlarmsManager(this);
+	}
+
+	public void openListFragment(){
+		alarmsListFragment = new AlarmsListFragment();
+
+		refreshListAdapter();
+
+		FragmentManager fm = getFragmentManager();
+		FragmentTransaction ft = fm.beginTransaction();
+		ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+		ft.replace(R.id.fragment_container, alarmsListFragment,
+				"alarms_list");
+		ft.commit();
+		fm.executePendingTransactions();
 	}
 
 	public void openAddAlarmFragment() {
