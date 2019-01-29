@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, alarmpage.class);
                 overridePendingTransition(R.anim.rotate, R.anim.rotate);
                 startActivity(intent);
-                finish();
+//                finish();
             }
         });
     }

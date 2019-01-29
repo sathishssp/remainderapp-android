@@ -121,10 +121,10 @@ public class MainActivity extends Activity implements
 	}
 
 	public void onBackPressed(){
-		super.onBackPressed();
-		Intent intent = new Intent(MainActivity.this, alarmpage.class);
-		overridePendingTransition(R.anim.rotate, R.anim.rotate);
-		startActivity(intent);
+//		super.onBackPressed();
+//		Intent intent = new Intent(MainActivity.this, alarmpage.class);
+//		overridePendingTransition(R.anim.rotate, R.anim.rotate);
+//		startActivity(intent);
 		finish();
 
 	}

@@ -215,9 +215,9 @@ public class MainActivity extends Activity implements
         if (Utils.btnLabel.contains("Reminder")) {
             finish();
         } else {
-            Intent intent = new Intent(MainActivity.this, alarmpage.class);
-            overridePendingTransition(R.anim.rotate, R.anim.rotate);
-            startActivity(intent);
+//            Intent intent = new Intent(MainActivity.this, alarmpage.class);
+//            overridePendingTransition(R.anim.rotate, R.anim.rotate);
+//            startActivity(intent);
             finish();
         }
 
