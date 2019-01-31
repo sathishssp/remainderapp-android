@@ -16,7 +16,7 @@ public class alarmpage extends AppCompatActivity {
 
     TextView general,alarmone,alarmtwelve,alarmtwentyfour;
     AdView mAdView;
-    InterstitialAd mInterstitialAd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,16 +27,14 @@ public class alarmpage extends AppCompatActivity {
         alarmtwelve = (TextView)findViewById(R.id.alarmtwelve);
         alarmtwentyfour = (TextView)findViewById(R.id.alarmtwentyfour);
 
-       MobileAds.initialize(this,"ca-app-pub-1557256197043076~4808962026");
+       //MobileAds.initialize(this,"ca-app-pub-6095264288861112~2425095397");
 
        mAdView=(AdView)findViewById(R.id.adView);
        AdRequest adRequest = new AdRequest.Builder().build();
        mAdView.loadAd(adRequest);
 
-        mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-1557256197043076/3296569802");
-        mInterstitialAd.loadAd(new AdRequest.Builder().build());
-        mInterstitialAd.show();
+
+//        mInterstitialAd.show();
 
      /*   Boolean isFirstRun = getSharedPreferences("PREFERENCE", MODE_PRIVATE)
                 .getBoolean("isFirstRun", true);

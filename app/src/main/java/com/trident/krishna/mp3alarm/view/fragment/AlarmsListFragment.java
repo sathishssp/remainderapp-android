@@ -1,5 +1,7 @@
 package com.trident.krishna.mp3alarm.view.fragment;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 import com.trident.krishna.mp3alarm.R;
 import com.trident.krishna.mp3alarm.Utility.Utils;
 import com.trident.krishna.mp3alarm.view.activity.MainActivity;
@@ -15,7 +17,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 
 public class AlarmsListFragment extends ListFragment {
-
+	InterstitialAd mInterstitialAd;
 	public interface OnAlarmSelectedListener {
 		public void openEditAlarmFragment(int position);
 	}
@@ -62,6 +64,17 @@ public class AlarmsListFragment extends ListFragment {
 		setListAdapter(getMainActivity().getListAdaptor());
 
 		return rootView;
+	}
+
+	@Override
+	public void onViewCreated(View view, Bundle savedInstanceState) {
+		super.onViewCreated(view, savedInstanceState);
+		mInterstitialAd = new InterstitialAd(getActivity());
+		mInterstitialAd.setAdUnitId("ca-app-pub-6095264288861112/2428964823");
+		mInterstitialAd.loadAd(new AdRequest.Builder().build());
+		if (mInterstitialAd.isLoaded()) {
+			mInterstitialAd.show();
+		}
 	}
 
 	@Override

@@ -22,6 +22,8 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.astuetz.PagerSlidingTabStrip;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 import com.trident.krishna.mp3alarm.About.AboutActivity;
 import com.trident.krishna.mp3alarm.Calender;
 import com.trident.krishna.mp3alarm.R;
@@ -64,7 +66,9 @@ public class MainActivity extends AppCompatActivity {
             setSupportActionBar(toolbar);
         }
         getPermissionToRecordAudio();
-
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-6095264288861112/2428964823");
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
       /*  Boolean isFirstRun = getSharedPreferences("PREFERENCE", MODE_PRIVATE)
                 .getBoolean("isFirstRun", true);
 
@@ -213,10 +217,18 @@ public class MainActivity extends AppCompatActivity {
             return titles[position];
         }
     }
+    InterstitialAd mInterstitialAd;
+    private void showAds(){
+
+        if (mInterstitialAd.isLoaded()) {
+            mInterstitialAd.show();
+        }
+    }
 
     @Override
     public void onBackPressed() {
         if (doubleBackToExitPressedOnce) {
+            showAds();
             super.onBackPressed();
             return;
         }
