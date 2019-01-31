@@ -66,6 +66,9 @@ public class MainActivity extends AppCompatActivity {
             setSupportActionBar(toolbar);
         }
         getPermissionToRecordAudio();
+
+
+
         mInterstitialAd = new InterstitialAd(this);
         mInterstitialAd.setAdUnitId("ca-app-pub-6095264288861112/2428964823");
         mInterstitialAd.loadAd(new AdRequest.Builder().build());

@@ -9,6 +9,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.MobileAds;
 import com.trident.krishna.mp3alarm.Utility.BackgroundService;
 
 public class Splash extends AppCompatActivity {
@@ -24,10 +25,14 @@ public class Splash extends AppCompatActivity {
         textpowered = (TextView)findViewById(R.id.textslogan);
         splash = (ImageView)findViewById(R.id.splash);
 
+        MobileAds.initialize(this,"ca-app-pub-6095264288861112~2425095397");
+
         Animation anim = AnimationUtils.loadAnimation(this, R.anim.transition);
         splash.startAnimation(anim);
         textslogan.startAnimation(anim);
         textpowered.startAnimation(anim);
+
+
 
         startService(new Intent(this, BackgroundService.class));
 
