@@ -18,6 +18,9 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class RingingAlarmActivity extends Activity {
 	private Window window;
 	private AlarmsManager alarmsManger;
@@ -40,6 +43,9 @@ public class RingingAlarmActivity extends Activity {
 		long alarmId = getIntent().getLongExtra(Alarm.INTENT_ID, -1);
 		alarmsManger = new AlarmsManager(this);
 		final Alarm alarm = alarmsManger.getAlarmById(alarmId);
+		if(!alarmsManger.isAlarmExists(alarmId)){
+			finish();
+		}
 
 		TextView alarmTime = (TextView) findViewById(R.id.alarm_time);
 		alarmTime.setText(alarm.getTime());
@@ -88,13 +94,15 @@ public class RingingAlarmActivity extends Activity {
 
 				alarmsManger.cancelAlarm(alarm.getId() + 1000);
 
-			/*	if (alarm.getMo() || alarm.getTu() || alarm.getWe()
+				if (alarm.getMo() || alarm.getTu() || alarm.getWe()
 						|| alarm.getTh() || alarm.getFr() || alarm.getSa()
 						|| alarm.getSu()) {
-					alarmsManger.setAlarm(alarm, true, false);
-				} else {
-					alarmsManger.setAlarm(alarm, false, false);
-				}*/
+
+//					setAlarmNextDay(alarm);
+			}
+// else {
+//					alarmsManger.setAlarm(alarm, false, false);
+//				}
 
 				NotificationManager notiMng = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 				notiMng.cancel(SNOOZING_NOTIFICATION_ID);
@@ -108,6 +116,16 @@ public class RingingAlarmActivity extends Activity {
 		intent.putExtra(MediaPlayerService.START_PLAY, true);
 		intent.putExtra(Alarm.INTENT_ID, alarmId);
 		startService(intent);
+	}
+
+	private void setAlarmNextDay(Alarm alarm){
+
+		SimpleDateFormat sdf = new SimpleDateFormat("EE");
+		Date d = new Date();
+		String dayOfTheWeek = sdf.format(d);
+		alarmsManger.setDayOfWeek(dayOfTheWeek);
+		alarmsManger.setAlarm(alarm,true,false,true);
+
 	}
 
 	@Override

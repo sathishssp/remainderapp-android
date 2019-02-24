@@ -25,7 +25,7 @@ public class Splash extends AppCompatActivity {
         textpowered = (TextView)findViewById(R.id.textslogan);
         splash = (ImageView)findViewById(R.id.splash);
 
-        MobileAds.initialize(this,"ca-app-pub-6095264288861112~2425095397");
+
 
         Animation anim = AnimationUtils.loadAnimation(this, R.anim.transition);
         splash.startAnimation(anim);

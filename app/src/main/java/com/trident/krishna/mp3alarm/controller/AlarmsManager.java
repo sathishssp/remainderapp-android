@@ -20,7 +20,9 @@ import com.trident.krishna.mp3alarm.view.PlayAlarmReceiver;
 import com.trident.krishna.mp3alarm.view.activity.RingingAlarmActivity;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class AlarmsManager {
@@ -116,14 +118,16 @@ public class AlarmsManager {
 
 		alarmManager.set(AlarmManager.RTC_WAKEUP,
 				calendar.getTimeInMillis(),
-				// System.currentTimeMillis() + 10 * 1000,
 				alarmIntent);
+
+		alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
+				calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, alarmIntent);
 	}
 
 	public void setAlarm(int wishDay, Calendar calendar, long alarmId) {
-//		int daysDiff = getDaysDiff(calendar, wishDay);
+		//int daysDiff = getDaysDiff(calendar, wishDay);
 
-//		calendar.add(Calendar.DAY_OF_YEAR, daysDiff);
+		//calendar.add(Calendar.DAY_OF_YEAR, daysDiff);
 
 		setAlarm(calendar, alarmId);
 	}
@@ -169,10 +173,16 @@ public class AlarmsManager {
 	}
 
 	public void setAlarm(Alarm alarm, boolean active) {
-		setAlarm(alarm, active, true);
+		setAlarm(alarm, active, true,false);
 	}
 
-	public void setAlarm(Alarm alarm, boolean active, boolean showToast) {
+	String dayOfWeek="";
+
+	public void setDayOfWeek(String dayOfWeek){
+		this.dayOfWeek=dayOfWeek;
+	}
+
+	public void setAlarm(Alarm alarm, boolean active, boolean showToast,boolean isRepeat) {
 
 		alarm.setActive(active);
 		alarmsDbHelper.updateAlarm(alarm);
@@ -201,6 +211,14 @@ public class AlarmsManager {
 			calendar.set(Calendar.HOUR_OF_DAY, hour);
 			calendar.set(Calendar.MINUTE, minute);
 			calendar.set(Calendar.SECOND, 0);
+//			if(isRepeat){
+//				if(dayOfWeek.equalsIgnoreCase("SUN")){
+//					calendar.set(Calendar.DAY_OF_WEEK,0);
+//				} else {
+//					calendar.set(Calendar.DAY_OF_WEEK,getDayIndex(dayOfWeek)+1);
+//				}
+//
+//			}
 
 			if(Utils.btnLabel.contains("Reminder")){
 				setAlarm(calendar, alarm.getId());
@@ -274,6 +292,25 @@ public class AlarmsManager {
 				if (showToast)
 					showAlarmToast(calendar);
 			}
+//			else {
+//				if(isRepeat) {
+//					int index = 0;
+//
+//						index = dayOfWeek.equalsIgnoreCase("") ? 0 : getDayIndex(dayOfWeek);
+//					if(index==7){
+//						index=1;
+//					} else {
+//						index++;
+//					}
+//					calendar.set(Calendar.DAY_OF_WEEK, index);
+//				}
+//
+//				setAlarm(calendar, alarm.getId());
+//				if (!toastShown && showToast) {
+//					showAlarmToast(calendar);
+//					toastShown = true;
+//				}
+//			}
 
 		}
 	}
@@ -348,6 +385,7 @@ public class AlarmsManager {
 
 	public void playMusic(long alarmId) {
 		final Alarm alarm = getAlarmById(alarmId);
+		player.playStop();
 		if(alarm.getMusicFileName()==null){
 			Uri uri = Uri.parse("android.resource://"+ BuildConfig.APPLICATION_ID+"/" + R.raw.tone);
 			player.playStartWithRaw(context,uri);
@@ -360,6 +398,75 @@ public class AlarmsManager {
 		if (player != null) {
 			player.close();
 		}
+	}
+
+	private Integer getDayIndex(String dayOfTheWeek){
+		int index=0;
+		if(dayOfTheWeek.equalsIgnoreCase("MON")){
+			index=Calendar.MONDAY;
+		}else if(dayOfTheWeek.equalsIgnoreCase("TUE") ){
+			index=Calendar.TUESDAY;
+		} else if(dayOfTheWeek.equalsIgnoreCase("WED") ){
+			index=Calendar.WEDNESDAY;
+		} else if(dayOfTheWeek.equalsIgnoreCase("THU") ){
+			index=Calendar.THURSDAY;
+		} else if(dayOfTheWeek.equalsIgnoreCase("FRI") ){
+			index=Calendar.FRIDAY;
+		} else if(dayOfTheWeek.equalsIgnoreCase("SAT") ){
+			index=Calendar.SATURDAY;
+		} else if(dayOfTheWeek.equalsIgnoreCase("SUN") ){
+			index=Calendar.SUNDAY;
+		}
+		return index;
+	}
+
+	private Integer getDayByIndex(int index){
+		if(index==0){
+			return Calendar.MONDAY;
+		} else if(index==1){
+			return Calendar.TUESDAY;
+		} else if(index==2){
+			return Calendar.WEDNESDAY;
+		} else if(index==3){
+			return Calendar.THURSDAY;
+		} else if(index==4){
+			return Calendar.FRIDAY;
+		} else if(index==5){
+			return Calendar.SATURDAY;
+		} else if(index==6){
+			return Calendar.SUNDAY;
+		}
+		return Calendar.MONDAY;
+	}
+
+	public boolean isAlarmExists(long alarmId){
+		Alarm alarm =alarmsDbHelper.getAlarmById(alarmId);
+
+		if(alarm==null)
+		{
+			return false;
+		}
+		SimpleDateFormat sdf = new SimpleDateFormat("EE");
+		Date d = new Date();
+		String dayOfTheWeek = sdf.format(d);
+		if(dayOfTheWeek.equalsIgnoreCase("MON") && alarm.getMo()){
+			return true;
+		}else if(dayOfTheWeek.equalsIgnoreCase("TUE") && alarm.getTu()){
+			return true;
+		} else if(dayOfTheWeek.equalsIgnoreCase("WED") && alarm.getWe()){
+			return true;
+		} else if(dayOfTheWeek.equalsIgnoreCase("THU") && alarm.getTh()){
+			return true;
+		} else if(dayOfTheWeek.equalsIgnoreCase("FRI") && alarm.getFr()){
+			return true;
+		} else if(dayOfTheWeek.equalsIgnoreCase("SAT") && alarm.getSa()){
+			return true;
+		} else if(dayOfTheWeek.equalsIgnoreCase("SUN") && alarm.getSu()){
+			return true;
+		} else {
+			return false;
+		}
+
 	}
 
 	public MusicManager getMusicManager() {

@@ -24,6 +24,7 @@ import android.widget.Toast;
 import com.astuetz.PagerSlidingTabStrip;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
 import com.trident.krishna.mp3alarm.About.AboutActivity;
 import com.trident.krishna.mp3alarm.Calender;
 import com.trident.krishna.mp3alarm.R;
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainrecord);
+        MobileAds.initialize(this,"ca-app-pub-6095264288861112~2425095397");
         Utils.lastRecordedAudioFilePath=null;
         alarm =(LinearLayout)findViewById(R.id.alarmbtn);
         reminder =(LinearLayout)findViewById(R.id.reminderbtn);

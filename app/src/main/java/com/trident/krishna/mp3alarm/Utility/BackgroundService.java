@@ -6,6 +6,7 @@ import android.os.*;
 import android.util.Log;
 
 
+import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -42,6 +43,8 @@ public class BackgroundService extends Service {
         @Override
         public void run() {
             Log.e("Log", "Running");
+            Calendar calendar=Calendar.getInstance();
+            Log.e("Cuurent MilliSeconds",""+calendar.getTimeInMillis());
 
         }
     };

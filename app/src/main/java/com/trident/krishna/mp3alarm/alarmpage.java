@@ -30,6 +30,7 @@ public class alarmpage extends AppCompatActivity {
        //MobileAds.initialize(this,"ca-app-pub-6095264288861112~2425095397");
 
        mAdView=(AdView)findViewById(R.id.adView);
+//        AdRequest adRequest = new AdRequest.Builder().addTestDevice("08270842355D5D12F645BBE775D37FC4").build();
        AdRequest adRequest = new AdRequest.Builder().build();
        mAdView.loadAd(adRequest);
 

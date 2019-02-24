@@ -47,7 +47,7 @@ public class PlayAlarmReceiver extends BroadcastReceiver {
 						+ " alarms.");
 
 		for (Alarm alarm : alarmsManager.getAllAlarms()) {
-			alarmsManager.setAlarm(alarm, true, false);
+			alarmsManager.setAlarm(alarm, true, false,false);
 		}
 	}
 }
