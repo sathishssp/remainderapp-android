@@ -119,9 +119,10 @@ public class AlarmsManager {
 		alarmManager.set(AlarmManager.RTC_WAKEUP,
 				calendar.getTimeInMillis(),
 				alarmIntent);
-
-		alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
-				calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, alarmIntent);
+		if(isRepeatAlarm) {
+			alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
+					calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, alarmIntent);
+		}
 	}
 
 	public void setAlarm(int wishDay, Calendar calendar, long alarmId) {
@@ -181,7 +182,7 @@ public class AlarmsManager {
 	public void setDayOfWeek(String dayOfWeek){
 		this.dayOfWeek=dayOfWeek;
 	}
-
+	boolean isRepeatAlarm=false;
 	public void setAlarm(Alarm alarm, boolean active, boolean showToast,boolean isRepeat) {
 
 		alarm.setActive(active);
@@ -228,6 +229,7 @@ public class AlarmsManager {
 
 			boolean toastShown = false;
 			if (alarm.getMo()) {
+				isRepeatAlarm=true;
 				setAlarm(Calendar.MONDAY, calendar, alarm.getId());
 
 				if (!toastShown && showToast) {
@@ -236,6 +238,7 @@ public class AlarmsManager {
 				}
 			}
 			if (alarm.getTu()) {
+				isRepeatAlarm=true;
 				setAlarm(Calendar.TUESDAY, calendar, alarm.getId());
 
 				if (!toastShown && showToast) {
@@ -244,6 +247,7 @@ public class AlarmsManager {
 				}
 			}
 			if (alarm.getWe()) {
+				isRepeatAlarm=true;
 				setAlarm(Calendar.WEDNESDAY, calendar, alarm.getId());
 
 				if (!toastShown && showToast) {
@@ -252,6 +256,7 @@ public class AlarmsManager {
 				}
 			}
 			if (alarm.getTh()) {
+				isRepeatAlarm=true;
 				setAlarm(Calendar.THURSDAY, calendar, alarm.getId());
 				if (!toastShown && showToast) {
 					showAlarmToast(calendar);
@@ -259,6 +264,7 @@ public class AlarmsManager {
 				}
 			}
 			if (alarm.getFr()) {
+				isRepeatAlarm=true;
 				setAlarm(Calendar.FRIDAY, calendar, alarm.getId());
 				if (!toastShown && showToast) {
 					showAlarmToast(calendar);
@@ -266,6 +272,7 @@ public class AlarmsManager {
 				}
 			}
 			if (alarm.getSa()) {
+				isRepeatAlarm=true;
 				setAlarm(Calendar.SATURDAY, calendar, alarm.getId());
 				if (!toastShown && showToast) {
 					showAlarmToast(calendar);
@@ -273,6 +280,7 @@ public class AlarmsManager {
 				}
 			}
 			if (alarm.getSu()) {
+				isRepeatAlarm=true;
 				setAlarm(Calendar.SUNDAY, calendar, alarm.getId());
 				if (!toastShown && showToast) {
 					showAlarmToast(calendar);

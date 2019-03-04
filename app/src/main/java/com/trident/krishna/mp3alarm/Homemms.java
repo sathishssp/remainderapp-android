@@ -84,7 +84,7 @@ public class Homemms extends AppCompatActivity
 
     private void requestPermissions() {
         ActivityCompat.requestPermissions(this,
-                new String[]{Manifest.permission.SEND_SMS,
+                new String[]{
                         Manifest.permission.READ_CONTACTS},
                 REQUEST_SMS_PERMISSION);
     }

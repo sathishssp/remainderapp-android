@@ -46,7 +46,6 @@ public class AddSmsActivity extends Activity {
     final private static int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 124;
     final private String[] permissionsRequired = new String[] {
         Manifest.permission.READ_PHONE_STATE,
-        Manifest.permission.SEND_SMS,
         Manifest.permission.READ_CONTACTS
     };
 

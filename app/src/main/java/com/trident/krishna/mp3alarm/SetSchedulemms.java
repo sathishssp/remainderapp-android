@@ -48,7 +48,7 @@ public class SetSchedulemms extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final String phoneNumber = phoneNumberEditText.getText().toString();
-                checkPermission();
+               // checkPermission();
                 if (!isValidNumber(phoneNumber)) {
                     Toast.makeText(SetSchedulemms.this,
                             "Please enter valid number", Toast.LENGTH_SHORT).show();
@@ -123,7 +123,7 @@ public class SetSchedulemms extends AppCompatActivity {
     }
 
     private void checkPermission() {
-        if (ContextCompat.checkSelfPermission(this,
+        /*if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.SEND_SMS)
                 != PackageManager.PERMISSION_GRANTED) {
 
@@ -131,7 +131,7 @@ public class SetSchedulemms extends AppCompatActivity {
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.SEND_SMS},
                     REQUEST_SMS_PERMISSION);
-        }
+        }*/
     }
 
     private void checkPickContactPermission() {
