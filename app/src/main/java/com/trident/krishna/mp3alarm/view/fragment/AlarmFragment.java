@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -24,6 +25,9 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TimePicker;
 
+import com.ap.ApBanner;
+import com.ap.ApEventsListener;
+import com.ap.ApPreparedAd;
 import com.trident.krishna.mp3alarm.BuildConfig;
 import com.trident.krishna.mp3alarm.R;
 import com.trident.krishna.mp3alarm.Utility.PathUtil;
@@ -72,6 +76,44 @@ public abstract class AlarmFragment extends Fragment {
 
 		getActivity().setVolumeControlStream(AudioManager.STREAM_MUSIC);
 	}
+	private void loadAirPushAd(View view){
+		final ApBanner banner = ((ApBanner) view.findViewById(R.id.air_banner));
+		banner.setEventsListener(new ApEventsListener() {
+			@Override
+			public void onLoaded(ApPreparedAd ad) {
+				Log.e("Airpush","Success");
+				ad.show();
+			}
+
+			@Override
+			public void onFailed(String reason) {
+				Log.e("Airpush","Failed "+reason);
+			}
+
+			@Override
+			public void onClicked() {
+
+			}
+
+			@Override
+			public void onOpened() {
+
+			}
+
+			@Override
+			public void onClosed() {
+
+			}
+
+			@Override
+			public void onLeaveApplication() {
+
+			}
+		});
+
+		banner.load();
+	}
+
 
 	@Override
 	public View onCreateView(LayoutInflater inflater,
@@ -79,7 +121,7 @@ public abstract class AlarmFragment extends Fragment {
 
 		final RelativeLayout rootView = (RelativeLayout) inflater.inflate(
 				R.layout.add_alarm_fragment, container, false);
-
+		loadAirPushAd(rootView);
 		timePicker = (TimePicker) rootView.findViewById(R.id.time_picker);
 		timePicker.setIs24HourView(false);
 		timePicker.setCurrentHour(Calendar.getInstance().get(

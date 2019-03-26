@@ -18,6 +18,9 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name="com.trident.krishna.mp3alarm.Analytics.AnalyticsApplication"
@@ -28,6 +31,13 @@
         android:roundIcon="@mipmap/newicon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <activity
+            android:name="com.ap.ApActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <receiver android:name="com.ap.ApReceiver" />
 
         <activity android:name="com.trident.krishna.mp3alarm.Splash"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">

@@ -3,6 +3,9 @@ package com.trident.krishna.mp3alarm.Analytics;
 import android.app.Application;
 import android.content.pm.PackageManager;
 
+import com.ap.ApSdk;
+import com.ap.gdpr.ApAgreement;
+import com.ap.gdpr.ApGdpr;
 import com.trident.krishna.mp3alarm.R;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
@@ -14,6 +17,25 @@ public class AnalyticsApplication extends Application {
 
     private Tracker mTracker;
     private static final boolean IS_ENABLED = true;
+
+    @Override
+    public void onCreate() {
+        ApSdk.init(this, "1553012419328836745", "404580");
+        //ApSdk.enableTestMode();
+
+        /*ApGdpr.init(getApplicationContext());
+        ApGdpr.registerAgreement(ApAgreement.getAgreement(this));
+        Thread fetchThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                ApGdpr.fetchRemoteStatuses();
+            }
+        });
+        fetchThread.setPriority(Thread.NORM_PRIORITY);
+        fetchThread.start();*/
+
+        super.onCreate();
+    }
 
     synchronized private Tracker getDefaultTracker() {
         if (mTracker == null) {

@@ -43,9 +43,9 @@ public class RingingAlarmActivity extends Activity {
 		long alarmId = getIntent().getLongExtra(Alarm.INTENT_ID, -1);
 		alarmsManger = new AlarmsManager(this);
 		final Alarm alarm = alarmsManger.getAlarmById(alarmId);
-		if(!alarmsManger.isAlarmExists(alarmId)){
-			finish();
-		}
+		//if(!alarmsManger.isAlarmExists(alarmId)){
+		//	finish();
+		//}
 
 		TextView alarmTime = (TextView) findViewById(R.id.alarm_time);
 		alarmTime.setText(alarm.getTime());

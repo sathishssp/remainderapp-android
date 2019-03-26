@@ -174,7 +174,21 @@
                 android:hint="@string/alarm_name"
                 android:textColorHint="@android:color/black"/>
         </RelativeLayout>
+
     </ScrollView>
+
+    <com.ap.ApBanner
+        android:id="@+id/air_banner"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_centerInParent="true"
+        android:gravity="center_horizontal"
+        android:layout_above="@+id/save_alarm_btn"
+        android:visibility="visible" />
 
     <Button
         android:id="@+id/save_alarm_btn"

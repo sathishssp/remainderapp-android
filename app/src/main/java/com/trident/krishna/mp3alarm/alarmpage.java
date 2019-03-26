@@ -3,9 +3,14 @@ package com.trident.krishna.mp3alarm;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.ap.ApBanner;
+import com.ap.ApEventsListener;
+import com.ap.ApPreparedAd;
+import com.ap.ApSdk;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
@@ -17,6 +22,44 @@ public class alarmpage extends AppCompatActivity {
     TextView general,alarmone,alarmtwelve,alarmtwentyfour;
     AdView mAdView;
 
+    private void loadAirPushAd(){
+        final ApBanner banner = ((ApBanner) findViewById(R.id.air_banner));
+        banner.setEventsListener(new ApEventsListener() {
+            @Override
+            public void onLoaded(ApPreparedAd ad) {
+                Log.e("Airpush","Success");
+                ad.show();
+            }
+
+            @Override
+            public void onFailed(String reason) {
+                Log.e("Airpush","Failed "+reason);
+            }
+
+            @Override
+            public void onClicked() {
+
+            }
+
+            @Override
+            public void onOpened() {
+
+            }
+
+            @Override
+            public void onClosed() {
+
+            }
+
+            @Override
+            public void onLeaveApplication() {
+
+            }
+        });
+
+        banner.load();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +69,8 @@ public class alarmpage extends AppCompatActivity {
         alarmone = (TextView)findViewById(R.id.alaramone);
         alarmtwelve = (TextView)findViewById(R.id.alarmtwelve);
         alarmtwentyfour = (TextView)findViewById(R.id.alarmtwentyfour);
+        loadAirPushAd();
+        //ApSdk.init(this, "1553012419328836745", "404580");
 
        //MobileAds.initialize(this,"ca-app-pub-6095264288861112~2425095397");
 

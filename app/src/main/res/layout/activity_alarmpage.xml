@@ -94,6 +94,16 @@
                 android:layout_marginLeft="20dp"/>
         </LinearLayout>
     </LinearLayout>
+    <com.ap.ApBanner
+        android:id="@+id/air_banner"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center_horizontal"
+        android:visibility="visible" />
     <com.google.android.gms.ads.AdView
         xmlns:ads="http://schemas.android.com/apk/res-auto"
         android:id="@+id/adView"

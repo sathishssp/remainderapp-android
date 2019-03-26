@@ -8,8 +8,8 @@ android {
         minSdkVersion 18
         targetSdkVersion 28
         multiDexEnabled true
-        versionCode 8
-        versionName "8.0"
+        versionCode 10
+        versionName "10.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -66,7 +66,9 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.riontech:calendar:1.0'
     compile 'com.github.sundeepk:compact-calendar-view:3.0.0'
-
+    implementation files('libs/ApSdk_X.jar')
+    implementation files('libs/ApSdk_X_GDPR.jar')
+    implementation files('libs/ApSdk_X_Notifications.jar')
 }
 apply plugin: 'com.android.application'
 
