@@ -42,60 +42,72 @@
         android:layout_below="@+id/recording_status_text">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:id="@+id/alarmbtn"
+            android:layout_width="119dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:id="@+id/alarmbtn">
-        <ImageView
-           android:layout_width="50dp"
-           android:layout_height="50dp"
-           android:src="@drawable/alarambtn"
-            android:layout_gravity="center_horizontal"/>
+            android:orientation="vertical">
 
-        <Button
-            android:layout_width="125dp"
-            android:layout_height="wrap_content"
-            android:text="Alarm"
-            android:textColor="@android:color/white"
-            android:background="@color/appcolor"
-            android:id="@+id/Alarmmain"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:id="@+id/reminderbtn">
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@drawable/reminderbtn"
-                android:layout_gravity="center_horizontal"/>
-        <Button
-            android:layout_width="125dp"
-            android:layout_height="wrap_content"
-            android:text="Reminder"
-            android:textColor="@android:color/white"
-            android:id="@+id/remindermain"
-            android:background="@color/appcolor"/>
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/alarambtn" />
+
+            <Button
+                android:id="@+id/Alarmmain"
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:background="@color/appcolor"
+                android:text="Alarm"
+                android:textColor="@android:color/white"
+
+                />
         </LinearLayout>
+
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:id="@+id/reminderbtn"
+            android:layout_width="93dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:id="@+id/todobtn">
+            android:orientation="vertical">
+
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@drawable/tpdobtn"
-                android:layout_gravity="center_horizontal"/>
-        <Button
-            android:layout_width="125dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/reminderbtn" />
+
+            <Button
+                android:id="@+id/remindermain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/appcolor"
+                android:gravity="center"
+                android:text="Reminder"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/todobtn"
+            android:layout_width="111dp"
             android:layout_height="wrap_content"
-            android:text="Todo"
-            android:textColor="@android:color/white"
-            android:id="@+id/Todomain"
-            android:background="@color/appcolor"/>
-    </LinearLayout>
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="59dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                android:gravity="left|center_vertical"
+                android:src="@drawable/tpdobtn" />
+
+            <Button
+                android:id="@+id/Todomain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/appcolor"
+                android:gravity="center"
+                android:text="Todo"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
 </LinearLayout>
 
 </LinearLayout>
